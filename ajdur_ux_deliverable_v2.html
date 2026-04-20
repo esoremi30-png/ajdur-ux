@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajdur International — UX Deliverable v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #EEF3FF;
+  --bg2:       #F6F9FF;
+  --surface:   #FFFFFF;
+  --ink:       #060D1F;
+  --ink2:      #1A2A45;
+  --muted:     #5E7494;
+  --faint:     #A8B8CC;
+  --cyan:      #00BBCF;
+  --cyan-dim:  rgba(0,187,207,0.10);
+  --cyan-mid:  rgba(0,187,207,0.25);
+  --indigo:    #4752C4;
+  --indigo-dim:rgba(71,82,196,0.08);
+  --indigo-mid:rgba(71,82,196,0.20);
+  --gold:      #C07A12;
+  --gold-dim:  rgba(192,122,18,0.10);
+  --gold-mid:  rgba(192,122,18,0.25);
+  --rose:      #C0284A;
+  --rose-dim:  rgba(192,40,74,0.08);
+  --green:     #0F9060;
+  --green-dim: rgba(15,144,96,0.08);
+  --border:    rgba(71,82,196,0.11);
+  --border-s:  rgba(71,82,196,0.22);
+  --r:         14px;
+  --font-h:    'Syne', sans-serif;
+  --font-b:    'Outfit', sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:15px;line-height:1.7}
+
+/* ── GRID PATTERN ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;z-index:0;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(238,243,255,0.88);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border-s);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 44px;
+}
+.nav-brand{font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--indigo);letter-spacing:-.01em;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--indigo);}
+.nav-pill{font-size:11px;font-weight:600;background:var(--indigo);color:#fff;padding:4px 14px;border-radius:100px;letter-spacing:.03em;}
+
+/* ── WRAP ── */
+.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;}
+section{padding:100px 44px 80px;}
+section+section{border-top:1px solid var(--border-s);}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;}
+h1{font-family:var(--font-h);font-size:clamp(40px,5.5vw,68px);font-weight:800;line-height:1.05;color:var(--ink);letter-spacing:-.03em;}
+h2{font-family:var(--font-h);font-size:clamp(26px,3.5vw,40px);font-weight:700;color:var(--ink);letter-spacing:-.02em;margin-bottom:6px;}
+h3{font-family:var(--font-h);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+h4{font-family:var(--font-b);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--indigo);margin-bottom:14px;}
+p{color:var(--muted);line-height:1.75;}
+
+/* ── HERO ── */
+#hero{padding-top:160px;padding-bottom:80px;text-align:center;position:relative;}
+.hero-glow{position:absolute;top:80px;left:50%;transform:translateX(-50%);width:700px;height:360px;background:radial-gradient(ellipse at center,rgba(71,82,196,0.09) 0%,transparent 70%);pointer-events:none;}
+.hero-tagline{font-size:17px;color:var(--muted);margin:18px auto 40px;max-width:540px;font-weight:300;}
+.hero-chips{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px;}
+.chip{background:var(--surface);border:1px solid var(--border-s);padding:7px 18px;border-radius:100px;font-size:12px;font-weight:500;color:var(--muted);}
+.chip span{color:var(--ink);font-weight:600;}
+.version-badge{display:inline-flex;align-items:center;gap:6px;background:var(--indigo-dim);border:1px solid var(--indigo-mid);color:var(--indigo);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:600;margin-bottom:28px;}
+.version-dot{width:6px;height:6px;border-radius:3px;background:var(--indigo);}
+
+/* ── CARDS ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;}
+.card-cyan{border-color:var(--cyan-mid);background:linear-gradient(135deg,var(--cyan-dim),var(--surface));}
+.card-indigo{border-color:var(--indigo-mid);background:linear-gradient(135deg,var(--indigo-dim),var(--surface));}
+.card-gold{border-color:var(--gold-mid);background:linear-gradient(135deg,var(--gold-dim),var(--surface));}
+
+/* ── GRID ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:.04em;}
+.b-active{background:var(--green-dim);color:var(--green);border:1px solid rgba(15,144,96,.22);}
+.b-coming{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-mid);}
+.b-decision{background:var(--rose-dim);color:var(--rose);border:1px solid rgba(192,40,74,.22);animation:pulse-border 2s ease-in-out infinite;}
+.b-free{background:var(--green-dim);color:var(--green);border:1px solid rgba(15,144,96,.2);}
+.b-paid{background:var(--indigo-dim);color:var(--indigo);border:1px solid var(--indigo-mid);}
+.b-both{background:var(--cyan-dim);color:#007A88;border:1px solid var(--cyan-mid);}
+.b-coupon{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-mid);}
+@keyframes pulse-border{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* ── SERVICE ARCHITECTURE ── */
+.arch-section{margin-bottom:32px;}
+.arch-header{font-family:var(--font-h);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--indigo);padding:10px 16px;background:var(--indigo-dim);border:1px solid var(--indigo-mid);border-radius:8px 8px 0 0;display:flex;align-items:center;gap:10px;}
+.arch-body{background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;overflow:hidden;}
+.arch-row{display:grid;grid-template-columns:240px 90px 1fr;align-items:center;gap:0;border-bottom:1px solid var(--border);padding:12px 16px;}
+.arch-row:last-child{border:none;}
+.arch-row:hover{background:var(--bg2);}
+.arch-name{font-size:13px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.arch-name-sub{font-size:11px;color:var(--muted);margin-top:1px;font-weight:400;}
+.arch-desc{font-size:12px;color:var(--muted);line-height:1.55;}
+.arch-indent{padding-left:20px!important;background:var(--bg2);}
+.arch-indent .arch-name{color:var(--muted);font-weight:400;}
+
+/* ── DECISION MATRIX ── */
+.decision-alert{background:linear-gradient(135deg,rgba(192,40,74,0.06),rgba(192,40,74,0.03));border:1px solid rgba(192,40,74,0.2);border-radius:var(--r);padding:20px 24px;margin-bottom:36px;display:flex;gap:16px;align-items:flex-start;}
+.alert-icon{width:36px;height:36px;background:var(--rose-dim);border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.dm-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:32px;}
+.dm-thead{display:grid;grid-template-columns:220px 90px 130px 130px 120px 1fr;background:var(--bg2);border-bottom:1px solid var(--border-s);}
+.dm-th{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo);padding:10px 14px;border-right:1px solid var(--border);}
+.dm-th:last-child{border-right:none;}
+.dm-row{display:grid;grid-template-columns:220px 90px 130px 130px 120px 1fr;border-bottom:1px solid var(--border);transition:background .15s;}
+.dm-row:last-child{border:none;}
+.dm-row:hover{background:var(--bg2);}
+.dm-cell{padding:11px 14px;font-size:12px;border-right:1px solid var(--border);display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.dm-cell:last-child{border-right:none;}
+.dm-cell.service-name{color:var(--ink);font-weight:500;flex-direction:column;align-items:flex-start;gap:3px;}
+.dm-cell .sub{font-size:10px;color:var(--muted);font-weight:400;}
+.check{color:var(--green);font-size:14px;}
+.cross{color:var(--faint);font-size:14px;}
+.question{color:var(--rose);font-size:14px;font-weight:700;}
+.path-opt{font-size:10px;padding:2px 8px;border-radius:100px;font-weight:600;}
+.po-yes{background:var(--green-dim);color:var(--green);}
+.po-no{color:var(--faint);}
+.po-q{background:var(--rose-dim);color:var(--rose);}
+
+/* Decision Option Blocks */
+.decision-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:20px;}
+.db-header{padding:14px 20px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.db-name{font-family:var(--font-h);font-size:15px;font-weight:600;color:var(--ink);}
+.db-body{padding:20px;}
+.db-question{font-size:13px;font-weight:600;color:var(--rose);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.db-options{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.db-opt{padding:14px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg2);}
+.db-opt.recommended{border-color:var(--cyan-mid);background:var(--cyan-dim);}
+.db-opt-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;}
+.db-opt-label.opt-a{color:var(--indigo);}
+.db-opt-label.opt-b{color:var(--green);}
+.db-opt-label.opt-c{color:var(--cyan);}
+.db-opt-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.db-impact{margin-top:14px;padding:10px 14px;background:var(--bg);border-radius:8px;font-size:12px;color:var(--muted);border-left:3px solid var(--indigo);}
+.db-impact strong{color:var(--indigo);font-weight:600;}
+
+/* ── FLOW DIAGRAM ── */
+.flow-container{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;overflow-x:auto;margin-bottom:40px;}
+.flow-container svg{min-width:600px;}
+
+/* ── MOODBOARD / DIRECTION ── */
+.swatch-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
+.swatch{flex:1;min-width:80px;border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+.swatch-c{height:72px;}
+.swatch-info{padding:9px 12px;background:var(--surface);}
+.swatch-name{font-size:11px;font-weight:600;color:var(--ink);}
+.swatch-hex{font-size:10px;color:var(--muted);font-family:monospace;}
+.typo-sample{padding:22px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;}
+.typo-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--indigo);margin-bottom:8px;}
+.keyword-row{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0;}
+.kw{padding:8px 20px;border-radius:100px;font-size:14px;font-weight:500;border:1px solid;}
+.kw-cyan{background:var(--cyan-dim);color:#007A88;border-color:var(--cyan-mid);}
+.kw-indigo{background:var(--indigo-dim);color:var(--indigo);border-color:var(--indigo-mid);}
+.kw-gold{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-mid);}
+.kw-ink{background:rgba(6,13,31,0.06);color:var(--ink);border-color:rgba(6,13,31,0.14);}
+
+/* ── BUTTONS ── */
+.btn-p{display:inline-flex;align-items:center;justify-content:center;background:var(--indigo);color:#fff;font-family:var(--font-b);font-size:14px;font-weight:600;padding:13px 28px;border-radius:100px;border:none;cursor:pointer;transition:opacity .2s;letter-spacing:.01em;}
+.btn-p:hover{opacity:.88;}
+.btn-o{display:inline-flex;align-items:center;justify-content:center;background:transparent;color:var(--indigo);font-family:var(--font-b);font-size:14px;font-weight:500;padding:12px 28px;border-radius:100px;border:1.5px solid var(--indigo-mid);cursor:pointer;transition:border-color .2s;}
+.btn-o:hover{border-color:var(--indigo);}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;background:var(--cyan-dim);color:#007A88;font-family:var(--font-b);font-size:13px;font-weight:600;padding:10px 22px;border-radius:100px;border:1px solid var(--cyan-mid);cursor:pointer;}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+
+/* ── COMPONENT DEMO ── */
+.comp-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;}
+.comp-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--indigo);margin-bottom:18px;}
+
+/* Demo inputs */
+.demo-input{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border-s);border-radius:10px;color:var(--ink);font-family:var(--font-b);font-size:14px;margin-bottom:10px;outline:none;transition:border-color .2s;}
+.demo-input:focus{border-color:var(--indigo);}
+.demo-input::placeholder{color:var(--faint);}
+.demo-select{width:100%;padding:12px 16px;background:var(--bg2);border:1px solid var(--border-s);border-radius:10px;color:var(--muted);font-family:var(--font-b);font-size:14px;appearance:none;}
+
+/* Service card */
+.svc-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:10px;transition:border-color .2s;cursor:pointer;}
+.svc-card:hover{border-color:var(--cyan-mid);}
+.svc-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.svc-name{font-family:var(--font-h);font-size:17px;font-weight:600;color:var(--ink);}
+.svc-desc{font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.55;}
+.svc-meta{display:flex;gap:16px;}
+.svc-meta span{font-size:11px;color:var(--faint);display:flex;align-items:center;gap:5px;}
+
+/* Menu demo */
+.menu-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:9px;cursor:pointer;margin-bottom:2px;transition:background .15s;}
+.menu-item:hover{background:var(--bg);}
+.menu-icon{width:32px;height:32px;border-radius:7px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.menu-icon svg{width:15px;height:15px;stroke:var(--muted);fill:none;stroke-width:1.5;}
+.menu-text{font-size:14px;color:var(--muted);font-weight:400;}
+.menu-item.active .menu-text{color:var(--indigo);font-weight:600;}
+.menu-item.active .menu-icon{background:var(--indigo-dim);border-color:var(--indigo-mid);}
+.menu-item.active .menu-icon svg{stroke:var(--indigo);}
+
+/* ── PHONE MOCKUP ── */
+.phone-grid{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;}
+.phone-frame{width:272px;flex-shrink:0;border-radius:38px;overflow:hidden;border:1.5px solid rgba(71,82,196,0.2);box-shadow:0 20px 60px rgba(71,82,196,0.12),0 4px 16px rgba(71,82,196,0.08);background:#fff;}
+.phone-status{display:flex;justify-content:space-between;align-items:center;padding:14px 20px 6px;background:#fff;}
+.phone-time{font-size:12px;font-weight:700;color:var(--ink);font-family:var(--font-h);}
+.phone-notch{width:80px;height:4px;background:rgba(0,0,0,0.08);border-radius:2px;}
+.phone-icons{font-size:10px;color:var(--muted);}
+.phone-label{text-align:center;margin-top:14px;font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
+
+/* ── SCREEN COMPONENTS ── */
+.scr-header-bar{padding:14px 20px 10px;background:#fff;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(71,82,196,0.08);}
+.scr-logo{font-family:var(--font-h);font-size:16px;font-weight:800;color:var(--indigo);}
+.scr-menu-btn{width:26px;height:18px;display:flex;flex-direction:column;justify-content:space-between;}
+.scr-menu-btn span{height:1.5px;background:var(--muted);border-radius:1px;}
+.scr-menu-btn span:last-child{width:60%;}
+.scr-back{display:flex;align-items:center;gap:8px;padding:12px 20px 8px;background:#fff;border-bottom:1px solid rgba(71,82,196,0.08);}
+.scr-back-btn{width:28px;height:28px;background:var(--bg);border:1px solid var(--border);border-radius:7px;display:flex;align-items:center;justify-content:center;}
+.scr-back-btn svg{width:12px;height:12px;stroke:var(--muted);fill:none;stroke-width:2;}
+.scr-page-title{font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--ink);}
+.scr-tab-bar{display:flex;background:#fff;border-top:1px solid rgba(71,82,196,0.1);}
+.scr-tab-item{flex:1;padding:8px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.scr-tab-item svg{width:18px;height:18px;stroke:var(--faint);fill:none;stroke-width:1.5;}
+.scr-tab-item.active svg{stroke:var(--indigo);}
+.scr-tab-dot{font-size:9px;color:var(--faint);}
+.scr-tab-item.active .scr-tab-dot{color:var(--indigo);}
+
+/* Screen content blocks */
+.scr-hero{padding:20px 20px 16px;background:linear-gradient(160deg,#EFF3FF 0%,#F6F9FF 100%);}
+.scr-greeting{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--indigo);font-weight:700;margin-bottom:3px;}
+.scr-h1{font-family:var(--font-h);font-size:22px;font-weight:800;color:var(--ink);line-height:1.15;margin-bottom:8px;}
+.scr-tagline{font-size:11px;color:var(--muted);line-height:1.55;}
+.scr-section-grid{padding:14px 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.scr-scard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px;}
+.scr-scard.featured{border-color:var(--cyan-mid);background:linear-gradient(135deg,var(--cyan-dim),#fff);}
+.scr-sicon{width:26px;height:26px;background:var(--indigo-dim);border-radius:6px;margin-bottom:7px;display:flex;align-items:center;justify-content:center;}
+.scr-sicon svg{width:13px;height:13px;stroke:var(--indigo);fill:none;stroke-width:1.5;}
+.scr-scard.featured .scr-sicon{background:var(--cyan-dim);}
+.scr-scard.featured .scr-sicon svg{stroke:#007A88;}
+.scr-sname{font-family:var(--font-h);font-size:11px;font-weight:700;color:var(--ink);}
+.scr-ssub{font-size:9px;color:var(--muted);margin-top:1px;}
+.scr-video{margin:0 14px 14px;height:110px;background:linear-gradient(135deg,#E4E9FF,#EEF3FF);border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);position:relative;overflow:hidden;}
+.scr-play{width:38px;height:38px;background:var(--indigo);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.scr-play svg{width:14px;height:14px;fill:#fff;margin-left:2px;}
+.scr-vid-label{position:absolute;bottom:8px;left:12px;font-size:9px;color:var(--muted);}
+
+/* Consultation screen */
+.scr-intro-text{padding:8px 20px 16px;font-size:11px;color:var(--muted);line-height:1.6;}
+.scr-con-card{margin:0 14px 10px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;transition:border-color .2s;}
+.scr-con-card.selected{border-color:var(--indigo-mid);background:var(--indigo-dim);}
+.scr-con-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.scr-con-name{font-family:var(--font-h);font-size:13px;font-weight:700;color:var(--ink);}
+.scr-con-tag{font-size:9px;font-weight:700;padding:2px 8px;border-radius:100px;}
+.tag-free{background:var(--green-dim);color:var(--green);}
+.tag-paid{background:var(--indigo-dim);color:var(--indigo);}
+.tag-prem{background:var(--gold-dim);color:var(--gold);}
+.scr-con-desc{font-size:10px;color:var(--muted);line-height:1.5;margin-bottom:8px;}
+.scr-con-meta{display:flex;gap:10px;}
+.scr-con-meta span{font-size:9px;color:var(--faint);}
+.scr-cta{margin:8px 14px 14px;}
+.scr-cta button{width:100%;background:var(--indigo);color:#fff;font-family:var(--font-b);font-size:13px;font-weight:600;padding:12px;border-radius:100px;border:none;cursor:pointer;}
+
+/* Coupon screen */
+.scr-f-field{margin:0 14px 9px;}
+.scr-f-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--indigo);margin-bottom:4px;}
+.scr-f-input{width:100%;padding:10px 12px;background:var(--bg2);border:1px solid var(--border-s);border-radius:8px;color:var(--ink);font-size:12px;font-family:var(--font-b);}
+.scr-f-input.focus{border-color:var(--indigo);}
+.scr-f-select-wr{position:relative;}
+.scr-f-select{width:100%;padding:10px 12px;background:var(--bg2);border:1px solid var(--border-s);border-radius:8px;color:var(--muted);font-size:12px;appearance:none;}
+.scr-f-arrow{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:9px;pointer-events:none;}
+.scr-submit{margin:12px 14px 6px;}
+.scr-submit button{width:100%;background:var(--indigo);color:#fff;font-family:var(--font-b);font-size:12px;font-weight:600;padding:12px;border-radius:100px;border:none;}
+.scr-contact{margin:0 14px 14px;}
+.scr-contact button{width:100%;background:transparent;border:1px solid var(--border-s);color:var(--muted);font-family:var(--font-b);font-size:11px;padding:9px;border-radius:100px;}
+.scr-context-bar{margin:0 14px 14px;padding:10px 12px;background:var(--indigo-dim);border:1px solid var(--indigo-mid);border-radius:10px;font-size:10px;color:var(--indigo);line-height:1.5;}
+
+/* Menu screen */
+.scr-drawer-wrap{display:flex;height:510px;overflow:hidden;}
+.scr-drawer{width:190px;background:#fff;border-right:1px solid var(--border);padding:16px 10px;flex-shrink:0;display:flex;flex-direction:column;}
+.scr-drawer-logo{font-family:var(--font-h);font-size:16px;font-weight:800;color:var(--indigo);padding:0 6px;margin-bottom:20px;}
+.scr-mi{display:flex;align-items:center;gap:8px;padding:8px 8px;border-radius:8px;margin-bottom:1px;cursor:pointer;}
+.scr-mi svg{width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:1.5;flex-shrink:0;}
+.scr-mi span{font-size:11px;color:var(--muted);}
+.scr-mi.active{background:var(--indigo-dim);}
+.scr-mi.active span{color:var(--indigo);font-weight:600;}
+.scr-mi.active svg{stroke:var(--indigo);}
+.scr-divider{height:1px;background:var(--border);margin:10px 0;}
+.scr-ver{font-size:9px;color:var(--faint);padding:4px 8px;margin-top:auto;}
+.scr-dim{flex:1;background:rgba(6,13,31,0.35);}
+
+/* Onboarding screen */
+.scr-ob-hero{height:180px;background:linear-gradient(160deg,#E8ECFF 0%,#EEF5FF 50%,#E6F9FF 100%);display:flex;align-items:center;justify-content:center;position:relative;}
+.ob-rings{position:relative;width:100px;height:100px;}
+.ob-ring{position:absolute;border-radius:50%;border:1px solid;top:50%;left:50%;transform:translate(-50%,-50%);}
+.ob-r1{width:96px;height:96px;border-color:rgba(71,82,196,0.15);}
+.ob-r2{width:68px;height:68px;border-color:rgba(71,82,196,0.25);}
+.ob-r3{width:40px;height:40px;background:var(--indigo);border-color:var(--indigo);display:flex;align-items:center;justify-content:center;}
+.ob-r3 span{font-family:var(--font-h);font-size:8px;font-weight:800;color:#fff;letter-spacing:-.01em;}
+.scr-ob-dots{display:flex;justify-content:center;gap:5px;padding:12px 0 6px;}
+.ob-dot{width:5px;height:5px;border-radius:2.5px;background:var(--border-s);}
+.ob-dot.active{width:18px;background:var(--indigo);}
+.scr-ob-body{padding:10px 20px 16px;}
+.scr-ob-h{font-family:var(--font-h);font-size:22px;font-weight:800;color:var(--ink);line-height:1.15;margin-bottom:8px;}
+.scr-ob-p{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:10px;}
+.scr-ob-bullet{display:flex;align-items:center;gap:7px;font-size:10px;color:var(--muted);padding:2px 0;}
+.ob-bullet-dot{width:4px;height:4px;border-radius:2px;background:var(--cyan);flex-shrink:0;}
+.scr-ob-btn{width:100%;background:var(--indigo);color:#fff;font-family:var(--font-b);font-size:12px;font-weight:600;padding:13px;border-radius:100px;border:none;margin-top:12px;}
+
+/* ── AUDIT ── */
+.audit-row{display:grid;grid-template-columns:28px 1fr 100px;gap:14px;padding:18px 22px;background:var(--surface);border-radius:10px;border:1px solid var(--border);margin-bottom:10px;align-items:start;}
+.a-num{font-family:var(--font-h);font-size:20px;color:var(--faint);font-weight:700;}
+.a-label{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.a-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.sev{font-size:10px;padding:4px 10px;border-radius:100px;font-weight:700;text-align:center;}
+.s-h{background:var(--rose-dim);color:var(--rose);border:1px solid rgba(192,40,74,.2);}
+.s-m{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-mid);}
+.s-l{background:var(--green-dim);color:var(--green);border:1px solid rgba(15,144,96,.2);}
+
+/* ── PRIORITY ── */
+.pri-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+.pri-item:last-child{border:none;}
+.pri-n{font-family:var(--font-h);font-size:30px;color:var(--border-s);font-weight:800;width:36px;flex-shrink:0;line-height:1;}
+.pri-h{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.pri-d{font-size:12px;color:var(--muted);}
+
+/* ── OPPORTUNITY ── */
+.opp{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;border-left:3px solid var(--indigo);margin-bottom:12px;}
+.opp-t{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+.opp-b{font-size:12px;color:var(--muted);line-height:1.65;}
+
+/* ── STRENGTH ── */
+.str-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
+.str-item:last-child{border:none;}
+.str-icon{width:30px;height:30px;background:var(--green-dim);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:60px 44px;border-top:1px solid var(--border-s);background:var(--bg2);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:760px){
+  nav{padding:12px 20px;}
+  .nav-links{display:none;}
+  section{padding:80px 20px 60px;}
+  .g2,.g3,.g4{grid-template-columns:1fr;}
+  .dm-thead,.dm-row{grid-template-columns:1fr 80px 80px 80px;}
+  .dm-cell:nth-child(5),.dm-cell:nth-child(6),.dm-th:nth-child(5),.dm-th:nth-child(6){display:none;}
+  .db-options{grid-template-columns:1fr;}
+  h1{font-size:36px;}
+  .arch-row{grid-template-columns:180px 80px 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Ajdur International</div>
+  <div class="nav-links">
+    <a href="#architecture">Service Map</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#flows">Flows</a>
+    <a href="#audit">Audit</a>
+    <a href="#direction">Direction</a>
+    <a href="#screens">Screens</a>
+  </div>
+  <div class="nav-pill">v2.0 — Decision Edition</div>
+</nav>
+
+<!-- ════════════════════════ HERO ════════════════════════ -->
+<div class="wrap">
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="version-badge"><div class="version-dot"></div> Updated from v1.0 · Decision Framework Added</div>
+  <h1>Ajdur UX/UI<br>Deliverable</h1>
+  <p class="hero-tagline">Updated with full service architecture, team decision prompts on ambiguous user paths, revised flows, and a futuristic light UI direction.</p>
+  <div class="hero-chips">
+    <div class="chip">App version <span>1.0.10 (91)</span></div>
+    <div class="chip">Active services <span>5</span></div>
+    <div class="chip">Coming services <span>8</span></div>
+    <div class="chip">Decisions needed <span style="color:var(--rose)">9</span></div>
+    <div class="chip">Deliverables <span>6</span></div>
+  </div>
+</section>
+
+<!-- ════════════════════════ SERVICE ARCHITECTURE ════════════════════════ -->
+<section id="architecture">
+  <div class="eyebrow">Deliverable 01</div>
+  <h2>Service Architecture Map</h2>
+  <p style="max-width:600px;margin-bottom:36px;">Every active and coming service, mapped by category. This is the single source of truth for what the app offers, what is live today, and what is planned. Items marked <span class="badge b-decision" style="font-size:10px;">Decision Needed</span> require a team call before user flows can be finalised.</p>
+
+  <!-- READINGS -->
+  <div class="arch-section">
+    <div class="arch-header">
+      <svg style="width:14px;height:14px;stroke:var(--indigo);fill:none;stroke-width:1.5;flex-shrink:0" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+      Readings &amp; Life Guidance
+    </div>
+    <div class="arch-body">
+      <div class="arch-row">
+        <div class="arch-name"><div>Life Coaching</div><div class="arch-name-sub">Personalised life direction</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc"><span class="badge b-decision">Decision Needed</span> &nbsp;Free via Self Exploration? Paid via Consultation? Or both? Does it require a coupon?</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Self Discovery</div><div class="arch-name-sub">Core identity &amp; purpose</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc"><span class="badge b-decision">Decision Needed</span> &nbsp;Currently shown on home as Self Exploration — is the free reading fully available, or does deeper content require Consultation?</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Life Path (Akosejaiye)</div><div class="arch-name-sub">Destiny &amp; path reading</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc"><span class="badge b-decision">Decision Needed</span> &nbsp;Same as Life Coaching — free, paid, or tiered access based on Consultation level?</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Spiritual Healing</div><div class="arch-name-sub">Energy &amp; healing sessions</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc"><span class="badge b-decision">Decision Needed</span> &nbsp;Is this a Consultation service (requiring booking), a standalone reading, or both pathways?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADVANCE INSIGHTS -->
+  <div class="arch-section">
+    <div class="arch-header">
+      <svg style="width:14px;height:14px;stroke:var(--indigo);fill:none;stroke-width:1.5;flex-shrink:0" viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.5l-3 2.9.7 4.1L8 10.6l-3.7 1.9.7-4.1-3-2.9 4.2-.9z"/></svg>
+      Advance Insights
+    </div>
+    <div class="arch-body">
+      <div class="arch-row">
+        <div class="arch-name"><div>Fortune Wheel</div><div class="arch-name-sub">Decision challenge tool</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc"><span class="badge b-decision">Decision Needed</span> &nbsp;Is this a free interactive tool within Self Exploration, or does it require a coupon/credit?</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Compass</div><div class="arch-name-sub">Life fulfilment direction</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc"><span class="badge b-decision">Decision Needed</span> &nbsp;Free discovery tool or gated behind coupon? Strong candidate for a lead-generation free tier.</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Oraculum (Oraccellum)</div><div class="arch-name-sub">Dream &amp; sign interpretation</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc"><span class="badge b-decision">Decision Needed</span> &nbsp;Free interpretation, paid premium, or coupon-gated? Currently shown in Advance Insights grid — access model unclear.</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Physiognomy (Face Reading)</div><div class="arch-name-sub">Facial feature analysis</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc"><span class="badge b-decision">Decision Needed</span> &nbsp;Same question as Oraculum. High engagement potential if offered free with depth gated behind Consultation.</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Dice Abdominus</div><div class="arch-name-sub">Randomised insight tool</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">Listed in Advance Insights grid. Access model not specified — assumed free in current build.</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Card Reading</div><div class="arch-name-sub">Card-based spiritual reading</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">Listed in Advance Insights grid. Access model not specified.</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Dream Interpretation</div><div class="arch-name-sub">Dream analysis</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">Listed in Advance Insights grid. Overlaps with Oraculum — recommend clarifying whether these are the same service or distinct.</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Blind Oracle</div><div class="arch-name-sub">Unseen spiritual guidance</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">Listed in Advance Insights grid. Access model not specified.</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Horrifying Number</div><div class="arch-name-sub">Numerology challenge</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">Listed in Advance Insights grid — note: label currently shows typo "Horifing Number" in app. Recommend correcting before launch.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPIRITUAL KNOWLEDGE -->
+  <div class="arch-section">
+    <div class="arch-header">
+      <svg style="width:14px;height:14px;stroke:var(--indigo);fill:none;stroke-width:1.5;flex-shrink:0" viewBox="0 0 16 16"><path d="M2 3h12v10H2zM6 3V2a1 1 0 012 0v1"/></svg>
+      Spiritual Knowledge &amp; Education
+    </div>
+    <div class="arch-body">
+      <div class="arch-row">
+        <div class="arch-name"><div>Spiritual Academy</div><div class="arch-name-sub">Student portal → website</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">Redirects to external website. In-App: Login button → external class portal.</div>
+      </div>
+      <div class="arch-row arch-indent">
+        <div class="arch-name"><div>In-Person Classes</div></div>
+        <div></div>
+        <div class="arch-desc">Prerequisite required. Enrolment managed externally.</div>
+      </div>
+      <div class="arch-row arch-indent">
+        <div class="arch-name"><div>Online Classes</div></div>
+        <div></div>
+        <div class="arch-desc">1-year Spirit Science + Exam. Duration: 1 year.</div>
+      </div>
+      <div class="arch-row arch-indent">
+        <div class="arch-name"><div>Advanced Classes</div></div>
+        <div></div>
+        <div class="arch-desc">Prerequisite: 1yr Spirit Science + Exam. Duration: 3–5 years.</div>
+      </div>
+      <div class="arch-row arch-indent">
+        <div class="arch-name"><div>Spiritism — Knowledge</div></div>
+        <div></div>
+        <div class="arch-desc">Knowledge content / community. Access model: via website or community portal.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORE -->
+  <div class="arch-section">
+    <div class="arch-header">
+      <svg style="width:14px;height:14px;stroke:var(--indigo);fill:none;stroke-width:1.5;flex-shrink:0" viewBox="0 0 16 16"><path d="M2 3h12l-1.5 8H3.5zM5 3l1-2h4l1 2"/></svg>
+      Our Store — Redirects to Online Store
+    </div>
+    <div class="arch-body">
+      <div class="arch-row arch-indent">
+        <div class="arch-name"><div>Books</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc">Deep-link to online store. Physical or digital — specify before implementation.</div>
+      </div>
+      <div class="arch-row arch-indent">
+        <div class="arch-name"><div>Incenses</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc">Physical product — redirect to online store.</div>
+      </div>
+      <div class="arch-row arch-indent">
+        <div class="arch-name"><div>Healing Products</div><div class="arch-name-sub">Anti-Cancer Tea · Blood Pressure Regulator</div></div>
+        <div><span class="badge b-coming">Coming</span></div>
+        <div class="arch-desc">Preventive care products. Health disclaimer/legal copy needed. Redirect to online store.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONSULTATION -->
+  <div class="arch-section">
+    <div class="arch-header">
+      <svg style="width:14px;height:14px;stroke:var(--indigo);fill:none;stroke-width:1.5;flex-shrink:0" viewBox="0 0 16 16"><path d="M2 2h12v10H8l-4 3V12H2z"/></svg>
+      Consultation — Booking System
+    </div>
+    <div class="arch-body">
+      <div class="arch-row">
+        <div class="arch-name"><div>Standard</div><div class="arch-name-sub">Structured guidance</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">1-week duration. Format: Live chat. Access: Booking via app.</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Platinum / Diamond</div><div class="arch-name-sub">Deep spiritual guidance</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">1-week duration. Format: 30-min live video call. Access: Booking via app (Paid).</div>
+      </div>
+      <div class="arch-row">
+        <div class="arch-name"><div>Special Request</div><div class="arch-name-sub">Unique / personalised</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">Flexible duration. Format: Live video call (time varies). Access: By request.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COUPON -->
+  <div class="arch-section">
+    <div class="arch-header">
+      <svg style="width:14px;height:14px;stroke:var(--indigo);fill:none;stroke-width:1.5;flex-shrink:0" viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/><path d="M6 4V3a1 1 0 012 0v1M6 12v1a1 1 0 002 0v-1"/></svg>
+      Request Coupon
+    </div>
+    <div class="arch-body">
+      <div class="arch-row">
+        <div class="arch-name"><div>Coupon Request Form</div><div class="arch-name-sub">Discount / access token</div></div>
+        <div><span class="badge b-active">Active</span></div>
+        <div class="arch-desc">Name + Email + Coupon Type form. Currently: Generic "coupon type" dropdown — team to define what coupon types exist (e.g. consultation discount, reading credit, store voucher).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ DECISION MATRIX ════════════════════════ -->
+<section id="decisions">
+  <div class="eyebrow">Deliverable 02 — Action Required</div>
+  <h2>Team Decision Matrix</h2>
+  <p style="max-width:620px;margin-bottom:28px;">Nine services need a team decision before their user flow can be built. Each item below presents the options clearly so leadership can choose a path and the design can be finalised.</p>
+
+  <div class="decision-alert">
+    <div class="alert-icon">⚠️</div>
+    <div>
+      <div style="font-size:14px;font-weight:600;color:var(--rose);margin-bottom:4px;">9 decisions required before development can proceed</div>
+      <div style="font-size:13px;color:var(--muted);">The items below affect navigation logic, backend gating, coupon system scope, and the Consultation booking flow. Each decision also affects how the app onboards new users — a user who expects free access and hits a paywall will leave.</div>
+    </div>
+  </div>
+
+  <!-- Summary table -->
+  <h4 style="margin-bottom:14px;">Quick reference — all services at a glance</h4>
+  <div class="dm-table" style="margin-bottom:40px;overflow-x:auto;">
+    <div class="dm-thead">
+      <div class="dm-th">Service</div>
+      <div class="dm-th">Status</div>
+      <div class="dm-th">Free Path</div>
+      <div class="dm-th">Paid / Consult</div>
+      <div class="dm-th">Coupon gate</div>
+      <div class="dm-th">Decision</div>
+    </div>
+    <!-- Self Discovery -->
+    <div class="dm-row">
+      <div class="dm-cell service-name">Self Discovery<div class="sub">Home / Self Exploration</div></div>
+      <div class="dm-cell"><span class="badge b-active">Active</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell" style="color:var(--rose);font-size:11px;font-weight:600;">Is the home free reading the full service, or a preview leading to paid Consultation?</div>
+    </div>
+    <!-- Life Coaching -->
+    <div class="dm-row">
+      <div class="dm-cell service-name">Life Coaching<div class="sub">Coming feature</div></div>
+      <div class="dm-cell"><span class="badge b-coming">Coming</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell" style="color:var(--rose);font-size:11px;font-weight:600;">Free, paid, or both? Coupon needed for access?</div>
+    </div>
+    <!-- Life Path -->
+    <div class="dm-row">
+      <div class="dm-cell service-name">Life Path (Akosejaiye)<div class="sub">Coming feature</div></div>
+      <div class="dm-cell"><span class="badge b-coming">Coming</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell" style="color:var(--rose);font-size:11px;font-weight:600;">Free, paid, or both? Coupon needed for access?</div>
+    </div>
+    <!-- Spiritual Healing -->
+    <div class="dm-row">
+      <div class="dm-cell service-name">Spiritual Healing<div class="sub">Coming feature</div></div>
+      <div class="dm-cell"><span class="badge b-coming">Coming</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell" style="color:var(--rose);font-size:11px;font-weight:600;">Consultation service or standalone reading?</div>
+    </div>
+    <!-- Fortune Wheel -->
+    <div class="dm-row">
+      <div class="dm-cell service-name">Fortune Wheel<div class="sub">Coming feature</div></div>
+      <div class="dm-cell"><span class="badge b-coming">Coming</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-no">No</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell" style="color:var(--rose);font-size:11px;font-weight:600;">Free interactive tool or coupon-gated?</div>
+    </div>
+    <!-- Compass -->
+    <div class="dm-row">
+      <div class="dm-cell service-name">Compass<div class="sub">Coming feature</div></div>
+      <div class="dm-cell"><span class="badge b-coming">Coming</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-no">No</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell" style="color:var(--rose);font-size:11px;font-weight:600;">Free discovery or coupon-gated?</div>
+    </div>
+    <!-- Oraculum -->
+    <div class="dm-row">
+      <div class="dm-cell service-name">Oraculum<div class="sub">Coming feature</div></div>
+      <div class="dm-cell"><span class="badge b-coming">Coming</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell" style="color:var(--rose);font-size:11px;font-weight:600;">Free, paid, or coupon? Distinct from Dream Interpretation?</div>
+    </div>
+    <!-- Physiognomy -->
+    <div class="dm-row">
+      <div class="dm-cell service-name">Physiognomy / Face Reading<div class="sub">Coming feature</div></div>
+      <div class="dm-cell"><span class="badge b-coming">Coming</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell"><span class="path-opt po-q">?</span></div>
+      <div class="dm-cell" style="color:var(--rose);font-size:11px;font-weight:600;">Free preview + paid deep reading? Coupon access?</div>
+    </div>
+    <!-- Active Insights (known) -->
+    <div class="dm-row" style="background:var(--bg2);">
+      <div class="dm-cell service-name">Dice · Card Reading · Dream · Blind Oracle · Horrifying Number<div class="sub">Active in Advance Insights</div></div>
+      <div class="dm-cell"><span class="badge b-active">Active</span></div>
+      <div class="dm-cell"><span class="path-opt po-yes">Assumed</span></div>
+      <div class="dm-cell"><span class="path-opt po-no">—</span></div>
+      <div class="dm-cell"><span class="path-opt po-no">—</span></div>
+      <div class="dm-cell" style="font-size:11px;color:var(--muted);">Assumed free — confirm before launch. Also confirm "Oraculum" vs "Dream Interpretation" overlap.</div>
+    </div>
+  </div>
+
+  <!-- Detailed Decision Blocks -->
+  <h4 style="margin-bottom:20px;">Detailed options — per service</h4>
+
+  <!-- D1: Self Discovery -->
+  <div class="decision-block">
+    <div class="db-header">
+      <div class="db-name">Decision 1 — Self Discovery (currently live on home)</div>
+      <span class="badge b-decision">Decide Now</span>
+    </div>
+    <div class="db-body">
+      <div class="db-question">⚠ What does the home screen "Self Exploration" free reading actually give the user?</div>
+      <div class="db-options">
+        <div class="db-opt">
+          <div class="db-opt-label opt-a">Option A — Full free reading</div>
+          <div class="db-opt-desc">The home reading gives users a complete self-discovery result with no paywall. Consultation is a separate premium path for deeper personalised guidance.</div>
+        </div>
+        <div class="db-opt recommended">
+          <div class="db-opt-label opt-b">Option B — Preview + Consultation upsell ✦ Recommended</div>
+          <div class="db-opt-desc">The home reading gives a meaningful preview (e.g. core trait reveal), then invites users to book a Consultation for a full, personalised reading. Clear value ladder.</div>
+        </div>
+        <div class="db-opt">
+          <div class="db-opt-label opt-c">Option C — Free reading + optional paid upgrade</div>
+          <div class="db-opt-desc">Full free reading always available. Users can pay for a live Consultation as an additional layer — not replacing the free reading.</div>
+        </div>
+      </div>
+      <div class="db-impact"><strong>Flow impact:</strong> Option A = no CTA to Consultation from home. Option B = home reading ends with a "Book Consultation" prompt. Option C = two parallel paths, both valid. This changes the tab bar and home screen CTA design.</div>
+    </div>
+  </div>
+
+  <!-- D2: Readings (Life Coaching / Life Path / Spiritual Healing) -->
+  <div class="decision-block">
+    <div class="db-header">
+      <div class="db-name">Decision 2 — Life Coaching, Life Path &amp; Spiritual Healing (Coming)</div>
+      <span class="badge b-coming">Coming</span>
+    </div>
+    <div class="db-body">
+      <div class="db-question">⚠ Where do these services live and how are they accessed?</div>
+      <div class="db-options">
+        <div class="db-opt">
+          <div class="db-opt-label opt-a">Option A — Consultation-only</div>
+          <div class="db-opt-desc">These are premium services only bookable via Consultation (Standard / Platinum tier). Not available as self-service free readings. Coupon = discount on booking.</div>
+        </div>
+        <div class="db-opt recommended">
+          <div class="db-opt-label opt-b">Option B — Dual path ✦ Recommended</div>
+          <div class="db-opt-desc">A lightweight free reading is available via Self Exploration for each. The full, interactive, guided session requires booking a Consultation. Coupon unlocks the paid path at a discount.</div>
+        </div>
+        <div class="db-opt">
+          <div class="db-opt-label opt-c">Option C — Advance Insights cards</div>
+          <div class="db-opt-desc">These appear as new cards in the Advance Insights grid alongside Fortune Wheel, Oraculum etc. User taps → gets a reading. Paid depth gated by coupon.</div>
+        </div>
+      </div>
+      <div class="db-impact"><strong>Flow impact:</strong> Option B is recommended because it uses the existing app structure (Self Exploration → Consultation upsell), adds clear value for free users, and gives the Consultation flow a clear differentiation. Option A risks making free users feel the app has nothing for them.</div>
+    </div>
+  </div>
+
+  <!-- D3: Fortune Wheel / Compass -->
+  <div class="decision-block">
+    <div class="db-header">
+      <div class="db-name">Decision 3 — Fortune Wheel &amp; Compass (Coming)</div>
+      <span class="badge b-coming">Coming</span>
+    </div>
+    <div class="db-body">
+      <div class="db-question">⚠ Are these free interactive tools or coupon-gated premium experiences?</div>
+      <div class="db-options">
+        <div class="db-opt recommended">
+          <div class="db-opt-label opt-a">Option A — Free tools ✦ Recommended</div>
+          <div class="db-opt-desc">Both are free interactive experiences in the Advance Insights grid. They generate engagement and lead users toward Consultation for deeper interpretation. High viral potential as shareable results.</div>
+        </div>
+        <div class="db-opt">
+          <div class="db-opt-label opt-b">Option B — Coupon-gated</div>
+          <div class="db-opt-desc">Require a coupon to access. Positions them as premium. Risk: creates friction for discovery and reduces user exploration if free users have no way to engage.</div>
+        </div>
+        <div class="db-opt">
+          <div class="db-opt-label opt-c">Option C — Free basic, paid depth</div>
+          <div class="db-opt-desc">Fortune Wheel spins are free with a generic result. Full personalised interpretation requires a coupon or Consultation booking. Best of both.</div>
+        </div>
+      </div>
+      <div class="db-impact"><strong>Flow impact:</strong> Option A allows these to sit freely in the Advance Insights grid — no gate, no coupon check. Option B adds a "redeem coupon" screen before access. Option C requires a tiered result display screen.</div>
+    </div>
+  </div>
+
+  <!-- D4: Oraculum / Physiognomy -->
+  <div class="decision-block">
+    <div class="db-header">
+      <div class="db-name">Decision 4 — Oraculum &amp; Physiognomy / Face Reading (Coming)</div>
+      <span class="badge b-coming">Coming</span>
+    </div>
+    <div class="db-body">
+      <div class="db-question">⚠ Same question as D3, plus: are Oraculum and Dream Interpretation the same feature?</div>
+      <div class="db-options">
+        <div class="db-opt">
+          <div class="db-opt-label opt-a">Option A — All free</div>
+          <div class="db-opt-desc">Oraculum and Physiognomy join the free Advance Insights grid. No coupon needed. Volume play — more users engage and discover deeper services.</div>
+        </div>
+        <div class="db-opt recommended">
+          <div class="db-opt-label opt-b">Option B — Free preview, coupon for full ✦ Recommended</div>
+          <div class="db-opt-desc">User submits a dream / facial image → gets a brief interpretation free. Full reading (3× depth, PDF report, practitioner notes) requires a coupon. Smart monetisation for premium AI-enhanced features.</div>
+        </div>
+        <div class="db-opt">
+          <div class="db-opt-label opt-c">Option C — Paid Consultation only</div>
+          <div class="db-opt-desc">These require a Consultation booking to access. Oraculum = Special Request tier. Physiognomy = Platinum tier add-on.</div>
+        </div>
+      </div>
+      <div class="db-impact"><strong>Additionally clarify:</strong> Is "Dream Interpretation" in the current Advance Insights grid the same product as the coming "Oraculum"? If yes, rename consistently. If different, define the distinction before building the screen.</div>
+    </div>
+  </div>
+
+  <!-- D5: Coupon types -->
+  <div class="decision-block">
+    <div class="db-header">
+      <div class="db-name">Decision 5 — What Coupon Types Exist?</div>
+      <span class="badge b-decision">Decide Now</span>
+    </div>
+    <div class="db-body">
+      <div class="db-question">⚠ The "Coupon Type" dropdown in the form needs real options — what are they?</div>
+      <div class="db-options">
+        <div class="db-opt">
+          <div class="db-opt-label opt-a">Proposed type list</div>
+          <div class="db-opt-desc">• Consultation discount<br>• Reading credit (Advance Insights)<br>• Store voucher<br>• Event / community access<br>Team to confirm, add or remove.</div>
+        </div>
+        <div class="db-opt">
+          <div class="db-opt-label opt-b">How coupons are issued</div>
+          <div class="db-opt-desc">Is this a manual process (team reviews and emails a code), or automated (auto-generated on submission)? This affects back-end and the confirmation UX.</div>
+        </div>
+        <div class="db-opt">
+          <div class="db-opt-label opt-c">Coupon vs subscription</div>
+          <div class="db-opt-desc">Are coupons one-time use or ongoing (e.g. monthly access)? If recurring, consider replacing the coupon model with a membership/subscription screen instead.</div>
+        </div>
+      </div>
+      <div class="db-impact"><strong>Flow impact:</strong> Until coupon types are defined, the form dropdown cannot be built. This also affects whether the Advance Insights gated services show a "redeem coupon" CTA or a "subscribe" CTA.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ USER FLOWS ════════════════════════ -->
+<section id="flows">
+  <div class="eyebrow">Deliverable 03</div>
+  <h2>User Flows</h2>
+  <p style="max-width:600px;margin-bottom:12px;">These flows reflect the <strong style="color:var(--ink)">recommended paths</strong> (Options B from the Decision Matrix above). If the team chooses different options, only the branching paths change — the overall structure remains.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:40px;">Teal arrows = activation / value moments. &nbsp;Orange = decision gate. &nbsp;Grey = navigation. &nbsp;Dashed = optional path.</p>
+
+  <!-- Flow 1: First-time user -->
+  <h3 style="margin-bottom:4px;">1 — First-time User Onboarding</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Install → Onboarding slides → Free reading preview → Consultation upsell</p>
+  <div class="flow-container">
+    <svg viewBox="0 0 820 180" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#A8B8CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+        <marker id="ac" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#00BBCF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+        <marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#C07A12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+      </defs>
+      <!-- nodes -->
+      <rect x="10" y="66" width="100" height="48" rx="8" fill="#fff" stroke="#D0D8ED" stroke-width="1"/>
+      <text x="60" y="86" text-anchor="middle" fill="#5E7494" font-family="Outfit,sans-serif" font-size="11" font-weight="500">App Install</text>
+      <text x="60" y="101" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">First open</text>
+
+      <rect x="138" y="66" width="110" height="48" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="193" y="86" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Onboarding</text>
+      <text x="193" y="101" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">3 intro slides</text>
+
+      <rect x="276" y="60" width="100" height="60" rx="8" fill="#4752C4" stroke="none"/>
+      <text x="326" y="84" text-anchor="middle" fill="#fff" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Get Started</text>
+      <text x="326" y="100" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-family="Outfit,sans-serif" font-size="10">CTA tap</text>
+
+      <rect x="404" y="66" width="100" height="48" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="454" y="86" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Home</text>
+      <text x="454" y="101" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Self Exploration</text>
+
+      <rect x="532" y="66" width="110" height="48" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="587" y="86" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Free Preview</text>
+      <text x="587" y="101" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Core trait reveal</text>
+
+      <rect x="660" y="60" width="110" height="60" rx="8" fill="rgba(0,187,207,0.1)" stroke="#00BBCF" stroke-width="1"/>
+      <text x="715" y="84" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Upsell →</text>
+      <text x="715" y="100" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">Book Consultation</text>
+
+      <!-- connectors -->
+      <line x1="110" y1="90" x2="136" y2="90" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="248" y1="90" x2="274" y2="90" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="376" y1="90" x2="402" y2="90" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#ac)"/>
+      <line x1="504" y1="90" x2="530" y2="90" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="642" y1="90" x2="658" y2="90" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#ac)"/>
+
+      <text x="410" y="150" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="11">Teal = activation moments — where the user feels the value of the app</text>
+    </svg>
+  </div>
+
+  <!-- Flow 2: Consultation booking -->
+  <h3 style="margin-bottom:4px;">2 — Consultation Booking Flow</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Menu → Consultation page → Tier selection → Confirm → Booked (with optional coupon redemption)</p>
+  <div class="flow-container">
+    <svg viewBox="0 0 820 260" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- main flow -->
+      <rect x="10" y="30" width="90" height="44" rx="8" fill="#fff" stroke="#D0D8ED" stroke-width="1"/>
+      <text x="55" y="50" text-anchor="middle" fill="#5E7494" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Menu</text>
+      <text x="55" y="65" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Side drawer</text>
+
+      <rect x="124" y="30" width="100" height="44" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="174" y="50" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Consultation</text>
+      <text x="174" y="65" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Intro + 3 tiers</text>
+
+      <!-- tier diamond -->
+      <polygon points="290,26 330,52 290,78 250,52" fill="#fff" stroke="#C07A12" stroke-width="1"/>
+      <text x="290" y="56" text-anchor="middle" fill="#C07A12" font-family="Outfit,sans-serif" font-size="10" font-weight="600">Tier?</text>
+
+      <!-- Standard -->
+      <rect x="350" y="8" width="90" height="40" rx="8" fill="#fff" stroke="#D0D8ED" stroke-width="1"/>
+      <text x="395" y="24" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="10" font-weight="500">Standard</text>
+      <text x="395" y="38" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Free · Live chat</text>
+
+      <!-- Platinum -->
+      <rect x="350" y="60" width="90" height="40" rx="8" fill="#EEF0FC" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="395" y="76" text-anchor="middle" fill="#4752C4" font-family="Outfit,sans-serif" font-size="10" font-weight="600">Platinum</text>
+      <text x="395" y="90" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Paid · Video call</text>
+
+      <!-- Special -->
+      <rect x="350" y="112" width="90" height="40" rx="8" fill="#fff" stroke="#D0D8ED" stroke-width="1"/>
+      <text x="395" y="128" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="10" font-weight="500">Special Req.</text>
+      <text x="395" y="142" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Custom · Flexible</text>
+
+      <!-- Coupon path (for Platinum/Special) -->
+      <rect x="460" y="56" width="90" height="40" rx="7" fill="rgba(192,122,18,0.08)" stroke="rgba(192,122,18,0.35)" stroke-width="1" stroke-dasharray="4 2"/>
+      <text x="505" y="72" text-anchor="middle" fill="#C07A12" font-family="Outfit,sans-serif" font-size="10" font-weight="500">Coupon?</text>
+      <text x="505" y="86" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Optional discount</text>
+
+      <!-- Confirm -->
+      <rect x="574" y="30" width="90" height="44" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="619" y="50" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Confirm</text>
+      <text x="619" y="65" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Review details</text>
+
+      <!-- Booked -->
+      <rect x="690" y="26" width="90" height="52" rx="26" fill="rgba(0,187,207,0.1)" stroke="#00BBCF" stroke-width="1"/>
+      <text x="735" y="48" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Booked!</text>
+      <text x="735" y="63" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">Confirmation</text>
+
+      <!-- connectors main -->
+      <line x1="100" y1="52" x2="122" y2="52" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="224" y1="52" x2="248" y2="52" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <!-- diamond to tiers -->
+      <line x1="330" y1="43" x2="348" y2="28" stroke="#C07A12" stroke-width="1" marker-end="url(#ao)"/>
+      <line x1="330" y1="52" x2="348" y2="80" stroke="#C07A12" stroke-width="1" marker-end="url(#ao)"/>
+      <line x1="330" y1="60" x2="348" y2="130" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <!-- Standard → Confirm -->
+      <path d="M440 28L556 46" fill="none" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <!-- Platinum → Coupon (optional) -->
+      <line x1="440" y1="76" x2="458" y2="76" stroke="rgba(192,122,18,0.5)" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ao)"/>
+      <!-- Coupon → Confirm -->
+      <line x1="550" y1="68" x2="572" y2="55" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <!-- Special → Confirm -->
+      <path d="M440 130L560 72" fill="none" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <!-- Confirm → Booked -->
+      <line x1="664" y1="52" x2="688" y2="52" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#ac)"/>
+
+      <!-- labels -->
+      <text x="339" y="42" text-anchor="middle" fill="#0F9060" font-family="Outfit,sans-serif" font-size="9">Free</text>
+      <text x="339" y="82" text-anchor="middle" fill="#4752C4" font-family="Outfit,sans-serif" font-size="9">Paid</text>
+      <text x="460" y="56" text-anchor="middle" fill="#C07A12" font-family="Outfit,sans-serif" font-size="9">optional</text>
+
+      <!-- Note -->
+      <rect x="10" y="180" width="790" height="56" rx="8" fill="rgba(71,82,196,0.04)" stroke="rgba(71,82,196,0.12)" stroke-width="1"/>
+      <text x="26" y="202" fill="#5E7494" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Decision dependency:</text>
+      <text x="26" y="218" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="11">If Life Coaching / Life Path / Spiritual Healing are Consultation-only (Decision 2 Option A), they appear here as additional tier options within this same flow.</text>
+      <text x="26" y="230" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="11">If they have a free reading path (Option B), they appear on Home first and lead here only for the paid upgrade.</text>
+    </svg>
+  </div>
+
+  <!-- Flow 3: Advance Insights -->
+  <h3 style="margin-bottom:4px;">3 — Advance Insights Access Flow</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Tapping a card in the Insights grid — with decision gate showing both free and coupon paths</p>
+  <div class="flow-container">
+    <svg viewBox="0 0 760 220" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="56" width="90" height="44" rx="8" fill="#fff" stroke="#D0D8ED" stroke-width="1"/>
+      <text x="55" y="74" text-anchor="middle" fill="#5E7494" font-family="Outfit,sans-serif" font-size="11">Home</text>
+      <text x="55" y="89" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Tab bar</text>
+
+      <rect x="130" y="56" width="100" height="44" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="180" y="74" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Insights Grid</text>
+      <text x="180" y="89" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">8 cards</text>
+
+      <polygon points="300,56 340,78 300,100 260,78" fill="#fff" stroke="#C07A12" stroke-width="1"/>
+      <text x="300" y="82" text-anchor="middle" fill="#C07A12" font-family="Outfit,sans-serif" font-size="10" font-weight="600">Gated?</text>
+
+      <!-- Free path -->
+      <rect x="360" y="40" width="100" height="40" rx="8" fill="rgba(15,144,96,0.06)" stroke="rgba(15,144,96,0.25)" stroke-width="1"/>
+      <text x="410" y="58" text-anchor="middle" fill="#0F9060" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Open</text>
+      <text x="410" y="72" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Free to use</text>
+
+      <!-- Coupon path -->
+      <rect x="360" y="98" width="100" height="40" rx="8" fill="rgba(192,122,18,0.06)" stroke="rgba(192,122,18,0.25)" stroke-width="1"/>
+      <text x="410" y="116" text-anchor="middle" fill="#C07A12" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Redeem</text>
+      <text x="410" y="130" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Enter coupon</text>
+
+      <rect x="490" y="50" width="100" height="56" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="540" y="72" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Reading</text>
+      <text x="540" y="86" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Service screen</text>
+
+      <rect x="618" y="52" width="100" height="52" rx="26" fill="rgba(0,187,207,0.1)" stroke="#00BBCF" stroke-width="1"/>
+      <text x="668" y="74" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Result</text>
+      <text x="668" y="88" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">+ Upsell CTA</text>
+
+      <line x1="100" y1="78" x2="128" y2="78" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="230" y1="78" x2="258" y2="78" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="340" y1="70" x2="358" y2="60" stroke="#0F9060" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="340" y1="86" x2="358" y2="112" stroke="#C07A12" stroke-width="1" marker-end="url(#ao)"/>
+      <line x1="460" y1="60" x2="488" y2="68" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="460" y1="118" x2="488" y2="88" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="590" y1="78" x2="616" y2="78" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#ac)"/>
+
+      <text x="348" y="60" text-anchor="middle" fill="#0F9060" font-family="Outfit,sans-serif" font-size="9">No</text>
+      <text x="348" y="100" text-anchor="middle" fill="#C07A12" font-family="Outfit,sans-serif" font-size="9">Yes</text>
+
+      <rect x="10" y="172" width="730" height="36" rx="8" fill="rgba(192,122,18,0.04)" stroke="rgba(192,122,18,0.15)" stroke-width="1"/>
+      <text x="26" y="188" fill="#C07A12" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Decision 3/4 dependency:</text>
+      <text x="26" y="200" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="11">"Gated?" resolves based on whether Fortune Wheel, Compass, Oraculum, Physiognomy are free or coupon-gated. Active cards (Dice, Card, Dream, Blind Oracle) assumed free.</text>
+    </svg>
+  </div>
+
+  <!-- Flow 4: Education -->
+  <h3 style="margin-bottom:4px;">4 — Education Login &amp; Class Access</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">App → Education landing → Login → Enrolled check → My Classes or Browse</p>
+  <div class="flow-container" style="margin-bottom:0">
+    <svg viewBox="0 0 720 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="46" width="90" height="44" rx="8" fill="#fff" stroke="#D0D8ED" stroke-width="1"/>
+      <text x="55" y="64" text-anchor="middle" fill="#5E7494" font-family="Outfit,sans-serif" font-size="11">Menu</text>
+      <text x="55" y="79" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Education</text>
+
+      <rect x="130" y="46" width="100" height="44" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="180" y="64" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11" font-weight="500">Landing</text>
+      <text x="180" y="79" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Intro + Login btn</text>
+
+      <rect x="260" y="46" width="90" height="44" rx="8" fill="#fff" stroke="#A0ACE0" stroke-width="1"/>
+      <text x="305" y="64" text-anchor="middle" fill="#1A2A45" font-family="Outfit,sans-serif" font-size="11">Login</text>
+      <text x="305" y="79" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">External auth</text>
+
+      <polygon points="410,46 450,68 410,90 370,68" fill="#fff" stroke="#C07A12" stroke-width="1"/>
+      <text x="410" y="72" text-anchor="middle" fill="#C07A12" font-family="Outfit,sans-serif" font-size="10" font-weight="600">Enrolled?</text>
+
+      <rect x="470" y="30" width="100" height="36" rx="8" fill="rgba(0,187,207,0.06)" stroke="rgba(0,187,207,0.3)" stroke-width="1"/>
+      <text x="520" y="46" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">My Classes</text>
+      <text x="520" y="59" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Dashboard</text>
+
+      <rect x="470" y="86" width="100" height="36" rx="8" fill="rgba(192,122,18,0.06)" stroke="rgba(192,122,18,0.25)" stroke-width="1"/>
+      <text x="520" y="102" text-anchor="middle" fill="#C07A12" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Browse</text>
+      <text x="520" y="115" text-anchor="middle" fill="#A8B8CC" font-family="Outfit,sans-serif" font-size="10">Enrol first</text>
+
+      <rect x="600" y="36" width="90" height="52" rx="26" fill="rgba(0,187,207,0.1)" stroke="#00BBCF" stroke-width="1"/>
+      <text x="645" y="58" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Lesson</text>
+      <text x="645" y="73" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">Begins</text>
+
+      <line x1="100" y1="68" x2="128" y2="68" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="230" y1="68" x2="258" y2="68" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="350" y1="68" x2="368" y2="68" stroke="#A8B8CC" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="450" y1="60" x2="468" y2="48" stroke="#00BBCF" stroke-width="1" marker-end="url(#ac)"/>
+      <line x1="450" y1="75" x2="468" y2="100" stroke="#C07A12" stroke-width="1" marker-end="url(#ao)"/>
+      <line x1="570" y1="48" x2="598" y2="52" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#ac)"/>
+      <text x="460" y="50" fill="#007A88" font-family="Outfit,sans-serif" font-size="9" text-anchor="middle">Yes</text>
+      <text x="460" y="86" fill="#C07A12" font-family="Outfit,sans-serif" font-size="9" text-anchor="middle">No</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ════════════════════════ AUDIT ════════════════════════ -->
+<section id="audit">
+  <div class="eyebrow">Deliverable 04</div>
+  <h2>UX Audit <span style="font-size:20px;font-weight:400;color:var(--muted)">— Updated from v1</span></h2>
+  <p style="max-width:600px;margin-bottom:36px;">New issues added based on the service architecture review. Issues from v1 that still apply are retained. New items relate to service clarity and the decision gaps identified above.</p>
+
+  <h4 style="margin-bottom:16px;">Strengths</h4>
+  <div class="card" style="margin-bottom:36px;">
+    <div class="str-item">
+      <div class="str-icon">✦</div>
+      <div><div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;">Genuinely unique service range</div><div style="font-size:13px;color:var(--muted);">No mainstream app offers Face Reading + Dream Interpretation + Life Path + Spiritual Academy in a single product. This is the app's biggest competitive advantage.</div></div>
+    </div>
+    <div class="str-item">
+      <div class="str-icon">✦</div>
+      <div><div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;">Strong copy on onboarding slides</div><div style="font-size:13px;color:var(--muted);">"Know Yourself", "Blueprint on Your Face", "Compass Within" — these are emotionally resonant, benefit-led headlines that work.</div></div>
+    </div>
+    <div class="str-item">
+      <div class="str-icon">✦</div>
+      <div><div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;">Consultation tier structure is clear</div><div style="font-size:13px;color:var(--muted);">Standard → Platinum → Special is an intuitive value ladder users can self-select into without explanation.</div></div>
+    </div>
+    <div class="str-item" style="border:none;">
+      <div class="str-icon">✦</div>
+      <div><div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;">Logical navigation categories</div><div style="font-size:13px;color:var(--muted);">Five menu items map cleanly onto five user intents. No overlap or confusion at the category level.</div></div>
+    </div>
+  </div>
+
+  <h4 style="margin-bottom:16px;">Issues</h4>
+  <div class="audit-row"><div class="a-num">01</div><div><div class="a-label">Inconsistent visual theme — two different apps in one</div><div class="a-desc">Grey-header utility screens (Coupon, menu) sit alongside rich dark spiritual screens (Education, Onboarding). Users experience a split product. A unified light-futuristic system fixes this without sacrificing the premium spiritual feel.</div></div><div class="sev s-h">High</div></div>
+  <div class="audit-row"><div class="a-num">02</div><div><div class="a-label">No clear signal of what is free vs what is paid</div><div class="a-desc">Users cannot tell from the Advance Insights grid which cards require a coupon and which are free. This creates friction and potential disappointment when a gated screen appears unexpectedly.</div></div><div class="sev s-h">High</div></div>
+  <div class="audit-row"><div class="a-num">03</div><div><div class="a-label">Coupon system is undefined — form has no context</div><div class="a-desc">The "Request Coupon" screen has a generic "coupon type" dropdown with no real options. Users don't know what a coupon unlocks, how long it takes to receive, or whether it's for services or the store.</div></div><div class="sev s-h">High</div></div>
+  <div class="audit-row"><div class="a-num">04</div><div><div class="a-label">Grey Submit button on coupon form doesn't communicate action</div><div class="a-desc">The grey CTA looks disabled. Primary CTAs must always be the teal/indigo filled pill — the current Submit reads as inactive, causing users to hesitate.</div></div><div class="sev s-h">High</div></div>
+  <div class="audit-row"><div class="a-num">05</div><div><div class="a-label">Side menu uses plain white background — brand disconnect</div><div class="a-desc">The current drawer uses a white/light background with plain black text — looks like a default component, not a spiritual premium product. Needs brand-consistent treatment.</div></div><div class="sev s-m">Medium</div></div>
+  <div class="audit-row"><div class="a-num">06</div><div><div class="a-label">Advance Insights grid cards are visually identical</div><div class="a-desc">All 8 cards use the same grey tile with a centred icon and label. Zero differentiation between a free card and a coming/gated card. Add status indicators and subtle accent colours per category.</div></div><div class="sev s-m">Medium</div></div>
+  <div class="audit-row"><div class="a-num">07</div><div><div class="a-label">Education section is a dead end for non-enrolled users</div><div class="a-desc">Users who tap Education and are not enrolled see a Login button that redirects externally — no onward journey is offered. Add a "Learn about enrolment" path or community preview.</div></div><div class="sev s-m">Medium</div></div>
+  <div class="audit-row"><div class="a-num">08</div><div><div class="a-label">Dream Interpretation vs Oraculum overlap</div><div class="a-desc">Both appear to be interpretation services. If they are the same product with different names, consolidate. If different, the distinction must be explained clearly on each card.</div></div><div class="sev s-m">Medium</div></div>
+  <div class="audit-row"><div class="a-num">09</div><div><div class="a-label">Typography is uneven across screens</div><div class="a-desc">Body text, labels and descriptions use inconsistent sizes — the Consultation screen is well-set, the Request Coupon form uses light placeholder text as the primary label. A 4-step type scale fixes this globally.</div></div><div class="sev s-m">Medium</div></div>
+  <div class="audit-row" style="margin-bottom:0"><div class="a-num">10</div><div><div class="a-label">"Horifing Number" label typo in Advance Insights grid</div><div class="a-desc">Visible spelling error reduces product credibility. Correct to "Horrifying Number" (or confirm the intended name) before public launch.</div></div><div class="sev s-l">Polish</div></div>
+
+  <div style="margin-top:36px;">
+    <h4 style="margin-bottom:16px;">Opportunities</h4>
+    <div class="opp"><div class="opp-t">Free vs paid clarity as a trust builder</div><div class="opp-b">Clearly labelling free items with a "Free" badge and gated items with a lock icon transforms a potential source of friction into a transparency signal that builds user trust. Users who know what's free will explore more freely and convert more easily to paid services.</div></div>
+    <div class="opp"><div class="opp-t">Consultation as the premium hub — not just one menu item</div><div class="opp-b">Every free reading result screen should surface a contextual "Go deeper with a Consultation" CTA. This turns the entire Self Exploration experience into a funnel for the highest-value service rather than a standalone feature.</div></div>
+    <div class="opp"><div class="opp-t">Store as a retention tool, not an afterthought</div><div class="opp-b">When launched, the store (Books, Incenses, Healing Products) should be surfaced contextually — e.g. after a Spiritual Healing reading, recommend the healing products. This increases average order value and session depth.</div></div>
+  </div>
+</section>
+
+<!-- ════════════════════════ DESIGN DIRECTION ════════════════════════ -->
+<section id="direction">
+  <div class="eyebrow">Deliverable 05</div>
+  <h2>Design Direction <span style="font-size:20px;font-weight:400;color:var(--muted)">— Futuristic Light</span></h2>
+  <p style="max-width:600px;margin-bottom:36px;">Moving from the dark-utility split of v1 to a unified Futuristic Light system — luminous, precise, and premium. Spiritual depth is communicated through typography and subtle geometry, not darkness.</p>
+
+  <h4 style="margin-bottom:12px;">Brand Essence</h4>
+  <div class="keyword-row" style="margin-bottom:40px;">
+    <div class="kw kw-indigo">Luminous</div>
+    <div class="kw kw-cyan">Precise</div>
+    <div class="kw kw-gold">Elevated</div>
+    <div class="kw kw-ink">Trustworthy</div>
+    <div class="kw kw-indigo">Otherworldly</div>
+  </div>
+
+  <h4 style="margin-bottom:14px;">Color System</h4>
+  <div class="swatch-row" style="margin-bottom:40px;">
+    <div class="swatch"><div class="swatch-c" style="background:#EEF3FF;"></div><div class="swatch-info"><div class="swatch-name">Page BG</div><div class="swatch-hex">#EEF3FF</div></div></div>
+    <div class="swatch"><div class="swatch-c" style="background:#FFFFFF;"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FFFFFF</div></div></div>
+    <div class="swatch"><div class="swatch-c" style="background:#4752C4;"></div><div class="swatch-info"><div class="swatch-name">Indigo Primary</div><div class="swatch-hex">#4752C4</div></div></div>
+    <div class="swatch"><div class="swatch-c" style="background:#00BBCF;"></div><div class="swatch-info"><div class="swatch-name">Cyan Accent</div><div class="swatch-hex">#00BBCF</div></div></div>
+    <div class="swatch"><div class="swatch-c" style="background:#C07A12;"></div><div class="swatch-info"><div class="swatch-name">Gold Premium</div><div class="swatch-hex">#C07A12</div></div></div>
+    <div class="swatch"><div class="swatch-c" style="background:#060D1F;"></div><div class="swatch-info"><div class="swatch-name">Ink</div><div class="swatch-hex">#060D1F</div></div></div>
+    <div class="swatch"><div class="swatch-c" style="background:#5E7494;"></div><div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-hex">#5E7494</div></div></div>
+    <div class="swatch"><div class="swatch-c" style="background:#C0284A;"></div><div class="swatch-info"><div class="swatch-name">Rose / Alert</div><div class="swatch-hex">#C0284A</div></div></div>
+  </div>
+
+  <h4 style="margin-bottom:14px;">Typography System — Syne + Outfit</h4>
+  <div style="margin-bottom:40px;">
+    <div class="typo-sample"><div class="typo-label">Display H1 — Syne 800</div><div style="font-family:'Syne',sans-serif;font-size:40px;font-weight:800;color:var(--ink);letter-spacing:-.03em;line-height:1.05;">Know Yourself</div></div>
+    <div class="typo-sample"><div class="typo-label">Heading H2 — Syne 700</div><div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-.02em;">Consultation Services</div></div>
+    <div class="typo-sample"><div class="typo-label">Sub-heading / Card title — Syne 600</div><div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:600;color:var(--gold);">Platinum / Diamond</div></div>
+    <div class="typo-sample"><div class="typo-label">Body — Outfit 400, 15px / 1.75</div><div style="font-family:'Outfit',sans-serif;font-size:15px;color:var(--muted);line-height:1.75;">At Ajdur Spirit Science, our consultation services are designed to provide deep spiritual insights, guidance, and solutions to help individuals understand themselves on a profound level.</div></div>
+    <div class="typo-sample"><div class="typo-label">Label / Eyebrow — Outfit 700, 11px uppercase 0.18em</div><div style="font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--cyan);">Advance Insights</div></div>
+  </div>
+
+  <h4 style="margin-bottom:14px;">Component System</h4>
+  <div class="g2" style="gap:20px;margin-bottom:36px;">
+    <div class="comp-demo">
+      <div class="comp-label">Button System</div>
+      <div class="btn-row" style="margin-bottom:14px;">
+        <button class="btn-p">Book Consultation</button>
+        <button class="btn-o">Learn More</button>
+        <button class="btn-ghost">Explore Free</button>
+      </div>
+      <p style="font-size:12px;color:var(--muted);">Indigo filled = primary CTA. Outline = secondary. Cyan ghost = free/exploratory actions. All pills (100px radius), 13–15px Outfit 600.</p>
+    </div>
+    <div class="comp-demo">
+      <div class="comp-label">Service Cards</div>
+      <div class="svc-card">
+        <div class="svc-card-top"><div class="svc-name">Platinum / Diamond</div><span class="badge b-paid">Paid</span></div>
+        <div class="svc-desc">Deep spiritual guidance in a 30-min live video call. Personalised, structured, and transformative.</div>
+        <div class="svc-meta"><span>⏱ 1 week</span><span>📹 Video call</span></div>
+      </div>
+      <div class="svc-card" style="border-color:var(--green-dim);">
+        <div class="svc-card-top"><div class="svc-name">Fortune Wheel</div><span class="badge b-free">Free</span></div>
+        <div class="svc-desc">Enter a decision challenge and receive spiritual guidance on your path forward.</div>
+        <div class="svc-meta"><span>⚡ Instant</span></div>
+      </div>
+    </div>
+    <div class="comp-demo">
+      <div class="comp-label">Form Fields with Labels</div>
+      <input class="demo-input" placeholder="Your full name" style="border-color:var(--indigo-mid);">
+      <input class="demo-input" placeholder="Email address" type="email">
+      <select class="demo-select"><option>Select coupon type...</option><option>Consultation discount</option><option>Reading credit</option><option>Store voucher</option></select>
+    </div>
+    <div class="comp-demo">
+      <div class="comp-label">Navigation Menu Items</div>
+      <div class="menu-item active"><div class="menu-icon"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg></div><div class="menu-text">Advance Insights</div><span class="badge b-free" style="margin-left:auto;font-size:9px;">Free</span></div>
+      <div class="menu-item"><div class="menu-icon"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6M5 9.5h4"/></svg></div><div class="menu-text">Consultation</div><span class="badge b-paid" style="margin-left:auto;font-size:9px;">Paid</span></div>
+      <div class="menu-item"><div class="menu-icon"><svg viewBox="0 0 16 16"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg></div><div class="menu-text">Education</div></div>
+      <div class="menu-item"><div class="menu-icon"><svg viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/><path d="M5 4V3a1 1 0 012 0v1M9 4V3a1 1 0 012 0v1"/></svg></div><div class="menu-text">Request Coupon</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════ SCREENS ════════════════════════ -->
+<section id="screens">
+  <div class="eyebrow">Deliverable 06</div>
+  <h2>Redesigned Screens</h2>
+  <p style="max-width:600px;margin-bottom:48px;">Five screens in the Futuristic Light direction — the same screens as v1 but rebuilt on the new color, typography, and component system. Free/paid status is now visible throughout.</p>
+
+  <div class="phone-grid">
+
+    <!-- Screen 1: Home -->
+    <div>
+      <div class="phone-frame">
+        <div class="phone-status"><div class="phone-time">23:27</div><div class="phone-notch"></div><div class="phone-icons">●●●</div></div>
+        <div style="background:#EEF3FF;">
+          <div class="scr-header-bar"><div class="scr-logo">Ajdur</div><div class="scr-menu-btn"><span></span><span></span><span></span></div></div>
+          <div class="scr-hero" style="background:linear-gradient(150deg,#E4E9FF 0%,#EEF5FF 100%);">
+            <div class="scr-greeting">Welcome back</div>
+            <div class="scr-h1">Your journey<br>awaits you</div>
+            <div class="scr-tagline" style="margin-bottom:14px;">Discover who you are through ancient wisdom and modern insight.</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="badge b-active" style="font-size:10px;">5 Active services</span>
+              <span class="badge b-coming" style="font-size:10px;">8 Coming soon</span>
+            </div>
+          </div>
+          <div class="scr-video" style="background:linear-gradient(135deg,#E4E9FF,#EEF3FF);">
+            <div class="scr-play"><svg viewBox="0 0 14 14"><polygon points="3,1 13,7 3,13" fill="white"/></svg></div>
+            <div class="scr-vid-label">Intro — Self Exploration</div>
+          </div>
+          <div class="scr-section-grid">
+            <div class="scr-scard featured">
+              <div class="scr-sicon" style="background:var(--cyan-dim);"><svg viewBox="0 0 16 16" style="stroke:#007A88"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg></div>
+              <div class="scr-sname">Insights</div>
+              <div class="scr-ssub" style="color:#007A88;font-weight:600;">Free ✦</div>
+            </div>
+            <div class="scr-scard">
+              <div class="scr-sicon" style="background:var(--gold-dim);"><svg viewBox="0 0 16 16" style="stroke:var(--gold)"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6"/></svg></div>
+              <div class="scr-sname">Consult</div>
+              <div class="scr-ssub" style="color:var(--gold);font-weight:600;">Paid</div>
+            </div>
+            <div class="scr-scard">
+              <div class="scr-sicon"><svg viewBox="0 0 16 16" style="stroke:var(--indigo)"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg></div>
+              <div class="scr-sname">Academy</div>
+              <div class="scr-ssub">Classes</div>
+            </div>
+            <div class="scr-scard">
+              <div class="scr-sicon"><svg viewBox="0 0 16 16" style="stroke:var(--indigo)"><path d="M2 4h12v8H2z"/><path d="M5 4V3a1 1 0 012 0v1"/></svg></div>
+              <div class="scr-sname">Coupon</div>
+              <div class="scr-ssub">Request</div>
+            </div>
+          </div>
+          <div class="scr-tab-bar">
+            <div class="scr-tab-item active"><svg viewBox="0 0 18 18"><rect x="2" y="2" width="6" height="6" rx="1.5"/><rect x="10" y="2" width="6" height="6" rx="1.5"/><rect x="2" y="10" width="6" height="6" rx="1.5"/><rect x="10" y="10" width="6" height="6" rx="1.5"/></svg><div class="scr-tab-dot">Explore</div></div>
+            <div class="scr-tab-item" style="flex:0 0 44px;display:flex;align-items:center;justify-content:center;padding:6px 2px;"><div style="width:34px;height:34px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Syne',sans-serif;font-size:8px;font-weight:800;color:#fff;">A</span></div></div>
+            <div class="scr-tab-item"><svg viewBox="0 0 18 18"><path d="M9 2v2M9 14v2M2 9h2M14 9h2"/></svg><div class="scr-tab-dot">Results</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Home</div>
+    </div>
+
+    <!-- Screen 2: Consultation -->
+    <div>
+      <div class="phone-frame">
+        <div class="phone-status"><div class="phone-time">23:27</div><div class="phone-notch"></div><div class="phone-icons">●●●</div></div>
+        <div style="background:#F6F9FF;">
+          <div class="scr-back"><div class="scr-back-btn"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div><div class="scr-page-title">Consultation</div></div>
+          <div class="scr-intro-text">Choose the depth of guidance you're ready for. Each tier unlocks a different level of connection and insight.</div>
+          <div class="scr-con-card selected">
+            <div class="scr-con-head"><div class="scr-con-name">Standard</div><span class="scr-con-tag tag-free">Free access</span></div>
+            <div class="scr-con-desc">Structured spiritual guidance via live chat. A clear, grounded path for self-understanding.</div>
+            <div class="scr-con-meta"><span>⏱ 1 week</span><span>💬 Live chat</span></div>
+          </div>
+          <div class="scr-con-card">
+            <div class="scr-con-head"><div class="scr-con-name">Platinum / Diamond</div><span class="scr-con-tag tag-paid">Paid</span></div>
+            <div class="scr-con-desc">Deep spiritual guidance in a 30-min live video call with structured insight.</div>
+            <div class="scr-con-meta"><span>⏱ 1 week</span><span>📹 Video call</span></div>
+          </div>
+          <div class="scr-con-card">
+            <div class="scr-con-head"><div class="scr-con-name">Special Request</div><span class="scr-con-tag tag-prem">Premium</span></div>
+            <div class="scr-con-desc">Tailored for unique needs with highly personalised spiritual insights.</div>
+            <div class="scr-con-meta"><span>⏱ Flexible</span><span>📹 Custom</span></div>
+          </div>
+          <div class="scr-cta"><button>Book Consultation</button></div>
+        </div>
+      </div>
+      <div class="phone-label">Consultation</div>
+    </div>
+
+    <!-- Screen 3: Coupon -->
+    <div>
+      <div class="phone-frame">
+        <div class="phone-status"><div class="phone-time">23:27</div><div class="phone-notch"></div><div class="phone-icons">●●●</div></div>
+        <div style="background:#F6F9FF;">
+          <div class="scr-back"><div class="scr-back-btn"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div><div class="scr-page-title">Request Coupon</div></div>
+          <div style="padding:6px 14px 12px;font-size:10px;color:var(--muted);line-height:1.6;">Request a discount token for consultations, readings, or the store. Your request will be reviewed and sent to your email.</div>
+          <div class="scr-context-bar">✦ Coupons can be used for: consultation discounts, reading credits, and store vouchers.</div>
+          <div class="scr-f-field"><div class="scr-f-label">Full Name</div><input class="scr-f-input focus" placeholder="Your name" readonly></div>
+          <div class="scr-f-field"><div class="scr-f-label">Email Address</div><input class="scr-f-input" placeholder="your@email.com" type="email" readonly></div>
+          <div class="scr-f-field"><div class="scr-f-label">Coupon Type</div><div class="scr-f-select-wr"><select class="scr-f-select"><option>Select type...</option><option>Consultation discount</option><option>Reading credit</option><option>Store voucher</option></select><div class="scr-f-arrow">▾</div></div></div>
+          <div class="scr-submit"><button>Submit Request</button></div>
+          <div class="scr-contact"><button>Contact Us</button></div>
+        </div>
+      </div>
+      <div class="phone-label">Request Coupon</div>
+    </div>
+
+    <!-- Screen 4: Side Menu -->
+    <div>
+      <div class="phone-frame">
+        <div class="phone-status"><div class="phone-time">23:27</div><div class="phone-notch"></div><div class="phone-icons">●●●</div></div>
+        <div class="scr-drawer-wrap">
+          <div class="scr-drawer">
+            <div class="scr-drawer-logo">Ajdur</div>
+            <div class="scr-mi active"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg><span>Advance Insights</span></div>
+            <div class="scr-mi"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6M5 9.5h4"/></svg><span>Consultation</span></div>
+            <div class="scr-mi"><svg viewBox="0 0 16 16"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg><span>Education</span></div>
+            <div class="scr-mi"><svg viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/><path d="M5 4V3a1 1 0 012 0v1"/></svg><span>Request Coupon</span></div>
+            <div class="scr-divider"></div>
+            <div class="scr-mi"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 5v.5M8 7.5v4"/></svg><span>Settings</span></div>
+            <div class="scr-mi"><svg viewBox="0 0 16 16"><path d="M6 8a2 2 0 104 0 2 2 0 00-4 0"/><path d="M8 2v2M8 12v2M2 8h2M12 8h2"/></svg><span>Privacy Policy</span></div>
+            <div class="scr-mi"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="6" height="12" rx="1"/><path d="M11 5h3M11 8h3M11 11h3"/></svg><span>Terms &amp; Conditions</span></div>
+            <div class="scr-ver">Version 1.0.10 (91)</div>
+          </div>
+          <div class="scr-dim"></div>
+        </div>
+      </div>
+      <div class="phone-label">Side Menu</div>
+    </div>
+
+    <!-- Screen 5: Onboarding -->
+    <div>
+      <div class="phone-frame">
+        <div class="phone-status"><div class="phone-time">23:27</div><div class="phone-notch"></div><div class="phone-icons">●●●</div></div>
+        <div style="background:#fff;">
+          <div class="scr-ob-hero">
+            <div class="ob-rings">
+              <div class="ob-ring ob-r1"></div>
+              <div class="ob-ring ob-r2"></div>
+              <div class="ob-ring ob-r3"><span>Ajdur</span></div>
+            </div>
+          </div>
+          <div class="scr-ob-dots"><div class="ob-dot active"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
+          <div class="scr-ob-body">
+            <div class="scr-ob-h">Know Yourself <span style="color:var(--cyan)">Deeply</span></div>
+            <div class="scr-ob-p">A simple system using your birth date and name to reveal your personal blueprint.</div>
+            <div>
+              <div class="scr-ob-bullet"><div class="ob-bullet-dot"></div>Your core traits &amp; natural talents</div>
+              <div class="scr-ob-bullet"><div class="ob-bullet-dot"></div>Life challenges &amp; true purpose</div>
+              <div class="scr-ob-bullet"><div class="ob-bullet-dot"></div>Your spiritual path forward</div>
+            </div>
+            <button class="scr-ob-btn">Begin Your Journey</button>
+          </div>
+        </div>
+      </div>
+      <div class="phone-label">Onboarding</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════ PRIORITY FIXES ════════════════════════ -->
+<section>
+  <div class="eyebrow">Next Steps</div>
+  <h2>Priority Implementation</h2>
+  <p style="max-width:600px;margin-bottom:36px;">In order of impact. Items 1–3 are decisions, not development — they unblock everything else.</p>
+  <div>
+    <div class="pri-item"><div class="pri-n">01</div><div><div class="pri-h">Team: Resolve Decision Matrix items 1–5 above</div><div class="pri-d">Until the free/paid/coupon model is defined for each ambiguous service, user flows, backend gating, and screen CTAs cannot be finalised. This is the highest-priority item — no design or dev work unblocks before this.</div></div></div>
+    <div class="pri-item"><div class="pri-n">02</div><div><div class="pri-h">Define the full list of coupon types and the redemption mechanism</div><div class="pri-d">Is coupon fulfilment manual (team emails a code) or automated? What are the types? This directly unblocks the Request Coupon form dropdown and the gated service access screens.</div></div></div>
+    <div class="pri-item"><div class="pri-n">03</div><div><div class="pri-h">Clarify Oraculum vs Dream Interpretation — same or different?</div><div class="pri-d">If the same: rename consistently across the app and remove the duplicate card. If different: write a one-line distinction to display on each card.</div></div></div>
+    <div class="pri-item"><div class="pri-n">04</div><div><div class="pri-h">Apply Futuristic Light theme globally — start with headers</div><div class="pri-d">Replace all grey headers with the white/light-indigo surface system. This single visual change removes the biggest inconsistency and can be done in 1–2 days before any other redesign work.</div></div></div>
+    <div class="pri-item"><div class="pri-n">05</div><div><div class="pri-h">Add free/paid/coming badges to Advance Insights cards</div><div class="pri-d">Users need to know at a glance what is available to them. Add status indicators to each card in the grid — green "Free", indigo "Paid", gold "Coming" badges. This requires no backend change, only UI.</div></div></div>
+    <div class="pri-item"><div class="pri-n">06</div><div><div class="pri-h">Replace Submit button on coupon form with primary indigo CTA</div><div class="pri-d">The current grey button looks disabled. Takes 15 minutes to fix and immediately increases form completion rate.</div></div></div>
+    <div class="pri-item" style="border:none;"><div class="pri-n">07</div><div><div class="pri-h">Fix "Horifing Number" typo in Advance Insights grid</div><div class="pri-d">Single string change. Correct to the intended label before any public-facing release or marketing.</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--indigo);margin-bottom:10px;letter-spacing:-.02em;">Ajdur International</div>
+  <p>UX/UI Design Deliverable v2.0 · Decision Edition · Futuristic Light Theme</p>
+  <p style="margin-top:6px;font-size:12px;">6 deliverables: Service Map · Decision Matrix · User Flows · UX Audit · Design Direction · Redesigned Screens</p>
+  <p style="margin-top:6px;font-size:11px;color:var(--faint);">9 team decisions required before flows can be finalised · See Section 2</p>
+</footer>
+
+</div><!-- /wrap -->
+</body>
+</html>
