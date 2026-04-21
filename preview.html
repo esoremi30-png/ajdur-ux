@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajdur International — UX/UI Deliverable v5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600&family=Manrope:wght@400;500;600;700;800&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#D9E8E3;--bg2:#E6EFEC;--sf:#FFFFFF;
+  --ink:#062B22;--ink2:#1A3D35;--mu:#3D6B65;--fa:#7FADA8;
+  --teal:#007A88;--teal-d:rgba(0,122,136,.09);--teal-m:rgba(0,122,136,.22);
+  --teal-b:#00BBCF;--teal-b-d:rgba(0,187,207,.10);--teal-b-m:rgba(0,187,207,.26);
+  --in:#2B50C8;--in-d:rgba(43,80,200,.08);--in-m:rgba(43,80,200,.22);
+  --go:#B8720E;--go-d:rgba(184,114,14,.09);--go-m:rgba(184,114,14,.24);
+  --ro:#C0284A;--ro-d:rgba(192,40,74,.08);--ro-m:rgba(192,40,74,.22);
+  --gr:#0A845A;--gr-d:rgba(10,132,90,.08);--gr-m:rgba(10,132,90,.22);
+  --pu:#6B47B0;--pu-d:rgba(107,71,176,.09);--pu-m:rgba(107,71,176,.22);
+  --br:rgba(0,80,60,.09);--br-s:rgba(0,80,60,.18);
+  --r:14px;--fh:'Syne',sans-serif;--fb:'Outfit',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:15px;line-height:1.75;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,80,60,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,80,60,.06) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(217,232,227,.92);backdrop-filter:blur(18px);border-bottom:1.5px solid var(--br-s);display:flex;align-items:center;justify-content:space-between;padding:13px 40px;}
+.nav-logo{font-family:var(--fh);font-size:18px;font-weight:800;color:var(--teal);letter-spacing:-.01em;}
+.nav-links{display:flex;gap:22px;}
+.nav-links a{color:var(--mu);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--teal);}
+.nav-badge{font-size:12px;font-weight:700;background:var(--teal);color:#fff;padding:5px 14px;border-radius:100px;}
+
+/* ── LAYOUT ── */
+.wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;}
+section{padding:100px 44px 80px;}
+section+section{border-top:1.5px solid var(--br-s);}
+.eye{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-b);margin-bottom:12px;}
+h1{font-family:var(--fh);font-size:clamp(38px,5vw,62px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--ink);}
+h2{font-family:var(--fh);font-size:clamp(24px,3.5vw,38px);font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px;}
+h3{font-family:var(--fh);font-size:21px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+h4{font-family:var(--fb);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;}
+p{color:var(--mu);line-height:1.78;font-size:15px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+
+/* ── CARDS ── */
+.card{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:26px;}
+.card-teal{border-color:var(--teal-m);background:linear-gradient(135deg,var(--teal-d),var(--sf));}
+.card-gold{border-color:var(--go-m);background:linear-gradient(135deg,var(--go-d),var(--sf));}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px;letter-spacing:.03em;}
+.b-res{background:var(--gr-d);color:var(--gr);border:1px solid var(--gr-m);}
+.b-open{background:var(--ro-d);color:var(--ro);border:1px solid var(--ro-m);}
+.b-new{background:var(--in-d);color:var(--in);border:1px solid var(--in-m);}
+.b-act{background:var(--gr-d);color:var(--gr);border:1px solid var(--gr-m);}
+.b-com{background:var(--go-d);color:var(--go);border:1px solid var(--go-m);}
+
+/* ── INTRO BOXES ── */
+.pdf-input{background:var(--sf);border:1px solid var(--br-s);border-radius:var(--r);padding:22px 26px;margin-bottom:16px;border-left:4px solid var(--teal);}
+.pdf-input.resolved{border-left-color:var(--gr);}
+.pdf-input.open{border-left-color:var(--ro);}
+.pdf-input.changed{border-left-color:var(--go);}
+.pi-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.10em;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.pi-label.res{color:var(--gr);}
+.pi-label.opn{color:var(--ro);}
+.pi-label.chg{color:var(--go);}
+.pi-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.pi-body{font-size:14px;color:var(--mu);line-height:1.72;}
+
+/* ── STAKEHOLDER PILL ── */
+.stakeholder-row{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0;}
+.sk-pill{background:var(--sf);border:1px solid var(--br-s);border-radius:100px;padding:10px 22px;display:flex;align-items:center;gap:10px;}
+.sk-dot{width:10px;height:10px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+.sk-role{font-size:12px;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+.sk-name{font-size:15px;font-weight:600;color:var(--ink);}
+
+/* ── DECISION TABLE ── */
+.dec-table{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;margin-bottom:32px;overflow-x:auto;}
+.dec-head{display:grid;grid-template-columns:190px 100px 1fr 150px;background:var(--bg2);border-bottom:1.5px solid var(--br-s);}
+.dec-th{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--teal);padding:11px 16px;border-right:1px solid var(--br);}
+.dec-th:last-child{border-right:none;}
+.dec-row{display:grid;grid-template-columns:190px 100px 1fr 150px;border-bottom:1px solid var(--br);transition:background .15s;}
+.dec-row:last-child{border:none;}
+.dec-row:hover{background:var(--bg2);}
+.dc{padding:12px 16px;font-size:14px;border-right:1px solid var(--br);display:flex;flex-direction:column;gap:4px;}
+.dc:last-child{border-right:none;}
+.dc-name{font-size:14px;font-weight:600;color:var(--ink);}
+.dc-sub{font-size:13px;color:var(--fa);}
+.dc-ans{font-size:14px;color:var(--gr);font-weight:500;line-height:1.6;}
+.dc-open{font-size:14px;color:var(--ro);font-weight:500;}
+
+/* ── ARCH TABLE ── */
+.arch-sec{margin-bottom:26px;}
+.arch-hd{font-family:var(--fh);font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--teal);padding:11px 18px;background:var(--teal-d);border:1px solid var(--teal-m);border-radius:8px 8px 0 0;display:flex;align-items:center;gap:10px;}
+.arch-body{background:var(--sf);border:1px solid var(--br);border-top:none;border-radius:0 0 8px 8px;overflow:hidden;}
+.arch-row{display:grid;grid-template-columns:220px 90px 1fr;align-items:start;border-bottom:1px solid var(--br);padding:12px 18px;gap:0;}
+.arch-row:last-child{border:none;}
+.arch-row:hover{background:var(--bg2);}
+.a-n{font-size:14px;font-weight:500;color:var(--ink);}
+.a-s{font-size:13px;color:var(--mu);}
+.a-d{font-size:14px;color:var(--mu);line-height:1.6;}
+.arch-sub{padding-left:28px!important;background:var(--bg2);}
+.arch-sub .a-n{color:var(--mu);font-weight:400;}
+
+/* ── REDESIGN PRIORITIES ── */
+.rp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;}
+.rp-card{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:22px;border-top:3px solid var(--teal);}
+.rp-num{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-b);margin-bottom:8px;}
+.rp-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.rp-body{font-size:14px;color:var(--mu);line-height:1.68;}
+
+/* ── FLOW DIAGRAMS ── */
+.flow-box{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:24px;overflow-x:auto;margin-bottom:28px;}
+.flow-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.flow-sub{font-size:14px;color:var(--mu);margin-bottom:16px;}
+
+/* ── COPY TABLE ── */
+.ct{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;margin-bottom:20px;overflow-x:auto;}
+.ct-head{display:grid;grid-template-columns:170px 1fr 1fr;background:var(--bg2);border-bottom:1.5px solid var(--br-s);}
+.ct-th{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--teal);padding:11px 16px;border-right:1px solid var(--br);}
+.ct-th:last-child{border-right:none;}
+.ct-row{display:grid;grid-template-columns:170px 1fr 1fr;border-bottom:1px solid var(--br);}
+.ct-row:last-child{border:none;}
+.ct-row:hover{background:var(--bg2);}
+.ct-cell{padding:11px 16px;font-size:14px;border-right:1px solid var(--br);color:var(--mu);}
+.ct-cell:last-child{border-right:none;}
+.ct-old{color:var(--fa);text-decoration:line-through;}
+.ct-new{color:var(--gr);font-weight:600;}
+.ct-loc{color:var(--mu);font-weight:500;}
+
+/* ── PHONE FRAMES ── */
+.phone-compare{display:flex;gap:36px;flex-wrap:wrap;margin-top:28px;}
+.opt-col{flex:1;min-width:300px;}
+.opt-col-label{font-family:var(--fh);font-size:16px;font-weight:800;letter-spacing:-.01em;text-align:center;margin-bottom:6px;}
+.opt-tag{text-align:center;margin-bottom:18px;}
+.phone-row{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-start;}
+.phone-frame{width:252px;flex-shrink:0;border-radius:34px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.16);}
+.p-lbl{text-align:center;margin-top:11px;font-size:12px;color:var(--mu);letter-spacing:.07em;text-transform:uppercase;font-weight:700;}
+
+/* OPTION A — DARK LUXURY */
+.frm-a{border:1.5px solid rgba(200,168,75,.28);background:#07090F;}
+.pa-status{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 4px;background:#07090F;}
+.pa-time{font-size:11px;font-weight:700;color:#EEE5D0;font-family:'Playfair Display',serif;}
+.pa-notch{width:65px;height:4px;background:rgba(255,255,255,.06);border-radius:2px;}
+.pa-icons{font-size:10px;color:#B8AF9E;}
+/* Dark onboarding */
+.pa-ob{background:radial-gradient(ellipse at 35% 20%,rgba(107,71,176,.22),transparent 55%),radial-gradient(ellipse at 75% 75%,rgba(200,168,75,.10),transparent 45%),#07090F;padding:0 18px 18px;}
+.pa-ob-img{height:165px;display:flex;align-items:center;justify-content:center;}
+.pa-orb{width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(200,168,75,.32),rgba(107,71,176,.18),transparent 68%);border:1px solid rgba(200,168,75,.22);position:relative;}
+.pa-orb::before{content:'';position:absolute;inset:10px;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(200,168,75,.38),rgba(107,71,176,.28),transparent);border:1px solid rgba(200,168,75,.32);}
+.pa-dots{display:flex;gap:5px;margin:8px 0;}
+.pa-dot{width:5px;height:5px;border-radius:2.5px;background:rgba(255,255,255,.10);}
+.pa-dot.a{width:16px;background:#C8A84B;}
+.pa-h{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#EEE5D0;line-height:1.2;margin-bottom:6px;}
+.pa-h em{color:#C8A84B;font-style:italic;}
+.pa-sub{font-size:11px;color:#B8AF9E;line-height:1.6;margin-bottom:9px;}
+.pa-bullets{margin-bottom:9px;}
+.pa-b{display:flex;align-items:center;gap:6px;font-size:10px;color:#B8AF9E;padding:2px 0;}
+.pa-bd{width:4px;height:4px;border-radius:2px;background:#C8A84B;flex-shrink:0;}
+.pa-trust{font-size:9px;color:rgba(200,168,75,.65);letter-spacing:.04em;text-align:center;margin-bottom:4px;}
+.pa-skip-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.pa-skip{font-size:10px;color:rgba(200,168,75,.45);cursor:pointer;}
+.pa-cta{width:100%;background:#C8A84B;color:#07090F;font-family:var(--fb);font-size:12px;font-weight:700;padding:12px;border-radius:100px;border:none;}
+/* Dark home */
+.pa-home{background:#0D1120;}
+.pa-hbar{padding:11px 16px 8px;background:#07090F;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(200,168,75,.12);}
+.pa-logo{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#C8A84B;}
+.pa-mbn{width:20px;height:14px;display:flex;flex-direction:column;justify-content:space-between;}
+.pa-mbn span{height:1.5px;background:#B8AF9E;border-radius:1px;display:block;}
+.pa-mbn span:last-child{width:60%;}
+.pa-hero{padding:16px 16px 12px;background:linear-gradient(155deg,#0F1628,#0D1120);}
+.pa-greet{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#C8A84B;font-weight:700;margin-bottom:2px;}
+.pa-h1{font-family:'Playfair Display',serif;font-size:17px;color:#EEE5D0;line-height:1.2;margin-bottom:4px;}
+.pa-h1 em{color:#C8A84B;font-style:italic;}
+.pa-quote{font-size:9px;color:#B8AF9E;font-style:italic;line-height:1.5;border-left:2px solid #C8A84B;padding-left:7px;margin:5px 0 10px;}
+.pa-btns{display:flex;gap:7px;}
+.pa-btn-g{background:#C8A84B;color:#07090F;font-size:9px;font-weight:700;padding:7px 12px;border-radius:100px;border:none;font-family:var(--fb);}
+.pa-btn-o{background:transparent;color:#C8A84B;font-size:9px;font-weight:600;padding:6px 11px;border-radius:100px;border:1px solid rgba(200,168,75,.35);font-family:var(--fb);}
+.pa-sg{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.pa-sc{background:#1A2038;border:1px solid rgba(255,255,255,.05);border-radius:9px;padding:11px;}
+.pa-sc.feat{border-color:rgba(200,168,75,.25);background:linear-gradient(135deg,rgba(200,168,75,.07),#1A2038);}
+.pa-si{width:22px;height:22px;background:rgba(200,168,75,.1);border-radius:5px;margin-bottom:5px;display:flex;align-items:center;justify-content:center;}
+.pa-si svg{width:11px;height:11px;stroke:#C8A84B;fill:none;stroke-width:1.5;}
+.pa-sn{font-family:'Playfair Display',serif;font-size:10px;color:#EEE5D0;}
+.pa-ss{font-size:9px;color:#B8AF9E;}
+.pa-ss.g{color:#C8A84B;font-weight:600;}
+.pa-tab{display:flex;background:#07090F;border-top:1px solid rgba(200,168,75,.10);}
+.pa-ti{flex:1;padding:7px 3px 9px;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.pa-ti svg{width:15px;height:15px;stroke:rgba(255,255,255,.18);fill:none;stroke-width:1.5;}
+.pa-ti.active svg{stroke:#C8A84B;}
+.pa-td{font-size:8px;color:rgba(255,255,255,.18);}
+.pa-ti.active .pa-td{color:#C8A84B;}
+/* Dark consultation */
+.pa-con{background:#0D1120;}
+.pa-bk{display:flex;align-items:center;gap:7px;padding:11px 16px 7px;background:#07090F;border-bottom:1px solid rgba(200,168,75,.10);}
+.pa-bb{width:24px;height:24px;background:#1A2038;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.pa-bb svg{width:10px;height:10px;stroke:#B8AF9E;fill:none;stroke-width:2;}
+.pa-pt{font-family:'Playfair Display',serif;font-size:15px;color:#EEE5D0;}
+.pa-hero2{padding:12px 16px 10px;background:linear-gradient(155deg,#0F1628,#0D1120);}
+.pa-hh{font-family:'Playfair Display',serif;font-size:14px;color:#EEE5D0;line-height:1.25;margin-bottom:4px;}
+.pa-hi{font-size:10px;color:#B8AF9E;line-height:1.55;margin-bottom:8px;}
+.pa-cbtn{background:#C8A84B;color:#07090F;font-size:9px;font-weight:700;padding:8px 12px;border-radius:100px;border:none;font-family:var(--fb);}
+.pa-tier{margin:0 12px 9px;background:#1A2038;border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:12px;}
+.pa-tier.feat{border-color:rgba(200,168,75,.35);background:linear-gradient(135deg,rgba(200,168,75,.07),#1A2038);}
+.pa-th{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;}
+.pa-tn{font-family:'Playfair Display',serif;font-size:11px;color:#EEE5D0;}
+.pa-tt{font-size:8px;font-weight:700;padding:2px 7px;border-radius:100px;}
+.pa-tt.g{background:rgba(200,168,75,.2);color:#C8A84B;}
+.pa-tt.s{background:rgba(255,255,255,.06);color:#B8AF9E;}
+.pa-tt.mr{background:rgba(200,168,75,.22);color:#C8A84B;font-size:7px;padding:2px 5px;}
+.pa-td2{font-size:9px;color:#B8AF9E;line-height:1.5;margin-bottom:7px;}
+.pa-met{display:flex;gap:9px;}
+.pa-met span{font-size:8px;color:rgba(255,255,255,.28);}
+.pa-scta{margin:7px 12px 12px;}
+.pa-scta button{width:100%;background:#C8A84B;color:#07090F;font-family:var(--fb);font-size:10px;font-weight:700;padding:10px;border-radius:100px;border:none;}
+
+/* OPTION B — CELESTIAL LAVENDER */
+.frm-b{border:1.5px solid rgba(130,119,158,.34);background:#fff;box-shadow:0 20px 55px rgba(130,119,158,.16);}
+.pb-status{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 4px;background:#fff;}
+.pb-time{font-size:11px;font-weight:800;color:#2D2142;font-family:'Marcellus',serif;}
+.pb-notch{width:65px;height:4px;background:rgba(0,0,0,.06);border-radius:2px;}
+.pb-icons{font-size:10px;color:#82779E;}
+.pb-ob-hero{height:165px;background:linear-gradient(155deg,#82779E,#E0AE72);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.pb-ob-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.22),transparent 50%),radial-gradient(circle at 25% 75%,rgba(139,55,32,.18),transparent 45%);}
+.pb-orb{position:relative;width:92px;height:92px;}
+.pb-oring{position:absolute;border-radius:50%;border:1px solid;top:50%;left:50%;transform:translate(-50%,-50%);}
+.pb-o1{width:88px;height:88px;border-color:rgba(255,255,255,.28);}
+.pb-o2{width:64px;height:64px;border-color:rgba(255,255,255,.42);}
+.pb-o3{width:42px;height:42px;background:rgba(255,255,255,.28);border-color:rgba(255,255,255,.58);display:flex;align-items:center;justify-content:center;}
+.pb-o3 span{font-family:'Marcellus',serif;font-size:8px;color:#fff;letter-spacing:.02em;}
+.pb-ob-dots{display:flex;justify-content:center;gap:5px;padding:11px 0 5px;}
+.pbd{width:5px;height:5px;border-radius:2.5px;background:rgba(130,119,158,.18);}
+.pbd.a{width:16px;background:#8B3720;}
+.pb-ob-body{padding:10px 18px 14px;background:linear-gradient(180deg,#ffffff,#fbf8ff);}
+.pb-ob-h{font-family:'Marcellus',serif;font-size:19px;font-weight:400;color:#2D2142;line-height:1.2;margin-bottom:6px;letter-spacing:.01em;}
+.pb-ob-h span{color:#8B3720;}
+.pb-ob-sub{font-size:10px;color:#6E6288;line-height:1.7;margin-bottom:8px;font-family:'Manrope',sans-serif;}
+.pb-bullets{margin-bottom:7px;}
+.pb-b{display:flex;align-items:center;gap:6px;font-size:10px;color:#6E6288;padding:2px 0;font-family:'Manrope',sans-serif;}
+.pb-bd{width:4px;height:4px;border-radius:2px;background:#E0AE72;flex-shrink:0;}
+.pb-skip-row{display:flex;justify-content:space-between;font-size:10px;color:#9A91AF;margin-bottom:5px;font-family:'Manrope',sans-serif;}
+.pb-trust{font-size:9px;color:#8B3720;letter-spacing:.04em;text-align:center;margin-bottom:4px;opacity:.82;}
+.pb-cta{width:100%;background:#8B3720;color:#fff;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;padding:12px;border-radius:100px;border:none;}
+.pb-hbar{padding:11px 16px 8px;background:#fff;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(130,119,158,.12);}
+.pb-logo{font-family:'Marcellus',serif;font-size:15px;color:#8B3720;letter-spacing:.04em;}
+.pb-mbn{width:20px;height:14px;display:flex;flex-direction:column;justify-content:space-between;}
+.pb-mbn span{height:1.5px;background:#82779E;border-radius:1px;display:block;}
+.pb-mbn span:last-child{width:60%;}
+.pb-hero{padding:16px 16px 14px;background:linear-gradient(155deg,#82779E,#1F1F39);}
+.pb-greet{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.76);font-weight:700;margin-bottom:2px;font-family:'Manrope',sans-serif;}
+.pb-h1{font-family:'Marcellus',serif;font-size:17px;font-weight:400;color:#fff;line-height:1.2;margin-bottom:4px;}
+.pb-h1 span{color:#E3DDEA;font-style:italic;}
+.pb-quote{font-size:9px;color:rgba(255,255,255,.76);font-style:italic;line-height:1.55;border-left:2px solid rgba(224,174,114,.65);padding-left:7px;margin:5px 0 10px;font-family:'Cormorant Garamond',serif;}
+.pb-btns{display:flex;gap:7px;}
+.pb-btn-p{background:#E0AE72;color:#1F1F39;font-size:9px;font-weight:800;padding:7px 12px;border-radius:100px;border:none;font-family:'Manrope',sans-serif;}
+.pb-btn-o{background:rgba(255,255,255,.14);color:#fff;font-size:9px;font-weight:600;padding:6px 11px;border-radius:100px;border:1px solid rgba(255,255,255,.3);font-family:'Manrope',sans-serif;}
+.pb-sg{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:7px;background:#F7F2FA;}
+.pb-sc{background:#fff;border:1px solid rgba(130,119,158,.16);border-radius:9px;padding:11px;box-shadow:0 2px 8px rgba(130,119,158,.08);}
+.pb-sc.feat{border-color:rgba(224,174,114,.34);background:linear-gradient(135deg,rgba(224,174,114,.10),#fff);}
+.pb-si{width:22px;height:22px;background:rgba(130,119,158,.12);border-radius:5px;margin-bottom:5px;display:flex;align-items:center;justify-content:center;}
+.pb-si svg{width:11px;height:11px;stroke:#82779E;fill:none;stroke-width:1.5;}
+.pb-sc.feat .pb-si{background:rgba(224,174,114,.16);}
+.pb-sc.feat .pb-si svg{stroke:#8B3720;}
+.pb-sn{font-family:'Marcellus',serif;font-size:10px;font-weight:400;color:#2D2142;}
+.pb-ss{font-size:9px;color:#6E6288;font-family:'Manrope',sans-serif;}
+.pb-ss.t{color:#8B3720;font-weight:700;}
+.pb-tab{display:flex;background:#fff;border-top:1px solid rgba(130,119,158,.10);}
+.pb-ti{flex:1;padding:7px 3px 9px;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.pb-ti svg{width:15px;height:15px;stroke:#AAA2BA;fill:none;stroke-width:1.5;}
+.pb-ti.active svg{stroke:#8B3720;}
+.pb-td{font-size:8px;color:#AAA2BA;font-family:'Manrope',sans-serif;}
+.pb-ti.active .pb-td{color:#8B3720;}
+.pb-back{display:flex;align-items:center;gap:7px;padding:11px 16px 7px;background:linear-gradient(155deg,#82779E,#1F1F39);border-bottom:1px solid rgba(255,255,255,.15);}
+.pb-bb{width:24px;height:24px;background:rgba(255,255,255,.18);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.pb-bb svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:2;}
+.pb-pt{font-family:'Marcellus',serif;font-size:14px;color:#fff;}
+.pb-con-hero{padding:10px 16px 12px;background:linear-gradient(155deg,#82779E,#1F1F39);}
+.pb-hh{font-family:'Marcellus',serif;font-size:15px;color:#fff;line-height:1.25;margin-bottom:4px;}
+.pb-hi{font-size:10px;color:rgba(255,255,255,.82);line-height:1.55;margin-bottom:8px;font-family:'Manrope',sans-serif;}
+.pb-cbtn{background:#E0AE72;color:#1F1F39;font-size:9px;font-weight:800;padding:8px 12px;border-radius:100px;border:none;font-family:'Manrope',sans-serif;}
+.pb-tier{margin:0 12px 9px;background:#fff;border:1px solid rgba(130,119,158,.16);border-radius:10px;padding:12px;box-shadow:0 2px 8px rgba(130,119,158,.07);}
+.pb-tier.feat{border-color:rgba(224,174,114,.36);background:linear-gradient(135deg,rgba(224,174,114,.11),#fff);}
+.pb-th{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.pb-tn{font-family:'Marcellus',serif;font-size:11px;color:#2D2142;}
+.pb-tt{font-size:8px;font-weight:700;padding:2px 7px;border-radius:100px;font-family:'Manrope',sans-serif;}
+.pb-tt.t{background:rgba(130,119,158,.12);color:#82779E;}
+.pb-tt.g{background:rgba(224,174,114,.18);color:#8B3720;}
+.pb-tt.mr{background:#8B3720;color:#fff;font-size:7px;padding:2px 5px;}
+.pb-td2{font-size:9px;color:#6E6288;line-height:1.5;margin-bottom:7px;font-family:'Manrope',sans-serif;}
+.pb-met{display:flex;gap:9px;}
+.pb-met span{font-size:8px;color:#9A91AF;font-family:'Manrope',sans-serif;}
+.pb-scta{margin:7px 12px 12px;}
+.pb-scta button{width:100%;background:#8B3720;color:#fff;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;padding:10px;border-radius:100px;border:none;}
+
+/* OPTION C — IMPERIAL BLUE SLATE */
+.frm-c{border:1.5px solid rgba(6,21,67,.28);background:#fff;box-shadow:0 20px 55px rgba(6,21,67,.16);}
+.pc-status{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 4px;background:#fff;}
+.pc-time{font-size:11px;font-weight:800;color:#061543;font-family:'Marcellus',serif;}
+.pc-notch{width:65px;height:4px;background:rgba(0,0,0,.06);border-radius:2px;}
+.pc-icons{font-size:10px;color:#657386;}
+.pc-hbar{padding:11px 16px 8px;background:#fff;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(6,21,67,.10);}
+.pc-logo{font-family:'Marcellus',serif;font-size:15px;color:#061543;letter-spacing:.04em;}
+.pc-mbn{width:20px;height:14px;display:flex;flex-direction:column;justify-content:space-between;}
+.pc-mbn span{height:1.5px;background:#657386;border-radius:1px;display:block;}
+.pc-mbn span:last-child{width:60%;}
+.pc-hero{padding:16px 16px 14px;background:linear-gradient(155deg,#061543,#093757);}
+.pc-greet{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.76);font-weight:700;margin-bottom:2px;font-family:'Manrope',sans-serif;}
+.pc-h1{font-family:'Marcellus',serif;font-size:16px;color:#fff;line-height:1.2;margin-bottom:4px;}
+.pc-h1 span{color:#97979b;font-style:italic;}
+.pc-quote{font-size:9px;color:rgba(255,255,255,.76);font-style:italic;line-height:1.55;border-left:2px solid rgba(80,132,155,.65);padding-left:7px;margin:5px 0 10px;font-family:'Cormorant Garamond',serif;}
+.pc-btns{display:flex;gap:7px;}
+.pc-btn-p{background:#50849b;color:#fff;font-size:9px;font-weight:700;padding:7px 12px;border-radius:100px;border:none;font-family:'Manrope',sans-serif;}
+.pc-btn-o{background:rgba(255,255,255,.10);color:#fff;font-size:9px;font-weight:600;padding:6px 11px;border-radius:100px;border:1px solid rgba(255,255,255,.26);font-family:'Manrope',sans-serif;}
+.pc-sg{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:7px;background:#edf2f5;}
+.pc-sc{background:#fff;border:1px solid rgba(6,21,67,.12);border-radius:9px;padding:11px;box-shadow:0 2px 8px rgba(6,21,67,.06);}
+.pc-sc.feat{border-color:rgba(80,132,155,.34);background:linear-gradient(135deg,rgba(80,132,155,.10),#fff);}
+.pc-si{width:22px;height:22px;background:rgba(6,21,67,.08);border-radius:5px;margin-bottom:5px;display:flex;align-items:center;justify-content:center;}
+.pc-si svg{width:11px;height:11px;stroke:#093757;fill:none;stroke-width:1.5;}
+.pc-sc.feat .pc-si{background:rgba(80,132,155,.16);}
+.pc-sc.feat .pc-si svg{stroke:#50849b;}
+.pc-sn{font-family:'Marcellus',serif;font-size:10px;color:#061543;}
+.pc-ss{font-size:9px;color:#657386;font-family:'Manrope',sans-serif;}
+.pc-ss.t{color:#093757;font-weight:700;}
+.pc-tab{display:flex;background:#fff;border-top:1px solid rgba(6,21,67,.10);}
+.pc-ti{flex:1;padding:7px 3px 9px;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.pc-ti svg{width:15px;height:15px;stroke:#98a4b2;fill:none;stroke-width:1.5;}
+.pc-ti.active svg{stroke:#061543;}
+.pc-td{font-size:8px;color:#98a4b2;font-family:'Manrope',sans-serif;}
+.pc-ti.active .pc-td{color:#061543;}
+.pc-ob-hero{height:165px;background:linear-gradient(155deg,#061543,#50849b);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.pc-ob-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.18),transparent 50%),radial-gradient(circle at 20% 78%,rgba(151,151,155,.22),transparent 42%);}
+.pc-ob-hero:after{content:'';position:absolute;width:130px;height:130px;border-radius:50%;border:1px solid rgba(255,255,255,.15);}
+.pc-ob-body{padding:10px 18px 14px;background:linear-gradient(180deg,#ffffff,#f6f9fb);}
+.pc-ob-h{font-family:'Marcellus',serif;font-size:19px;color:#061543;line-height:1.2;margin-bottom:6px;}
+.pc-ob-h span{color:#50849b;}
+.pc-ob-sub{font-size:10px;color:#657386;line-height:1.7;margin-bottom:8px;font-family:'Manrope',sans-serif;}
+.pc-bullets{margin-bottom:7px;}
+.pc-b{display:flex;align-items:center;gap:6px;font-size:10px;color:#657386;padding:2px 0;font-family:'Manrope',sans-serif;}
+.pc-bd{width:4px;height:4px;border-radius:2px;background:#50849b;flex-shrink:0;}
+.pc-skip-row{display:flex;justify-content:space-between;font-size:10px;color:#9aa6b1;margin-bottom:5px;font-family:'Manrope',sans-serif;}
+.pc-trust{font-size:9px;color:#093757;letter-spacing:.04em;text-align:center;margin-bottom:4px;}
+.pc-cta{width:100%;background:#061543;color:#fff;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;padding:12px;border-radius:100px;border:none;}
+.pc-back{display:flex;align-items:center;gap:7px;padding:11px 16px 7px;background:linear-gradient(155deg,#061543,#093757);border-bottom:1px solid rgba(255,255,255,.15);}
+.pc-bb{width:24px;height:24px;background:rgba(255,255,255,.16);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.pc-bb svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:2;}
+.pc-pt{font-family:'Marcellus',serif;font-size:14px;color:#fff;}
+.pc-con-hero{padding:10px 16px 12px;background:linear-gradient(155deg,#061543,#093757);}
+.pc-hh{font-family:'Marcellus',serif;font-size:15px;color:#fff;line-height:1.25;margin-bottom:4px;}
+.pc-hi{font-size:10px;color:rgba(255,255,255,.82);line-height:1.55;margin-bottom:8px;font-family:'Manrope',sans-serif;}
+.pc-cbtn{background:#50849b;color:#fff;font-size:9px;font-weight:700;padding:8px 12px;border-radius:100px;border:none;font-family:'Manrope',sans-serif;}
+.pc-tier{margin:0 12px 9px;background:#fff;border:1px solid rgba(6,21,67,.12);border-radius:10px;padding:12px;box-shadow:0 2px 8px rgba(6,21,67,.06);}
+.pc-tier.feat{border-color:rgba(80,132,155,.34);background:linear-gradient(135deg,rgba(80,132,155,.10),#fff);}
+.pc-th{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.pc-tn{font-family:'Marcellus',serif;font-size:11px;color:#061543;}
+.pc-tt{font-size:8px;font-weight:700;padding:2px 7px;border-radius:100px;font-family:'Manrope',sans-serif;}
+.pc-tt.t{background:rgba(101,115,134,.12);color:#657386;}
+.pc-tt.g{background:rgba(80,132,155,.16);color:#093757;}
+.pc-tt.mr{background:#061543;color:#fff;font-size:7px;padding:2px 5px;}
+.pc-td2{font-size:9px;color:#657386;line-height:1.5;margin-bottom:7px;font-family:'Manrope',sans-serif;}
+.pc-met{display:flex;gap:9px;}
+.pc-met span{font-size:8px;color:#98a4b2;font-family:'Manrope',sans-serif;}
+.pc-scta{margin:7px 12px 12px;}
+.pc-scta button{width:100%;background:#061543;color:#fff;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;padding:10px;border-radius:100px;border:none;}
+
+/* ── DECISION FORM ── */
+.df-warning{background:linear-gradient(135deg,rgba(192,40,74,.12),rgba(192,40,74,.05));border:2px solid var(--ro-m);border-radius:var(--r);padding:22px 28px;margin-bottom:32px;display:flex;gap:16px;align-items:flex-start;}
+.df-w-icon{font-size:28px;flex-shrink:0;}
+.df-w-title{font-size:17px;font-weight:800;color:var(--ro);font-family:var(--fh);margin-bottom:6px;}
+.df-w-body{font-size:15px;color:var(--mu);line-height:1.7;}
+.df-w-steps{margin-top:10px;}
+.df-w-step{display:flex;align-items:flex-start;gap:10px;padding:6px 0;}
+.df-w-num{width:24px;height:24px;border-radius:50%;background:var(--ro);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.df-w-text{font-size:14px;color:var(--ink);font-weight:500;}
+.df-q{background:var(--sf);border:1px solid var(--br-s);border-radius:var(--r);padding:24px 28px;margin-bottom:18px;transition:border-color .3s;}
+.df-q.answered{border-color:var(--gr-m);}
+.df-q-num{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--teal-b);margin-bottom:4px;}
+.df-q-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:4px;}
+.df-q-sub{font-size:14px;color:var(--mu);margin-bottom:16px;line-height:1.6;}
+.df-q-impact{font-size:13px;color:var(--teal);background:var(--teal-d);border-radius:8px;padding:10px 14px;margin-bottom:14px;border-left:3px solid var(--teal);}
+.df-options{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.df-opt-btn{padding:10px 18px;border-radius:100px;border:1.5px solid var(--br-s);background:var(--bg);font-size:14px;font-weight:500;color:var(--mu);cursor:pointer;transition:all .2s;}
+.df-opt-btn:hover{border-color:var(--teal-m);color:var(--teal);}
+.df-opt-btn.selected{background:var(--teal-d);border-color:var(--teal-m);color:var(--teal);font-weight:700;}
+.df-yn{display:flex;gap:12px;margin-bottom:14px;}
+.df-yn-btn{flex:1;padding:12px;border-radius:10px;border:1.5px solid var(--br-s);background:var(--bg);font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;text-align:center;}
+.df-yn-btn:hover{border-color:var(--teal-m);}
+.df-yn-btn.yes.selected{background:var(--gr-d);border-color:var(--gr-m);color:var(--gr);}
+.df-yn-btn.no.selected{background:var(--ro-d);border-color:var(--ro-m);color:var(--ro);}
+.df-select{width:100%;padding:13px 16px;background:var(--bg2);border:1.5px solid var(--br-s);border-radius:10px;color:var(--ink);font-family:var(--fb);font-size:15px;margin-bottom:14px;outline:none;appearance:none;cursor:pointer;}
+.df-select:focus{border-color:var(--teal);}
+.df-textarea{width:100%;padding:13px 16px;background:var(--bg2);border:1.5px solid var(--br-s);border-radius:10px;color:var(--ink);font-family:var(--fb);font-size:14px;line-height:1.7;resize:vertical;min-height:100px;outline:none;transition:border-color .2s;}
+.df-textarea:focus{border-color:var(--teal);}
+.df-textarea::placeholder{color:var(--fa);}
+.df-char-count{font-size:13px;color:var(--fa);text-align:right;margin-top:4px;}
+.df-char-count.warn{color:var(--go);}
+.df-char-count.over{color:var(--ro);}
+.df-answered-label{display:none;font-size:13px;color:var(--gr);font-weight:600;margin-top:8px;}
+.df-q.answered .df-answered-label{display:flex;align-items:center;gap:6px;}
+
+/* ── BUTTONS ── */
+.btn-t{display:inline-flex;align-items:center;justify-content:center;background:var(--teal);color:#fff;font-family:var(--fb);font-size:15px;font-weight:600;padding:13px 28px;border-radius:100px;border:none;cursor:pointer;transition:opacity .2s;}
+.btn-t:hover{opacity:.88;}
+.btn-out{display:inline-flex;align-items:center;justify-content:center;background:transparent;color:var(--teal);font-family:var(--fb);font-size:15px;font-weight:500;padding:12px 26px;border-radius:100px;border:1.5px solid var(--teal-m);cursor:pointer;}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ── MISC ── */
+.divider{height:1.5px;background:linear-gradient(90deg,transparent,var(--br-s),transparent);margin:32px 0;}
+footer{text-align:center;padding:48px 44px;border-top:1.5px solid var(--br-s);background:var(--bg2);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:820px){
+  nav{padding:12px 20px;}.nav-links{display:none;}
+  section{padding:88px 20px 60px;}
+  .g2,.g3,.rp-grid{grid-template-columns:1fr;}
+  .dec-head,.dec-row{grid-template-columns:1fr 80px;}
+  .dec-row>:nth-child(n+3){display:none;}
+  .phone-compare{flex-direction:column;}
+  h1{font-size:34px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ajdur International</div>
+  <div class="nav-links">
+    <a href="#brief">Brief</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#priorities">Priorities</a>
+    <a href="#flows">All Flows</a>
+    <a href="#design">Design</a>
+    <a href="#copy">Copy</a>
+    <a href="#your-decisions">Your Input</a>
+  </div>
+  <div class="nav-badge">v5 — April 2026</div>
+</nav>
+
+<div class="wrap">
+
+<!-- ════ HERO ════ -->
+<section id="hero" style="padding-top:140px;padding-bottom:50px;">
+  <div style="position:absolute;top:90px;left:50%;transform:translateX(-50%);width:660px;height:300px;background:radial-gradient(ellipse,rgba(0,122,136,.10),transparent 70%);pointer-events:none;"></div>
+  <div style="display:inline-flex;align-items:center;gap:8px;background:var(--sf);border:1px solid var(--teal-m);color:var(--teal);padding:6px 16px;border-radius:100px;font-size:13px;font-weight:700;margin-bottom:22px;letter-spacing:.02em;">
+    <span style="width:7px;height:7px;border-radius:50%;background:var(--teal-b);display:inline-block;"></span>
+    UX/UI Design Deliverable · v4 · Updated April 2026
+  </div>
+  <h1 style="max-width:780px;">Ajdur App<br><span style="color:var(--teal);">UX/UI Design Strategy</span></h1>
+  <p style="font-size:16px;max-width:680px;margin:18px 0 24px;color:var(--mu);font-weight:300;line-height:1.8;">Based on the submitted Ajdur App document and audio conversation with <strong style="color:var(--ink);">Prof. Kewunla</strong> (Ajdur Owner), the below is our understanding of what is needed for the UX/UI design. <em style="color:var(--teal);">Your decisions on the deliverables below will determine the end product.</em></p>
+
+  <div class="stakeholder-row">
+    <div class="sk-pill">
+      <div class="sk-dot" style="background:var(--go);"></div>
+      <div><div class="sk-role">App Owner &amp; Founder</div><div class="sk-name">Prof. Kewunla</div></div>
+    </div>
+    <div class="sk-pill">
+      <div class="sk-dot"></div>
+      <div><div class="sk-role">Project Team</div><div class="sk-name">Ajdur App Team</div></div>
+    </div>
+    <div class="sk-pill">
+      <div class="sk-dot" style="background:var(--in);"></div>
+      <div><div class="sk-role">Design &amp; UX</div><div class="sk-name">Design Review Team</div></div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;">
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">Source <strong style="color:var(--ink);">132-page Strategic Brief</strong></div>
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">Audio conversation with <strong style="color:var(--ink);">Prof. Kewunla</strong></div>
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">Decisions resolved <strong style="color:var(--gr);">5 of 5</strong></div>
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">Team input still required <strong style="color:var(--ro);">12 items</strong></div>
+  </div>
+</section>
+
+<!-- ════ BRIEF INPUT ════ -->
+<section id="brief">
+  <div class="eye">What We Understood from Brief + Conversation</div>
+  <h2>Key Inputs from Prof. Kewunla &amp; Ajdur Team</h2>
+  <p style="max-width:640px;margin-bottom:32px;">The 132-page strategic brief and audio conversation with Prof. Kewunla resolved all 5 major flow decisions and introduced AdMob rewarded ads as a core monetisation model. Below are the critical strategic inputs that now shape every design decision.</p>
+
+  <div class="g2" style="gap:18px;margin-bottom:18px;">
+    <div class="pdf-input resolved"><div class="pi-label res">✅ Confirmed — Core Mission</div><div class="pi-title">Transform from "Basic Utility App" to "Premium Spiritual Intelligence Platform"</div><div class="pi-body">The brief is explicit: the current app is functional but does not communicate elite value. Users must feel trust, mystery, authority, premium quality, and transformation within 3 seconds of opening the app. Everything else is secondary to this.</div></div>
+    <div class="pdf-input resolved"><div class="pi-label res">✅ Confirmed — Conversion Model</div><div class="pi-title">4-Step Funnel: Onboarding → Free Hook → Premium Unlock → Consultation</div><div class="pi-body">Users are guided from curiosity → trust → small action → emotional investment → premium purchase. The Self Discovery home reading gives a meaningful free result, then every result screen must route toward "Speak to Founder/Owner" Consultation.</div></div>
+    <div class="pdf-input changed"><div class="pi-label chg">⚡ New — AdMob Rewarded Video Ads</div><div class="pi-title">Hybrid Revenue: Direct payment + Rewarded ad video as alternative access</div><div class="pi-body">Users who cannot pay watch a rewarded video to unlock Advance Insights features. This must feel like "Earn Access" not "Forced Ad." Language: "Watch &amp; Unlock" — never "Watch Ad." Premium users see no forced ads. Never show ads on consultation, payment, or result screens.</div></div>
+    <div class="pdf-input resolved"><div class="pi-label res">✅ Confirmed — Visual Direction Preference</div><div class="pi-title">Deep Midnight Blue + Elegant Gold + Ivory — "Apple meets Spiritual Intelligence"</div><div class="pi-body">Prof. Kewunla's brief specifies a dark luxury spiritual aesthetic. We now keep that direction as Option A, add a premium lavender-led Option B from the reference palette, and introduce a cooler premium blue-slate Option C. The final choice is yours — see Design section.</div></div>
+    <div class="pdf-input resolved"><div class="pi-label res">✅ Confirmed — Service Names Updated</div><div class="pi-title">All 12 screen labels, titles, and CTAs upgraded with conversion copy from brief</div><div class="pi-body">"Get Started" → "Reveal My Blueprint" · "Consultation" → "Speak to Founder/Owner" · "Standard" → "Clarity Session" · "Platinum/Diamond" → "Deep Destiny Consultation" with "MOST RECOMMENDED" badge · "Request Coupon" → "Unlock Discount Access"</div></div>
+    <div class="pdf-input open"><div class="pi-label opn">⚠ Still Open — 3 Business Items</div><div class="pi-title">These 3 items must be confirmed before development can finalise those screens</div><div class="pi-body"><strong style="color:var(--ink)">1. Consultation pricing</strong> — exact prices for Clarity Session and Deep Destiny Consultation needed.<br><strong style="color:var(--ink)">2. Coupon types</strong> — the specific discount percentages and credit amounts not yet defined.<br><strong style="color:var(--ink)">3. Store timeline</strong> — Books, Incenses, and Healing Products are confirmed; when do they launch?</div></div>
+  </div>
+</section>
+
+<!-- ════ DECISION MATRIX ════ -->
+<section id="decisions">
+  <div class="eye">Deliverable 01</div>
+  <h2>All Major Flow Decisions — Resolved</h2>
+  <p style="max-width:640px;margin-bottom:28px;">Based on the brief and Prof. Kewunla's input, all 5 major decisions are now resolved. The table below confirms each path chosen and its impact on the user experience.</p>
+  <div class="dec-table">
+    <div class="dec-head"><div class="dec-th">Decision</div><div class="dec-th">Status</div><div class="dec-th">Path Chosen</div><div class="dec-th">Design Impact</div></div>
+    <div class="dec-row"><div class="dc"><div class="dc-name">Self Discovery</div><div class="dc-sub">Home reading</div></div><div class="dc"><span class="badge b-res">✓ Resolved</span></div><div class="dc"><div class="dc-ans">Free preview on home → every result screen ends with "Need Deeper Answers? Speak to Founder/Owner" → Consultation booking CTA.</div></div><div class="dc"><div class="dc-ans">Home screen is the funnel entry point, not the end destination.</div></div></div>
+    <div class="dec-row"><div class="dc"><div class="dc-name">Life Coaching / Life Path / Spiritual Healing</div><div class="dc-sub">Coming features</div></div><div class="dc"><span class="badge b-res">✓ Resolved</span></div><div class="dc"><div class="dc-ans">All route through "Speak to Founder/Owner" Consultation page. Not self-service insight cards — appear as service options within Standard or Platinum tiers.</div></div><div class="dc"><div class="dc-ans">Consultation page adds specialty descriptions per coming service.</div></div></div>
+    <div class="dec-row"><div class="dc"><div class="dc-name">Fortune Wheel, Oraculum, Face Reading</div><div class="dc-sub">Advance Insights — Coming</div></div><div class="dc"><span class="badge b-res">✓ Resolved</span></div><div class="dc"><div class="dc-ans">Hybrid access: Direct payment OR watch rewarded ad video to unlock starter version. "Unlock Your Insight" popup on every gated card.</div></div><div class="dc"><div class="dc-ans">Access choice popup designed. Ad CTA uses "Watch &amp; Unlock" language.</div></div></div>
+    <div class="dec-row"><div class="dc"><div class="dc-name">Coupon / Discount System</div><div class="dc-sub">Renamed</div></div><div class="dc"><span class="badge b-res">✓ Resolved</span></div><div class="dc"><div class="dc-ans">Renamed "Unlock Discount Access." Reframed as accessibility pathway. Adds "Prefer Free Access?" block routing users to rewarded ads.</div></div><div class="dc"><div class="dc-ans">Page title, all copy, and both CTA paths redesigned.</div></div></div>
+    <div class="dec-row" style="border:none;"><div class="dc"><div class="dc-name">Coupon Types List</div><div class="dc-sub">Dropdown content</div></div><div class="dc"><span class="badge b-open">⚠ Open</span></div><div class="dc"><div class="dc-open">Exact types, percentages, and values not yet confirmed. Proposed: Consultation Discount, Reading Credit, Store Voucher. Awaiting team input.</div></div><div class="dc"><div class="dc-open">Dropdown placeholder used until types confirmed.</div></div></div>
+  </div>
+</section>
+
+<!-- ════ REDESIGN PRIORITIES ════ -->
+<section id="priorities">
+  <div class="eye">Deliverable 02</div>
+  <h2>Updated Redesign Priorities</h2>
+  <p style="max-width:640px;margin-bottom:10px;">These are my suggestions to the Ajdur App Team. They are subject to the team's final decision. Each priority area drives a specific business outcome.</p>
+  <p style="font-size:14px;color:var(--mu);margin-bottom:28px;">These are design and development mandates — not optional enhancements.</p>
+  <div class="rp-grid">
+    <div class="rp-card" style="border-top-color:var(--pu);">
+      <div class="rp-num" style="color:var(--pu);">01 · Onboarding</div>
+      <div class="rp-title">Psychologically Compelling First Impression</div>
+      <div class="rp-body">Shift from informative to irresistible. Current onboarding feels nice — elite onboarding makes users feel <em>"I NEED to continue."</em> Use stronger emotional headlines ("Why Does Life Keep Repeating the Same Lessons?"), lighter premium aura visuals, a trust signal ("Trusted by Thousands Seeking Clarity"), a Skip option, and a powerful CTA: <strong>Reveal My Blueprint</strong>.</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--teal);">
+      <div class="rp-num" style="color:var(--teal);">02 · Home Dashboard</div>
+      <div class="rp-title">Guided Welcome Dashboard, Not a Menu</div>
+      <div class="rp-body">Rebuild as a personalised entry point: daily inspirational message, primary action strip with two CTAs (Reveal Blueprint / Book Consultation), a featured insight card, a consultation upsell banner, and a clear "what to do next" signal. Users must feel directed — not overwhelmed by choices.</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--teal-b);">
+      <div class="rp-num" style="color:var(--teal-b);">03 · Discover Hidden Patterns</div>
+      <div class="rp-title">Discovery Hub, Not a Utility Grid</div>
+      <div class="rp-body">Replace the equal-weight grey tile grid with an addictive discovery experience. Add a hero section ("What Is Affecting Your Life Right Now?"), a featured premium insight spotlight, categorised cards with emotional hook copy, free/unlock/coming-soon status indicators, and a direct pathway to Consultation after each result.</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--go);">
+      <div class="rp-num" style="color:var(--go);">04 · Speak to Founder/Owner</div>
+      <div class="rp-title">Premium Conversion Page, Not a Service Listing</div>
+      <div class="rp-body">Transform the Consultation page into the sales engine of the app. Outcome-led tier cards (what the user <em>gets</em>, not what the service <em>is</em>), comparison table, trust builder block ("Why Users Trust Ajdur"), testimonials section, "Most Recommended" badge on Deep Destiny Consultation, and soft urgency ("Limited weekly slots available").</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--ro);">
+      <div class="rp-num" style="color:var(--ro);">05 · Unlock Discount Access</div>
+      <div class="rp-title">Accessibility Pathway, Not a Coupon Form</div>
+      <div class="rp-body">Reposition the entire page around human dignity and access. Copy: <em>"Everyone Deserves Clarity."</em> Add a parallel "Prefer Free Access?" block that routes users into rewarded ad unlocks without feeling cheap or transactional. Two CTAs: "Request Access Support" (coupon) and "Earn Your Reading" (ad path).</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--gr);">
+      <div class="rp-num" style="color:var(--gr);">06 · Daily Wisdom Center</div>
+      <div class="rp-title">Authority Hub, Not a Login Dead-End</div>
+      <div class="rp-body">Separate the Spiritual Academy class portal (login link) from daily wisdom content. Build a Daily Wisdom feed with rotating spiritual teachings, numerology lessons, dream tips, and daily oracle messages. This drives daily return, ad revenue, and trust — making Prof. Kewunla's expertise visible to users who haven't yet booked a Consultation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ USER FLOWS ════ -->
+<section id="flows">
+  <div class="eye">Deliverable 03</div>
+  <h2>All Recommended User Flows</h2>
+  <p style="max-width:640px;margin-bottom:32px;">Every major user journey mapped from entry point to value moment. These are the paths the app must support — each one contributes to either direct revenue, ad revenue, or retention.</p>
+
+  <!-- FLOW 1: First-Time User -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 1 — First-Time User Onboarding</div>
+    <div class="flow-sub">App install → Emotional hook → Home dashboard → First free reading → Consultation upsell</div>
+    <svg viewBox="0 0 820 175" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#7FADA8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+        <marker id="at" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#007A88" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+        <marker id="ag2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#B8720E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+      </defs>
+      <rect x="8" y="62" width="100" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="58" y="82" text-anchor="middle" fill="#4A6E65" font-family="Outfit,sans-serif" font-size="12" font-weight="500">App Install</text>
+      <text x="58" y="98" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">First open</text>
+      <rect x="132" y="62" width="110" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="187" y="82" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Onboarding</text>
+      <text x="187" y="97" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">3 slides · Skip option</text>
+      <rect x="266" y="55" width="108" height="64" rx="8" fill="#007A88"/>
+      <text x="320" y="79" text-anchor="middle" fill="#fff" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Reveal My</text>
+      <text x="320" y="95" text-anchor="middle" fill="rgba(255,255,255,.75)" font-family="Outfit,sans-serif" font-size="11">Blueprint CTA</text>
+      <rect x="398" y="62" width="110" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="453" y="82" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Home Dashboard</text>
+      <text x="453" y="97" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Daily message</text>
+      <rect x="532" y="62" width="110" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="587" y="82" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Free Reading</text>
+      <text x="587" y="97" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Mini insight result</text>
+      <rect x="666" y="55" width="108" height="64" rx="8" fill="rgba(0,122,136,.1)" stroke="#007A88" stroke-width="1.5"/>
+      <text x="720" y="79" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Consultation</text>
+      <text x="720" y="95" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Upsell CTA</text>
+      <line x1="108" y1="87" x2="130" y2="87" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="242" y1="87" x2="264" y2="87" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="374" y1="87" x2="396" y2="87" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="508" y1="87" x2="530" y2="87" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="642" y1="87" x2="664" y2="87" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="410" y="150" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="12">Teal arrows = activation moments · Every free result must lead to a Consultation CTA</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 2: Daily Returning User -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 2 — Daily Returning User</div>
+    <div class="flow-sub">App re-open → Daily wisdom → Insight or Consultation → Ad revenue loop</div>
+    <svg viewBox="0 0 820 175" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="62" width="110" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="63" y="82" text-anchor="middle" fill="#4A6E65" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Re-open App</text>
+      <text x="63" y="97" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Return visit</text>
+      <rect x="142" y="62" width="110" height="50" rx="8" fill="#fff" stroke="#007A88" stroke-width="1"/>
+      <text x="197" y="79" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Daily Wisdom</text>
+      <text x="197" y="93" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Oracle · Tip · Number</text>
+      <polygon points="320,62 360,87 320,112 280,87" fill="#fff" stroke="#B8720E" stroke-width="1"/>
+      <text x="320" y="90" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="11" font-weight="700">What next?</text>
+      <rect x="380" y="52" width="100" height="42" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="430" y="68" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Free Insight</text>
+      <text x="430" y="82" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Dream · Card · Dice</text>
+      <rect x="380" y="106" width="100" height="42" rx="8" fill="#fff" stroke="#B8720E" stroke-width="1"/>
+      <text x="430" y="122" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Watch Ad</text>
+      <text x="430" y="136" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Unlock premium</text>
+      <rect x="508" y="62" width="110" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="563" y="82" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Result Screen</text>
+      <text x="563" y="97" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Emotional hook</text>
+      <rect x="646" y="55" width="108" height="64" rx="8" fill="rgba(0,122,136,.1)" stroke="#007A88" stroke-width="1.5"/>
+      <text x="700" y="79" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Consultation</text>
+      <text x="700" y="95" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Upsell CTA</text>
+      <line x1="118" y1="87" x2="140" y2="87" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="252" y1="87" x2="278" y2="87" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="360" y1="76" x2="378" y2="66" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="360" y1="98" x2="378" y2="120" stroke="#B8720E" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="480" y1="73" x2="506" y2="80" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="480" y1="124" x2="506" y2="98" stroke="#B8720E" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="618" y1="87" x2="644" y2="87" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="370" y="47" fill="#4A6E65" font-family="Outfit,sans-serif" font-size="11" text-anchor="middle">Explore</text>
+      <text x="370" y="158" fill="#B8720E" font-family="Outfit,sans-serif" font-size="11" text-anchor="middle">Ad revenue path</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 3: Consultation Booking -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 3 — Consultation Booking</div>
+    <div class="flow-sub">Menu → Speak to Founder/Owner → Tier selection → Optional coupon → Confirm → Booked</div>
+    <svg viewBox="0 0 820 240" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="38" width="90" height="44" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="53" y="57" text-anchor="middle" fill="#4A6E65" font-family="Outfit,sans-serif" font-size="12">Menu</text>
+      <text x="53" y="72" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Side drawer</text>
+      <rect x="120" y="38" width="110" height="44" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="175" y="57" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Speak to</text>
+      <text x="175" y="72" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Founder/Owner</text>
+      <polygon points="296,38 336,60 296,82 256,60" fill="#fff" stroke="#B8720E" stroke-width="1"/>
+      <text x="296" y="63" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Which tier?</text>
+      <rect x="356" y="18" width="100" height="40" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="406" y="34" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Clarity Session</text>
+      <text x="406" y="48" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Standard · Free · Chat</text>
+      <rect x="356" y="70" width="100" height="40" rx="8" fill="#fff" stroke="#B8720E" stroke-width="1.5"/>
+      <text x="406" y="86" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Deep Destiny</text>
+      <text x="406" y="100" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="10">Platinum · Paid · Video</text>
+      <rect x="356" y="122" width="100" height="40" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="406" y="138" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Special Request</text>
+      <text x="406" y="152" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Custom · Flexible</text>
+      <rect x="476" y="62" width="100" height="40" rx="8" fill="rgba(0,122,136,.06)" stroke="rgba(0,122,136,.3)" stroke-width="1" stroke-dasharray="4 2"/>
+      <text x="526" y="78" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Coupon?</text>
+      <text x="526" y="91" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Optional discount</text>
+      <rect x="596" y="38" width="90" height="44" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="641" y="57" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Confirm</text>
+      <text x="641" y="72" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Review details</text>
+      <rect x="706" y="33" width="90" height="54" rx="27" fill="rgba(0,122,136,.1)" stroke="#007A88" stroke-width="1.5"/>
+      <text x="751" y="55" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Booked!</text>
+      <text x="751" y="70" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Confirmed ✓</text>
+      <line x1="98" y1="60" x2="118" y2="60" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="230" y1="60" x2="254" y2="60" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="336" y1="52" x2="354" y2="38" stroke="#B8720E" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="336" y1="60" x2="354" y2="90" stroke="#B8720E" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="336" y1="68" x2="354" y2="134" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <path d="M456 38L582 52" fill="none" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="456" y1="90" x2="474" y2="82" stroke="rgba(0,122,136,.4)" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#at)"/>
+      <line x1="576" y1="78" x2="594" y2="64" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <path d="M456 140L578 72" fill="none" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="686" y1="60" x2="704" y2="60" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="344" y="36" text-anchor="middle" fill="#0A845A" font-family="Outfit,sans-serif" font-size="10">Free</text>
+      <text x="344" y="88" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="10">Paid</text>
+      <text x="474" y="58" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">optional</text>
+      <rect x="8" y="185" width="800" height="44" rx="8" fill="rgba(0,122,136,.05)" stroke="rgba(0,122,136,.14)" stroke-width="1"/>
+      <text x="22" y="204" fill="#4A6E65" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Decision 2 note:</text>
+      <text x="22" y="220" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="12">Life Coaching, Life Path, and Spiritual Healing (coming) appear as specialty descriptions inside Deep Destiny tier — not as separate booking screens.</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 4: Advance Insights -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 4 — Discover Hidden Patterns (Advance Insights)</div>
+    <div class="flow-sub">Grid → Tap card → Access choice (Pay or Watch Ad) → Result → Consultation upsell</div>
+    <svg viewBox="0 0 820 220" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="60" width="100" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="58" y="80" text-anchor="middle" fill="#4A6E65" font-family="Outfit,sans-serif" font-size="12">Insights Hub</text>
+      <text x="58" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Discovery grid</text>
+      <rect x="132" y="60" width="100" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="182" y="80" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Tap Card</text>
+      <text x="182" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Face Reading etc.</text>
+      <polygon points="305,60 345,85 305,110 265,85" fill="#fff" stroke="#B8720E" stroke-width="1"/>
+      <text x="305" y="89" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Gated?</text>
+      <rect x="365" y="40" width="100" height="42" rx="8" fill="rgba(10,132,90,.07)" stroke="rgba(10,132,90,.25)" stroke-width="1"/>
+      <text x="415" y="57" text-anchor="middle" fill="#0A845A" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Free Access</text>
+      <text x="415" y="71" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Opens directly</text>
+      <rect x="365" y="98" width="100" height="42" rx="8" fill="#fff" stroke="#B8720E" stroke-width="1"/>
+      <text x="415" y="114" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Unlock Insight</text>
+      <text x="415" y="128" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Choice popup</text>
+      <rect x="485" y="80" width="90" height="40" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="530" y="96" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Pay Now</text>
+      <text x="530" y="109" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Direct payment</text>
+      <rect x="485" y="132" width="90" height="40" rx="8" fill="#fff" stroke="#007A88" stroke-width="1"/>
+      <text x="530" y="148" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Watch &amp; Unlock</text>
+      <text x="530" y="161" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Rewarded ad</text>
+      <rect x="596" y="68" width="100" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="646" y="88" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Reading Result</text>
+      <text x="646" y="103" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Emotional insight</text>
+      <rect x="716" y="58" width="95" height="70" rx="8" fill="rgba(0,122,136,.1)" stroke="#007A88" stroke-width="1.5"/>
+      <text x="763" y="80" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Need Deeper</text>
+      <text x="763" y="95" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Answers?</text>
+      <text x="763" y="111" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">→ Consultation</text>
+      <line x1="108" y1="85" x2="130" y2="85" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="232" y1="85" x2="263" y2="85" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="345" y1="76" x2="363" y2="61" stroke="#0A845A" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="345" y1="94" x2="363" y2="112" stroke="#B8720E" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="465" y1="61" x2="483" y2="90" stroke="#B8720E" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="465" y1="119" x2="483" y2="142" stroke="#007A88" stroke-width="1" marker-end="url(#at)"/>
+      <line x1="575" y1="100" x2="594" y2="100" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="575" y1="152" x2="594" y2="108" stroke="#007A88" stroke-width="1" marker-end="url(#at)"/>
+      <line x1="696" y1="93" x2="714" y2="93" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="346" y="55" fill="#0A845A" font-family="Outfit,sans-serif" font-size="10" text-anchor="middle">No</text>
+      <text x="346" y="112" fill="#B8720E" font-family="Outfit,sans-serif" font-size="10" text-anchor="middle">Yes</text>
+      <text x="410" y="192" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="12">"Need Deeper Answers?" CTA must appear on EVERY result screen — this is the primary consultation conversion path</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 5: Rewarded Ad -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 5 — Rewarded Ad Access (AdMob)</div>
+    <div class="flow-sub">User chooses "Watch &amp; Unlock" → Watches full ad → Starter reading unlocked → Post-result upsell</div>
+    <svg viewBox="0 0 820 165" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="54" width="110" height="56" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="63" y="75" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">"Watch &amp; Unlock"</text>
+      <text x="63" y="89" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">User taps CTA</text>
+      <text x="63" y="102" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">(voluntary choice)</text>
+      <rect x="142" y="54" width="110" height="56" rx="8" fill="#007A88"/>
+      <text x="197" y="75" text-anchor="middle" fill="#fff" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Ad Plays</text>
+      <text x="197" y="90" text-anchor="middle" fill="rgba(255,255,255,.75)" font-family="Outfit,sans-serif" font-size="11">Full rewarded video</text>
+      <text x="197" y="102" text-anchor="middle" fill="rgba(255,255,255,.6)" font-family="Outfit,sans-serif" font-size="10">AdMob rewarded</text>
+      <rect x="276" y="54" width="110" height="56" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="331" y="75" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Ad Complete</text>
+      <text x="331" y="90" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Reward confirmed</text>
+      <rect x="410" y="54" width="110" height="56" rx="8" fill="rgba(10,132,90,.07)" stroke="rgba(10,132,90,.28)" stroke-width="1"/>
+      <text x="465" y="75" text-anchor="middle" fill="#0A845A" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Starter Reading</text>
+      <text x="465" y="90" text-anchor="middle" fill="#0A845A" font-family="Outfit,sans-serif" font-size="11">Unlocked ✓</text>
+      <text x="465" y="102" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Basic interpretation</text>
+      <rect x="544" y="54" width="110" height="56" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="599" y="75" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Result + Upsell</text>
+      <text x="599" y="90" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Emotional result</text>
+      <text x="599" y="102" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Deeper answers CTA</text>
+      <rect x="678" y="47" width="100" height="70" rx="8" fill="rgba(0,122,136,.1)" stroke="#007A88" stroke-width="1.5"/>
+      <text x="728" y="70" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Book</text>
+      <text x="728" y="85" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Consultation</text>
+      <text x="728" y="102" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Revenue ↑</text>
+      <line x1="118" y1="82" x2="140" y2="82" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="252" y1="82" x2="274" y2="82" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="386" y1="82" x2="408" y2="82" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="520" y1="82" x2="542" y2="82" stroke="#0A845A" stroke-width="1.5" marker-end="url(#ag)"/>
+      <line x1="654" y1="82" x2="676" y2="82" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="410" y="142" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="12">Ad revenue is earned regardless of whether the user upgrades to Consultation — dual revenue from same user action</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 6: Daily Wisdom Center -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 6 — Daily Wisdom Center (Education)</div>
+    <div class="flow-sub">Menu → Daily Wisdom → Read content → Optional premium lesson (ad) → Class login (optional)</div>
+    <svg viewBox="0 0 820 160" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="54" width="100" height="52" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="58" y="74" text-anchor="middle" fill="#4A6E65" font-family="Outfit,sans-serif" font-size="12">Menu Tap</text>
+      <text x="58" y="90" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Daily Wisdom</text>
+      <rect x="130" y="54" width="120" height="52" rx="8" fill="#fff" stroke="#007A88" stroke-width="1"/>
+      <text x="190" y="72" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Daily Wisdom</text>
+      <text x="190" y="87" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Tips · Oracle · Number</text>
+      <rect x="272" y="54" width="100" height="52" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="322" y="74" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Read / Engage</text>
+      <text x="322" y="90" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Free daily content</text>
+      <polygon points="430,54 470,80 430,106 390,80" fill="#fff" stroke="#B8720E" stroke-width="1"/>
+      <text x="430" y="83" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Deep lesson?</text>
+      <rect x="490" y="40" width="100" height="40" rx="8" fill="#fff" stroke="#007A88" stroke-width="1"/>
+      <text x="540" y="57" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Watch Ad</text>
+      <text x="540" y="70" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Unlock premium lesson</text>
+      <rect x="490" y="100" width="100" height="40" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="540" y="117" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Class Portal</text>
+      <text x="540" y="130" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Login → website</text>
+      <rect x="614" y="54" width="100" height="52" rx="8" fill="rgba(0,122,136,.07)" stroke="#007A88" stroke-width="1"/>
+      <text x="664" y="74" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Authority Built</text>
+      <text x="664" y="90" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Trust → Consult CTA</text>
+      <line x1="108" y1="80" x2="128" y2="80" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="250" y1="80" x2="270" y2="80" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="372" y1="80" x2="388" y2="80" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="470" y1="72" x2="488" y2="60" stroke="#007A88" stroke-width="1" marker-end="url(#at)"/>
+      <line x1="470" y1="88" x2="488" y2="114" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="590" y1="60" x2="612" y2="70" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="590" y1="120" x2="612" y2="90" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+    </svg>
+  </div>
+
+  <!-- FLOW 7: Unlock Discount Access -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 7 — Unlock Discount Access (Coupon)</div>
+    <div class="flow-sub">Two parallel paths: coupon request form OR free access via rewarded ad</div>
+    <svg viewBox="0 0 820 185" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="65" width="110" height="52" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="63" y="85" text-anchor="middle" fill="#4A6E65" font-family="Outfit,sans-serif" font-size="12">Menu Tap</text>
+      <text x="63" y="100" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Unlock Discount</text>
+      <polygon points="220,65 260,91 220,117 180,91" fill="#fff" stroke="#B8720E" stroke-width="1"/>
+      <text x="220" y="94" text-anchor="middle" fill="#B8720E" font-family="Outfit,sans-serif" font-size="10" font-weight="700">Path?</text>
+      <!-- Path A: Coupon -->
+      <rect x="280" y="38" width="110" height="44" rx="8" fill="#fff" stroke="#007A88" stroke-width="1"/>
+      <text x="335" y="56" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Fill Form</text>
+      <text x="335" y="71" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Name · Email · Type</text>
+      <rect x="280" y="108" width="110" height="44" rx="8" fill="rgba(0,122,136,.07)" stroke="#007A88" stroke-width="1"/>
+      <text x="335" y="125" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Prefer Free?</text>
+      <text x="335" y="140" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Watch &amp; Unlock path</text>
+      <rect x="414" y="38" width="100" height="44" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="464" y="56" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Request Sent</text>
+      <text x="464" y="71" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Team reviews</text>
+      <rect x="414" y="108" width="100" height="44" rx="8" fill="#007A88"/>
+      <text x="464" y="125" text-anchor="middle" fill="#fff" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Ad Plays</text>
+      <text x="464" y="140" text-anchor="middle" fill="rgba(255,255,255,.75)" font-family="Outfit,sans-serif" font-size="11">Revenue earned</text>
+      <rect x="538" y="65" width="110" height="52" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="593" y="83" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Access Granted</text>
+      <text x="593" y="98" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Discount or unlock</text>
+      <rect x="672" y="58" width="105" height="66" rx="8" fill="rgba(0,122,136,.1)" stroke="#007A88" stroke-width="1.5"/>
+      <text x="724" y="80" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Use Service</text>
+      <text x="724" y="96" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Consult · Reading</text>
+      <text x="724" y="112" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">Revenue ↑</text>
+      <line x1="118" y1="91" x2="178" y2="91" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="260" y1="82" x2="278" y2="60" stroke="#B8720E" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="260" y1="100" x2="278" y2="122" stroke="#007A88" stroke-width="1" marker-end="url(#at)"/>
+      <line x1="390" y1="60" x2="412" y2="60" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="390" y1="130" x2="412" y2="130" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="514" y1="60" x2="536" y2="80" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="514" y1="130" x2="536" y2="102" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="648" y1="91" x2="670" y2="91" stroke="#007A88" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="269" y="53" fill="#007A88" font-family="Outfit,sans-serif" font-size="10" text-anchor="middle">Coupon</text>
+      <text x="269" y="140" fill="#007A88" font-family="Outfit,sans-serif" font-size="10" text-anchor="middle">Free Ad</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 8: Post-Insight Upsell -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 8 — Post-Insight Consultation Upsell (Critical Revenue Path)</div>
+    <div class="flow-sub">After EVERY insight result — the primary conversion path from free user to paying client</div>
+    <svg viewBox="0 0 820 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="50" width="110" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="63" y="70" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Any Insight</text>
+      <text x="63" y="85" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Face · Dream · Card · Oracle</text>
+      <rect x="142" y="50" width="110" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="197" y="70" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Pay / Watch Ad</text>
+      <text x="197" y="85" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Access choice</text>
+      <rect x="276" y="50" width="110" height="50" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/>
+      <text x="331" y="70" text-anchor="middle" fill="#062B22" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Reading Result</text>
+      <text x="331" y="85" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Emotional impact</text>
+      <rect x="410" y="42" width="160" height="66" rx="8" fill="rgba(184,114,14,.09)" stroke="rgba(184,114,14,.4)" stroke-width="1.5"/>
+      <text x="490" y="62" text-anchor="middle" fill="#8A5908" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Need Deeper Answers?</text>
+      <text x="490" y="77" text-anchor="middle" fill="#A86010" font-family="Outfit,sans-serif" font-size="11">Speak to Founder/Owner</text>
+      <text x="490" y="92" text-anchor="middle" fill="#A86010" font-family="Outfit,sans-serif" font-size="10">[ Upgrade to Consultation ]</text>
+      <rect x="594" y="50" width="110" height="50" rx="8" fill="rgba(0,122,136,.1)" stroke="#007A88" stroke-width="1.5"/>
+      <text x="649" y="70" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Consultation</text>
+      <text x="649" y="85" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Booked ✓</text>
+      <rect x="718" y="43" width="88" height="64" rx="8" fill="rgba(43,80,200,.08)" stroke="rgba(43,80,200,.28)" stroke-width="1"/>
+      <text x="762" y="66" text-anchor="middle" fill="#2B50C8" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Revenue</text>
+      <text x="762" y="80" text-anchor="middle" fill="#2B50C8" font-family="Outfit,sans-serif" font-size="10">Direct payment</text>
+      <text x="762" y="94" text-anchor="middle" fill="#2B50C8" font-family="Outfit,sans-serif" font-size="10">+ Ad revenue</text>
+      <line x1="118" y1="75" x2="140" y2="75" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="252" y1="75" x2="274" y2="75" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="386" y1="75" x2="408" y2="75" stroke="#B8720E" stroke-width="1.5" marker-end="url(#ag2)"/>
+      <line x1="570" y1="75" x2="592" y2="75" stroke="#B8720E" stroke-width="1.5" marker-end="url(#ag2)"/>
+      <line x1="704" y1="75" x2="716" y2="75" stroke="#2B50C8" stroke-width="1.5" marker-end="url(#ag)"/>
+      <text x="410" y="132" text-anchor="middle" fill="#8A5908" font-family="Outfit,sans-serif" font-size="13" font-weight="600">This upsell block must exist on every single insight result screen — the brief calls it "the strongest conversion path"</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ════ DESIGN DIRECTIONS ════ -->
+<section id="design">
+  <div class="eye">Deliverable 04</div>
+  <h2>Design Direction Comparison</h2>
+  <p style="max-width:640px;margin-bottom:12px;">The three options below address the same UX problems but create different emotional impressions. The team may select one preferred direction or use them to guide a hybrid final path.</p>
+  <div style="background:var(--sf);border:1px solid var(--br-s);border-radius:12px;padding:18px 22px;margin-bottom:32px;display:flex;gap:14px;align-items:flex-start;">
+    <div style="font-size:22px;flex-shrink:0;">💡</div>
+    <div style="font-size:15px;color:var(--mu);line-height:1.7;"><strong style="color:var(--ink);">Option A</strong> remains unchanged as the original dark luxury direction. <strong style="color:var(--ink);">Option B</strong> now uses a premium mystical lavender-apricot palette from the reference provided. <strong style="color:var(--ink);">Option C</strong> introduces a cooler premium blue-slate direction using the second attached palette. All three options keep the same flow logic, content structure, and conversion intent.</div>
+  </div>
+
+  <div class="phone-compare">
+    <!-- OPTION A -->
+    <div class="opt-col">
+      <div class="opt-col-label" style="color:#C8A84B;">Option A — Dark Luxury Spiritual</div>
+      <div class="opt-tag"><span style="background:var(--go-d);color:var(--go);padding:4px 14px;border-radius:100px;font-size:13px;font-weight:700;border:1px solid var(--go-m);">✦ Prof. Kewunla's Preferred Direction</span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#07090F;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);">Midnight</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#07090F</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#C8A84B;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);">Elegant Gold</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#C8A84B</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#EEE5D0;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);">Ivory</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#EEE5D0</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#7B5EA7;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);">Mystic Purple</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#7B5EA7</div></div></div>
+      </div>
+      <div class="phone-row">
+        <!-- A: Onboarding -->
+        <div>
+          <div class="phone-frame frm-a">
+            <div class="pa-status"><div class="pa-time">23:27</div><div class="pa-notch"></div><div class="pa-icons">●●●</div></div>
+            <div class="pa-ob">
+              <div class="pa-ob-img"><div class="pa-orb"></div></div>
+              <div class="pa-skip-row"><div class="pa-dots"><div class="pa-dot a"></div><div class="pa-dot"></div><div class="pa-dot"></div></div><div class="pa-skip">Skip</div></div>
+              <div class="pa-h">Your Birthdate<br>Is <em>Not Random</em></div>
+              <div class="pa-sub">Your name and birthdate reveal patterns of strength, life lessons, hidden challenges, and purpose.</div>
+              <div class="pa-bullets"><div class="pa-b"><div class="pa-bd"></div>Core traits &amp; natural talents</div><div class="pa-b"><div class="pa-bd"></div>Hidden challenges &amp; purpose</div><div class="pa-b"><div class="pa-bd"></div>Your destiny patterns decoded</div></div>
+              <div class="pa-trust">✦ Trusted by thousands seeking clarity</div>
+              <button class="pa-cta">Reveal My Blueprint</button>
+            </div>
+          </div>
+          <div class="p-lbl" style="color:#C8A84B;">Onboarding</div>
+        </div>
+        <!-- A: Home -->
+        <div>
+          <div class="phone-frame frm-a">
+            <div class="pa-status"><div class="pa-time">23:27</div><div class="pa-notch"></div><div class="pa-icons">●●●</div></div>
+            <div class="pa-home">
+              <div class="pa-hbar"><div class="pa-logo">Ajdur</div><div class="pa-mbn"><span></span><span></span><span></span></div></div>
+              <div class="pa-hero">
+                <div class="pa-greet">Welcome Back</div>
+                <div class="pa-h1">Your journey to<br><em>clarity</em> begins here</div>
+                <div class="pa-quote">"Patterns repeat until lessons are understood."</div>
+                <div class="pa-btns"><button class="pa-btn-g">Reveal Blueprint</button><button class="pa-btn-o">Book Consult</button></div>
+              </div>
+              <div class="pa-sg">
+                <div class="pa-sc feat"><div class="pa-si"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg></div><div class="pa-sn">Hidden Patterns</div><div class="pa-ss g">Free + Unlock</div></div>
+                <div class="pa-sc"><div class="pa-si" style="background:rgba(200,168,75,.1);"><svg viewBox="0 0 16 16" style="stroke:#C8A84B"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6"/></svg></div><div class="pa-sn">Speak to Founder</div><div class="pa-ss">Consultation</div></div>
+                <div class="pa-sc"><div class="pa-si"><svg viewBox="0 0 16 16"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg></div><div class="pa-sn">Daily Wisdom</div><div class="pa-ss">Today's insight</div></div>
+                <div class="pa-sc"><div class="pa-si"><svg viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/></svg></div><div class="pa-sn">Discount Access</div><div class="pa-ss">Support request</div></div>
+              </div>
+              <div class="pa-tab"><div class="pa-ti active"><svg viewBox="0 0 18 18"><rect x="2" y="2" width="6" height="6" rx="1.5"/><rect x="10" y="2" width="6" height="6" rx="1.5"/><rect x="2" y="10" width="6" height="6" rx="1.5"/><rect x="10" y="10" width="6" height="6" rx="1.5"/></svg><div class="pa-td">Explore</div></div><div class="pa-ti" style="flex:0 0 38px;display:flex;align-items:center;justify-content:center;padding:6px 2px;"><div style="width:30px;height:30px;border-radius:50%;border:1.5px solid #C8A84B;background:rgba(200,168,75,.1);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Playfair Display',serif;font-size:9px;font-style:italic;color:#C8A84B;">A</span></div></div><div class="pa-ti"><svg viewBox="0 0 18 18"><path d="M9 2v2M9 14v2M2 9h2M14 9h2"/></svg><div class="pa-td">Results</div></div></div>
+            </div>
+          </div>
+          <div class="p-lbl" style="color:#C8A84B;">Home Dashboard</div>
+        </div>
+        <!-- A: Consultation -->
+        <div>
+          <div class="phone-frame frm-a">
+            <div class="pa-status"><div class="pa-time">23:27</div><div class="pa-notch"></div><div class="pa-icons">●●●</div></div>
+            <div class="pa-con">
+              <div class="pa-bk"><div class="pa-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div><div class="pa-pt">Speak to Founder</div></div>
+              <div class="pa-hero2">
+                <div class="pa-hh">Need Clear Answers?<br><em style="color:#C8A84B;font-style:italic;font-size:12px;">Deeper insight awaits.</em></div>
+                <div class="pa-hi">Speak directly with Prof. Kewunla for personal guidance on relationships, purpose, destiny, and life direction.</div>
+                <button class="pa-cbtn">Book My Consultation</button>
+              </div>
+              <div class="pa-tier feat">
+                <div class="pa-th"><div class="pa-tn">Deep Destiny Consultation</div><div class="pa-tt mr">MOST RECOMMENDED</div></div>
+                <div style="margin:3px 0 6px;"><span class="pa-tt g">Platinum / Diamond</span></div>
+                <div class="pa-td2">Full spiritual diagnosis, destiny mapping, life blueprint — private 30-min video call with Prof. Kewunla.</div>
+                <div class="pa-met"><span>⏱ 1 week</span><span>📹 Video call</span></div>
+              </div>
+              <div class="pa-tier">
+                <div class="pa-th"><div class="pa-tn">Clarity Session</div><div class="pa-tt s">Standard</div></div>
+                <div class="pa-td2">Focused guidance for present questions via structured live chat.</div>
+                <div class="pa-met"><span>⏱ 1 week</span><span>💬 Live chat</span></div>
+              </div>
+              <div class="pa-scta"><button>Unlock Deep Destiny Session</button></div>
+            </div>
+          </div>
+          <div class="p-lbl" style="color:#C8A84B;">Consultation</div>
+        </div>
+      </div>
+    </div>
+
+    
+<!-- OPTION B -->
+    <div class="opt-col">
+      <div class="opt-col-label" style="color:#8B3720;font-family:'Marcellus',serif;">Option B — Celestial Lavender</div>
+      <div class="opt-tag"><span style="background:rgba(130,119,158,.12);color:#8B3720;padding:4px 14px;border-radius:100px;font-size:13px;font-weight:700;border:1px solid rgba(130,119,158,.24);font-family:'Manrope',sans-serif;">✦ Updated from attached palette</span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#82779E;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);font-family:'Manrope',sans-serif;">Purple Haze</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#82779E</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#E3DDEA;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);font-family:'Manrope',sans-serif;">Orchid Tint</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#E3DDEA</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#E0AE72;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);font-family:'Manrope',sans-serif;">Golden Apricot</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#E0AE72</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#8B3720;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);font-family:'Manrope',sans-serif;">Picante</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#8B3720</div></div></div>
+      </div>
+      <div class="phone-row">
+        <div><div class="phone-frame frm-b"><div class="pb-status"><div class="pb-time">23:27</div><div class="pb-notch"></div><div class="pb-icons">●●●</div></div><div class="pb-ob-hero"><div class="pb-orb"><div class="pb-oring pb-o1"></div><div class="pb-oring pb-o2"></div><div class="pb-oring pb-o3"><span>Ajdur</span></div></div></div><div class="pb-ob-dots"><div class="pbd a"></div><div class="pbd"></div><div class="pbd"></div></div><div class="pb-ob-body"><div class="pb-ob-h">Your Birthdate<br>Is Not <span>Random</span></div><div class="pb-ob-sub">A softer mystical premium direction using the attached celestial palette.</div><div class="pb-bullets"><div class="pb-b"><div class="pb-bd"></div>Elegant and warm</div><div class="pb-b"><div class="pb-bd"></div>Intimate and elevated</div><div class="pb-b"><div class="pb-bd"></div>Premium fonts applied</div></div><div class="pb-skip-row"><div class="pb-trust">✦ Marcellus + Manrope</div><div>Skip</div></div><button class="pb-cta">Reveal My Blueprint</button></div></div><div class="p-lbl" style="font-family:'Manrope',sans-serif;">Onboarding</div></div>
+        <div><div class="phone-frame frm-b"><div class="pb-status"><div class="pb-time">23:27</div><div class="pb-notch"></div><div class="pb-icons">●●●</div></div><div style="background:#F7F2FA;"><div class="pb-hbar"><div class="pb-logo">Ajdur</div><div class="pb-mbn"><span></span><span></span><span></span></div></div><div class="pb-hero"><div class="pb-greet">Welcome Back</div><div class="pb-h1">Journey to <span>Clarity</span><br>begins here</div><div class="pb-quote">“The soul recognizes what the mind is still trying to explain.”</div><div class="pb-btns"><button class="pb-btn-p">Reveal Blueprint</button><button class="pb-btn-o">Book Consult</button></div></div><div class="pb-sg"><div class="pb-sc feat"><div class="pb-si"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg></div><div class="pb-sn">Hidden Patterns</div><div class="pb-ss t">Free + Unlock</div></div><div class="pb-sc"><div class="pb-si" style="background:rgba(224,174,114,.18);"><svg viewBox="0 0 16 16" style="stroke:#8B3720"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6"/></svg></div><div class="pb-sn">Speak to Founder</div><div class="pb-ss" style="color:#8B3720;font-weight:700;">Premium</div></div><div class="pb-sc"><div class="pb-si"><svg viewBox="0 0 16 16"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg></div><div class="pb-sn">Daily Wisdom</div><div class="pb-ss">Today's insight</div></div><div class="pb-sc"><div class="pb-si"><svg viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/></svg></div><div class="pb-sn">Discount Access</div><div class="pb-ss">Support path</div></div></div><div class="pb-tab"><div class="pb-ti active"><svg viewBox="0 0 18 18"><rect x="2" y="2" width="6" height="6" rx="1.5"/><rect x="10" y="2" width="6" height="6" rx="1.5"/><rect x="2" y="10" width="6" height="6" rx="1.5"/><rect x="10" y="10" width="6" height="6" rx="1.5"/></svg><div class="pb-td">Explore</div></div><div class="pb-ti" style="flex:0 0 38px;display:flex;align-items:center;justify-content:center;padding:6px 2px;"><div style="width:30px;height:30px;border-radius:50%;background:#8B3720;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Marcellus',serif;font-size:9px;color:#fff;">A</span></div></div><div class="pb-ti"><svg viewBox="0 0 18 18"><path d="M9 2v2M9 14v2M2 9h2M14 9h2"/></svg><div class="pb-td">Results</div></div></div></div><div class="p-lbl" style="font-family:'Manrope',sans-serif;">Home Dashboard</div></div>
+        <div><div class="phone-frame frm-b"><div class="pb-status"><div class="pb-time">23:27</div><div class="pb-notch"></div><div class="pb-icons">●●●</div></div><div style="background:#F7F2FA;"><div class="pb-back"><div class="pb-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div><div class="pb-pt">Speak to Founder</div></div><div class="pb-con-hero"><div class="pb-hh">Need Clear Answers?</div><div class="pb-hi">Warm premium mysticism with softer luxury tones and premium typography.</div><button class="pb-cbtn">Book My Consultation</button></div><div class="pb-tier feat"><div class="pb-th"><div class="pb-tn">Deep Destiny Consultation</div><div class="pb-tt mr">MOST RECOMMENDED</div></div><div style="margin:3px 0 5px;"><span class="pb-tt g">Platinum / Diamond</span></div><div class="pb-td2">Premium private guidance, destiny mapping, and deeper emotional resonance.</div><div class="pb-met"><span>⏱ 1 week</span><span>📹 Video call</span></div></div><div class="pb-tier"><div class="pb-th"><div class="pb-tn">Clarity Session</div><div class="pb-tt t">Accessible</div></div><div class="pb-td2">Focused guidance for present questions through a calmer entry point.</div><div class="pb-met"><span>⏱ 1 week</span><span>💬 Live chat</span></div></div><div class="pb-scta"><button>Unlock Deep Destiny Session</button></div></div><div class="p-lbl" style="font-family:'Manrope',sans-serif;">Consultation</div></div>
+      </div>
+    </div>
+
+    <!-- OPTION C -->
+    <div class="opt-col" style="margin-top:36px;">
+      <div class="opt-col-label" style="color:#061543;font-family:'Marcellus',serif;">Option C — Imperial Blue Slate</div>
+      <div class="opt-tag"><span style="background:rgba(6,21,67,.08);color:#093757;padding:4px 14px;border-radius:100px;font-size:13px;font-weight:700;border:1px solid rgba(6,21,67,.16);font-family:'Manrope',sans-serif;">✦ Added as third premium direction</span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#97979B;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);font-family:'Manrope',sans-serif;">Silver Mist</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#97979B</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#061543;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);font-family:'Manrope',sans-serif;">Imperial Navy</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#061543</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#093757;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);font-family:'Manrope',sans-serif;">Deep Slate Blue</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#093757</div></div></div>
+        <div style="flex:1;min-width:65px;border-radius:9px;overflow:hidden;border:1px solid var(--br);"><div style="height:55px;background:#50849B;"></div><div style="padding:7px 10px;background:var(--sf);"><div style="font-size:12px;font-weight:600;color:var(--ink);font-family:'Manrope',sans-serif;">Muted Teal Blue</div><div style="font-size:11px;color:var(--mu);font-family:monospace;">#50849B</div></div></div>
+      </div>
+      <div class="phone-row">
+        <div><div class="phone-frame frm-c"><div class="pc-status"><div class="pc-time">23:27</div><div class="pc-notch"></div><div class="pc-icons">●●●</div></div><div class="pc-ob-hero"></div><div style="display:flex;justify-content:center;gap:5px;padding:11px 0 5px;"><div style="width:16px;height:5px;border-radius:2.5px;background:#061543;"></div><div style="width:5px;height:5px;border-radius:2.5px;background:rgba(6,21,67,.16);"></div><div style="width:5px;height:5px;border-radius:2.5px;background:rgba(6,21,67,.16);"></div></div><div class="pc-ob-body"><div class="pc-ob-h">The Pattern Behind<br><span>Your Story</span></div><div class="pc-ob-sub">A cooler premium direction that feels more authoritative, refined, and scalable.</div><div class="pc-bullets"><div class="pc-b"><div class="pc-bd"></div>Trust-led premium feel</div><div class="pc-b"><div class="pc-bd"></div>Sharper visual authority</div><div class="pc-b"><div class="pc-bd"></div>Premium fonts applied</div></div><div class="pc-skip-row"><div class="pc-trust">✦ Marcellus + Manrope</div><div>Skip</div></div><button class="pc-cta">Reveal My Blueprint</button></div></div><div class="p-lbl" style="font-family:'Manrope',sans-serif;">Onboarding</div></div>
+        <div><div class="phone-frame frm-c"><div class="pc-status"><div class="pc-time">23:27</div><div class="pc-notch"></div><div class="pc-icons">●●●</div></div><div style="background:#edf2f5;"><div class="pc-hbar"><div class="pc-logo">Ajdur</div><div class="pc-mbn"><span></span><span></span><span></span></div></div><div class="pc-hero"><div class="pc-greet">Welcome Back</div><div class="pc-h1">Your next insight<br><span>starts here</span></div><div class="pc-quote">“Meaning becomes clearer when patterns are seen in full.”</div><div class="pc-btns"><button class="pc-btn-p">Reveal Blueprint</button><button class="pc-btn-o">Book Consult</button></div></div><div class="pc-sg"><div class="pc-sc feat"><div class="pc-si"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg></div><div class="pc-sn">Hidden Patterns</div><div class="pc-ss t">Free + Unlock</div></div><div class="pc-sc"><div class="pc-si"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6"/></svg></div><div class="pc-sn">Speak to Founder</div><div class="pc-ss">Premium</div></div><div class="pc-sc"><div class="pc-si"><svg viewBox="0 0 16 16"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg></div><div class="pc-sn">Daily Wisdom</div><div class="pc-ss">Today's insight</div></div><div class="pc-sc"><div class="pc-si"><svg viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/></svg></div><div class="pc-sn">Discount Access</div><div class="pc-ss">Support path</div></div></div><div class="pc-tab"><div class="pc-ti active"><svg viewBox="0 0 18 18"><rect x="2" y="2" width="6" height="6" rx="1.5"/><rect x="10" y="2" width="6" height="6" rx="1.5"/><rect x="2" y="10" width="6" height="6" rx="1.5"/><rect x="10" y="10" width="6" height="6" rx="1.5"/></svg><div class="pc-td">Explore</div></div><div class="pc-ti" style="flex:0 0 38px;display:flex;align-items:center;justify-content:center;padding:6px 2px;"><div style="width:30px;height:30px;border-radius:50%;background:#061543;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Marcellus',serif;font-size:9px;color:#fff;">A</span></div></div><div class="pc-ti"><svg viewBox="0 0 18 18"><path d="M9 2v2M9 14v2M2 9h2M14 9h2"/></svg><div class="pc-td">Results</div></div></div></div><div class="p-lbl" style="font-family:'Manrope',sans-serif;">Home Dashboard</div></div>
+        <div><div class="phone-frame frm-c"><div class="pc-status"><div class="pc-time">23:27</div><div class="pc-notch"></div><div class="pc-icons">●●●</div></div><div style="background:#edf2f5;"><div class="pc-back"><div class="pc-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div><div class="pc-pt">Speak to Founder</div></div><div class="pc-con-hero"><div class="pc-hh">Need Clear Answers?</div><div class="pc-hi">A structured and polished premium direction for a more established, high-trust Ajdur feel.</div><button class="pc-cbtn">Book My Consultation</button></div><div class="pc-tier feat"><div class="pc-th"><div class="pc-tn">Deep Destiny Consultation</div><div class="pc-tt mr">MOST RECOMMENDED</div></div><div style="margin:3px 0 5px;"><span class="pc-tt g">Platinum / Diamond</span></div><div class="pc-td2">Premium private guidance presented with stronger structure and visual confidence.</div><div class="pc-met"><span>⏱ 1 week</span><span>📹 Video call</span></div></div><div class="pc-tier"><div class="pc-th"><div class="pc-tn">Clarity Session</div><div class="pc-tt t">Accessible</div></div><div class="pc-td2">A cleaner entry path for users who want confidence, simplicity, and direct next steps.</div><div class="pc-met"><span>⏱ 1 week</span><span>💬 Live chat</span></div></div><div class="pc-scta"><button>Unlock Deep Destiny Session</button></div></div><div class="p-lbl" style="font-family:'Manrope',sans-serif;">Consultation</div></div>
+      </div>
+    </div>
+</section>
+
+<!-- ════ COPY GUIDE ════ -->
+
+<section id="copy">
+  <div class="eye">Deliverable 05</div>
+  <h2>Screen Copy Upgrades — From Brief</h2>
+  <p style="max-width:640px;margin-bottom:24px;">These are exact replacement words confirmed by Prof. Kewunla's brief. They apply regardless of which design direction is chosen and require no design changes — only text updates. Highest ROI item in the entire deliverable.</p>
+  <div class="ct">
+    <div class="ct-head"><div class="ct-th">Screen / Element</div><div class="ct-th">Current (Weak)</div><div class="ct-th">Updated (Brief Confirmed)</div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Onboarding Screen 1 — Headline</div><div class="ct-cell"><span class="ct-old">The Compass Within through Consultation</span></div><div class="ct-cell"><span class="ct-new">Why Does Life Keep Repeating the Same Lessons?</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Onboarding Screen 2 — Headline</div><div class="ct-cell"><span class="ct-old">The Blueprint on Your Face and Palm</span></div><div class="ct-cell"><span class="ct-new">Your Face and Palm Reveal More Than You Think</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Onboarding Screen 3 — Headline</div><div class="ct-cell"><span class="ct-old">Know Yourself</span></div><div class="ct-cell"><span class="ct-new">Your Birthdate Is Not Random</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Onboarding — CTA Button</div><div class="ct-cell"><span class="ct-old">Get Started</span></div><div class="ct-cell"><span class="ct-new">Reveal My Blueprint</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Onboarding — Trust signal (new)</div><div class="ct-cell"><span class="ct-old">(absent)</span></div><div class="ct-cell"><span class="ct-new">✦ Trusted by Thousands Seeking Clarity</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Advance Insights — Page Title</div><div class="ct-cell"><span class="ct-old">Advance Insights</span></div><div class="ct-cell"><span class="ct-new">Discover Hidden Patterns</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Advance Insights — Hero (new)</div><div class="ct-cell"><span class="ct-old">(none)</span></div><div class="ct-cell"><span class="ct-new">What Is Affecting Your Life Right Now? [Start My Discovery]</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Consultation — Page Title</div><div class="ct-cell"><span class="ct-old">Consultation</span></div><div class="ct-cell"><span class="ct-new">Speak to Founder/Owner</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Standard Consultation — Name</div><div class="ct-cell"><span class="ct-old">Standard Consultation</span></div><div class="ct-cell"><span class="ct-new">Clarity Session</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Platinum/Diamond — Name</div><div class="ct-cell"><span class="ct-old">Platinum / Diamond Consultation</span></div><div class="ct-cell"><span class="ct-new">Deep Destiny Consultation + MOST RECOMMENDED badge</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Consultation — Primary CTA</div><div class="ct-cell"><span class="ct-old">Submit / Book</span></div><div class="ct-cell"><span class="ct-new">Unlock Deep Destiny Session / Start My Clarity Session</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Post-Insight Upsell (new on every result)</div><div class="ct-cell"><span class="ct-old">(absent)</span></div><div class="ct-cell"><span class="ct-new">Need Deeper Answers? Speak Directly with Founder/Owner [Upgrade to Consultation]</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Education — Page Title</div><div class="ct-cell"><span class="ct-old">Education</span></div><div class="ct-cell"><span class="ct-new">Daily Wisdom Center</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Request Coupon — Page Title</div><div class="ct-cell"><span class="ct-old">Request Coupon</span></div><div class="ct-cell"><span class="ct-new">Unlock Discount Access</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Coupon — Main body copy (new)</div><div class="ct-cell"><span class="ct-old">(none)</span></div><div class="ct-cell"><span class="ct-new">Everyone Deserves Clarity. If pricing is difficult right now, request support options and explore flexible access pathways.</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Coupon — CTA</div><div class="ct-cell"><span class="ct-old">Submit</span></div><div class="ct-cell"><span class="ct-new">Request Access Support</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Settings — Page Title</div><div class="ct-cell"><span class="ct-old">Settings</span></div><div class="ct-cell"><span class="ct-new">Your Account &amp; Preferences</span></div></div>
+    <div class="ct-row"><div class="ct-cell ct-loc">Ad Popup — Title (new)</div><div class="ct-cell"><span class="ct-old">(not designed)</span></div><div class="ct-cell"><span class="ct-new">Unlock Your Insight — Choose how you'd like to continue</span></div></div>
+    <div class="ct-row" style="border:none;"><div class="ct-cell ct-loc">Ad CTA Button</div><div class="ct-cell"><span class="ct-old">Watch Ad / Watch Video</span></div><div class="ct-cell"><span class="ct-new">Watch &amp; Unlock (NEVER "Watch Ad")</span></div></div>
+  </div>
+</section>
+
+<!-- ════ YOUR INPUT / DECISIONS ════ -->
+<section id="your-decisions" style="background:var(--bg2);">
+  <div class="eye">Action Required — Prof. Kewunla &amp; Ajdur Team</div>
+  <h2>Your Decisions</h2>
+  <p style="max-width:640px;margin-bottom:28px;">Please answer all questions below. Your responses will determine the final design direction and unlock the remaining blocked screens. Complete all items, then follow the submission instructions.</p>
+
+  <!-- WARNING BOX -->
+  <div class="df-warning">
+    <div class="df-w-icon">📸</div>
+    <div>
+      <div class="df-w-title">Important — No Save Button on This Page</div>
+      <div class="df-w-body">This page does not save automatically. When you have completed all decisions, please follow these steps exactly:</div>
+      <div class="df-w-steps">
+        <div class="df-w-step"><div class="df-w-num">1</div><div class="df-w-text">Complete ALL decision fields on this page</div></div>
+        <div class="df-w-step"><div class="df-w-num">2</div><div class="df-w-text"><strong>Take a screenshot</strong> of this completed page (scroll through to capture all decisions)</div></div>
+        <div class="df-w-step"><div class="df-w-num">3</div><div class="df-w-text"><strong>Send the screenshot via WhatsApp</strong> to the Design Team</div></div>
+        <div class="df-w-step"><div class="df-w-num">4</div><div class="df-w-text" style="color:var(--ro);"><strong>Do NOT close this page</strong> or press the back button before taking your screenshot</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q1: Design Direction -->
+  <div class="df-q" id="dq1">
+    <div class="df-q-num">Decision 01 of 12</div>
+    <div class="df-q-title">Which visual design direction should Ajdur use?</div>
+    <div class="df-q-sub">Both options are shown with live screens above in the Design Direction section. Please scroll up to compare before answering.</div>
+    <div class="df-q-impact">This decision unlocks all subsequent visual design work. Everything else waits for this answer.</div>
+    <select class="df-select" id="d1-select" onchange="markAnswered('dq1')">
+      <option value="">— Select one option —</option>
+      <option value="A">Option A — Dark Luxury Spiritual (Prof. Kewunla's preferred direction: Midnight Blue + Gold + Ivory)</option>
+      <option value="B">Option B — Celestial Lavender (attached palette: Purple Haze + Orchid Tint + Golden Apricot + Picante)</option>
+      <option value="C">Option C — Imperial Blue Slate (attached palette: Silver Mist + Imperial Navy + Deep Slate Blue + Muted Teal Blue)</option>
+      <option value="Hybrid">Hybrid — combine the strongest parts of 2 options</option>
+      <option value="More">I need to see more options before deciding</option>
+    </select>
+    <div class="df-answered-label" id="ans-dq1">✓ Answered</div>
+  </div>
+
+<div class="df-q" id="dq1b">
+  <div class="df-q-num">Additional Review</div>
+  <div class="df-q-title">Deliverable 03 — Which user flow(s) would you like to comment on?</div>
+  <div class="df-q-sub">Select one flow or multiple flows, then add your comment. This is for corrections, concerns, approvals, or suggestions related to the recommended user journeys.</div>
+  <div class="df-options" id="d1b-opts">
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1b')">Flow 1 — First-Time User Onboarding</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1b')">Flow 2 — Daily Returning User</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1b')">Flow 3 — Consultation Booking</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1b')">Flow 4 — Advance Insights</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1b')">Flow 5 — Rewarded Ad Access</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1b')">Flow 6 — Daily Wisdom Center</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1b')">Flow 7 — Unlock Discount Access</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1b')">Flow 8 — Post-Insight Upsell</button>
+  </div>
+  <textarea class="df-textarea" id="d1b-notes" maxlength="2000" placeholder="Add your flow comment here..." oninput="updateCount('d1b-notes','d1b-count')"></textarea>
+  <div class="df-char-count" id="d1b-count">0 / 2000</div>
+  <div class="df-answered-label" id="ans-dq1b">✓ Comment added</div>
+</div>
+
+<div class="df-q" id="dq1c">
+  <div class="df-q-num">Additional Review</div>
+  <div class="df-q-title">Would you like to add a comment to any deliverable from Deliverable 01–05?</div>
+  <div class="df-q-sub">Select one deliverable or multiple deliverables, then add your comment below.</div>
+  <div class="df-options" id="d1c-opts">
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1c')">Deliverable 01 — Major Flow Decisions</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1c')">Deliverable 02 — Redesign Priorities</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1c')">Deliverable 03 — User Flows</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1c')">Deliverable 04 — Design Direction Comparison</button>
+    <button class="df-opt-btn" onclick="toggleOpt(this,'dq1c')">Deliverable 05 — Copy Upgrades</button>
+  </div>
+  <textarea class="df-textarea" id="d1c-notes" maxlength="2000" placeholder="Add your deliverable comment here..." oninput="updateCount('d1c-notes','d1c-count')"></textarea>
+  <div class="df-char-count" id="d1c-count">0 / 2000</div>
+  <div class="df-answered-label" id="ans-dq1c">✓ Comment added</div>
+</div>
+
+
+  <!-- Q2: Consultation Price Standard -->
+  <div class="df-q" id="dq2">
+    <div class="df-q-num">Decision 02 of 12</div>
+    <div class="df-q-title">What is the price for the Clarity Session (Standard Consultation)?</div>
+    <div class="df-q-sub">This is the Standard tier — live chat, 1 week, structured guidance. Include currency symbol.</div>
+    <input type="text" class="df-select" id="d2-price" placeholder="e.g. ₦5,000 or $15 or Free" oninput="markAnswered('dq2')" style="margin-bottom:0;">
+    <div class="df-answered-label" id="ans-dq2">✓ Answered</div>
+  </div>
+
+  <!-- Q3: Consultation Price Platinum -->
+  <div class="df-q" id="dq3">
+    <div class="df-q-num">Decision 03 of 12</div>
+    <div class="df-q-title">What is the price for the Deep Destiny Consultation (Platinum/Diamond)?</div>
+    <div class="df-q-sub">This is the premium tier — 30-min private video call with Prof. Kewunla, full destiny mapping. Include currency symbol.</div>
+    <input type="text" class="df-select" id="d3-price" placeholder="e.g. ₦25,000 or $75" oninput="markAnswered('dq3')" style="margin-bottom:0;">
+    <div class="df-answered-label" id="ans-dq3">✓ Answered</div>
+  </div>
+
+  <!-- Q4: Coupon Types -->
+  <div class="df-q" id="dq4">
+    <div class="df-q-num">Decision 04 of 12</div>
+    <div class="df-q-title">Which coupon types should appear in the "Unlock Discount Access" dropdown?</div>
+    <div class="df-q-sub">Select all that apply, then add any additional types or details in the notes field below.</div>
+    <div class="df-options" id="d4-opts">
+      <button class="df-opt-btn" onclick="toggleOpt(this,'dq4')">Consultation Discount (%)</button>
+      <button class="df-opt-btn" onclick="toggleOpt(this,'dq4')">Reading Credit (for Insights)</button>
+      <button class="df-opt-btn" onclick="toggleOpt(this,'dq4')">Store Voucher (Books / Products)</button>
+      <button class="df-opt-btn" onclick="toggleOpt(this,'dq4')">Event / Community Access</button>
+      <button class="df-opt-btn" onclick="toggleOpt(this,'dq4')">Full Free Consultation (special)</button>
+    </div>
+    <div style="font-size:14px;color:var(--mu);margin-bottom:8px;">Additional coupon types or discount amounts (optional):</div>
+    <textarea class="df-textarea" id="d4-notes" maxlength="2000" placeholder="e.g. Consultation Discount = 20% off, Store voucher = ₦500..." oninput="updateCount('d4-notes','d4-count')"></textarea>
+    <div class="df-char-count" id="d4-count">0 / 2000</div>
+    <div class="df-answered-label" id="ans-dq4">✓ Answered</div>
+  </div>
+
+  <!-- Q5: AdMob Timing -->
+  <div class="df-q" id="dq5">
+    <div class="df-q-num">Decision 05 of 12</div>
+    <div class="df-q-title">When should AdMob rewarded video ads go live?</div>
+    <div class="df-q-sub">Rewarded ads replace payment for users who cannot pay — they watch a video to unlock Insights features. This is a core revenue stream from the brief.</div>
+    <select class="df-select" id="d5-select" onchange="markAnswered('dq5')">
+      <option value="">— Select timing —</option>
+      <option value="launch">At app launch — include in initial release</option>
+      <option value="1000">After reaching 1,000 active users</option>
+      <option value="3m">After 3 months from launch</option>
+      <option value="6m">After 6 months from launch</option>
+      <option value="no">Not applicable at this stage — remove from design</option>
+    </select>
+    <div class="df-answered-label" id="ans-dq5">✓ Answered</div>
+  </div>
+
+  <!-- Q6: Store Timeline -->
+  <div class="df-q" id="dq6">
+    <div class="df-q-num">Decision 06 of 12</div>
+    <div class="df-q-title">When do you expect to launch the in-app Store (Books, Incenses, Healing Products)?</div>
+    <div class="df-q-sub">The store redirects to your online store. We need to know when to include the Store menu item and deep-link design in the app.</div>
+    <select class="df-select" id="d6-select" onchange="markAnswered('dq6')">
+      <option value="">— Select timeline —</option>
+      <option value="1m">Within 1 month of app launch</option>
+      <option value="3m">Within 3 months of app launch</option>
+      <option value="6m">Within 6 months of app launch</option>
+      <option value="notsure">Not sure yet — keep as placeholder</option>
+      <option value="no">Not planned — remove from design</option>
+    </select>
+    <div class="df-answered-label" id="ans-dq6">✓ Answered</div>
+  </div>
+
+  <!-- Q7: Testimonials -->
+  <div class="df-q" id="dq7">
+    <div class="df-q-num">Decision 07 of 12</div>
+    <div class="df-q-title">Do you have existing client testimonials to include on the Consultation page?</div>
+    <div class="df-q-sub">The brief strongly recommends adding testimonials to the Consultation page. Real testimonials dramatically increase trust and conversion. If yes, please provide them in the notes field.</div>
+    <div class="df-yn" id="d7-yn">
+      <button class="df-yn-btn yes" onclick="selectYN('dq7','yes',this)">Yes — I have testimonials</button>
+      <button class="df-yn-btn no" onclick="selectYN('dq7','no',this)">No — use placeholder blocks for now</button>
+    </div>
+    <div style="font-size:14px;color:var(--mu);margin-bottom:8px;">If yes — paste 1–3 testimonials here (keep each under 100 words):</div>
+    <textarea class="df-textarea" id="d7-notes" maxlength="2000" placeholder="e.g. 'I came for clarity and left with peace. It explained patterns I had struggled with for years.' — Verified Client, Lagos" oninput="updateCount('d7-notes','d7-count')"></textarea>
+    <div class="df-char-count" id="d7-count">0 / 2000</div>
+    <div class="df-answered-label" id="ans-dq7">✓ Answered</div>
+  </div>
+
+  <!-- Q8: Skip Button -->
+  <div class="df-q" id="dq8">
+    <div class="df-q-num">Decision 08 of 12</div>
+    <div class="df-q-title">Should onboarding slides include a "Skip" option for users who want to bypass them?</div>
+    <div class="df-q-sub">The brief recommends a Skip button (top right) to improve UX for returning users and impatient new users. Some spiritual apps prefer forced onboarding to ensure the brand message is received.</div>
+    <div class="df-yn" id="d8-yn">
+      <button class="df-yn-btn yes" onclick="selectYN('dq8','yes',this)">Yes — include Skip button</button>
+      <button class="df-yn-btn no" onclick="selectYN('dq8','no',this)">No — forced onboarding, no skip</button>
+    </div>
+    <div class="df-answered-label" id="ans-dq8">✓ Answered</div>
+  </div>
+
+  <!-- Q9: Daily Wisdom Content Creator -->
+  <div class="df-q" id="dq9">
+    <div class="df-q-num">Decision 09 of 12</div>
+    <div class="df-q-title">Who will create the Daily Wisdom / Daily Oracle content for the Daily Wisdom Center?</div>
+    <div class="df-q-sub">The Daily Wisdom Center needs daily rotating content (oracle messages, numerology tips, spiritual teachings). This affects whether the design includes a content management interface or a manual update process.</div>
+    <select class="df-select" id="d9-select" onchange="markAnswered('dq9')" style="margin-bottom:10px;">
+      <option value="">— Select content creator —</option>
+      <option value="founder">Prof. Kewunla personally</option>
+      <option value="team">A designated Ajdur team member</option>
+      <option value="auto">Auto-generated from existing content library</option>
+      <option value="partner">External spiritual content partner</option>
+      <option value="undecided">Not decided yet — design placeholder</option>
+    </select>
+    <div style="font-size:14px;color:var(--mu);margin-bottom:8px;">Additional notes on content or update frequency (optional):</div>
+    <textarea class="df-textarea" id="d9-notes" maxlength="2000" placeholder="e.g. 'Prof. Kewunla will record 7 oracle messages per week, team will schedule them' or 'update daily at 6am'" oninput="updateCount('d9-notes','d9-count')"></textarea>
+    <div class="df-char-count" id="d9-count">0 / 2000</div>
+    <div class="df-answered-label" id="ans-dq9">✓ Answered</div>
+  </div>
+
+  <!-- Q10: Oraculum vs Dream Interpretation -->
+  <div class="df-q" id="dq10">
+    <div class="df-q-num">Decision 10 of 12</div>
+    <div class="df-q-title">Is "Dream Interpretation" (currently in the app) the same service as the coming "Oraculum"?</div>
+    <div class="df-q-sub">Both currently appear as separate items in the Advance Insights grid. If they are the same, we consolidate them. If different, the design must show the distinction on each card.</div>
+    <select class="df-select" id="d10-select" onchange="markAnswered('dq10')" style="margin-bottom:10px;">
+      <option value="">— Select one —</option>
+      <option value="same-oraculum">Same service — rename consistently to "Oraculum / Oracle Guidance"</option>
+      <option value="same-dream">Same service — keep "Dream Interpretation" as the name</option>
+      <option value="different">Different services — I will define the distinction below</option>
+      <option value="unsure">Not sure yet</option>
+    </select>
+    <div style="font-size:14px;color:var(--mu);margin-bottom:8px;">If different — briefly explain what makes each distinct:</div>
+    <textarea class="df-textarea" id="d10-notes" maxlength="2000" placeholder="e.g. 'Dream Interpretation = AI-assisted text analysis of dream descriptions. Oraculum = live oracle card session with Prof. Kewunla'" oninput="updateCount('d10-notes','d10-count')"></textarea>
+    <div class="df-char-count" id="d10-count">0 / 2000</div>
+    <div class="df-answered-label" id="ans-dq10">✓ Answered</div>
+  </div>
+
+  <!-- Q11: WhatsApp Contact Number -->
+  <div class="df-q" id="dq11">
+    <div class="df-q-num">Decision 11 of 12</div>
+    <div class="df-q-title">What is the WhatsApp contact number for the "Contact Us" button on the Unlock Discount Access page?</div>
+    <div class="df-q-sub">Users who prefer to speak to someone directly will tap "Contact Us" — this should open WhatsApp. Please provide the number with country code.</div>
+    <input type="text" class="df-select" id="d11-number" placeholder="e.g. +234 800 000 0000 (Prof. Kewunla or team contact)" oninput="markAnswered('dq11')" style="margin-bottom:0;">
+    <div class="df-answered-label" id="ans-dq11">✓ Answered</div>
+  </div>
+
+  <!-- Q12: Additional Notes -->
+  <div class="df-q" id="dq12">
+    <div class="df-q-num">Decision 12 of 12</div>
+    <div class="df-q-title">Any additional comments, corrections, or directions from Prof. Kewunla or the Ajdur team?</div>
+    <div class="df-q-sub">Use this space for anything not covered above — corrections to our understanding, specific feature requests, concerns, or any other direction that will improve the final product.</div>
+    <textarea class="df-textarea" id="d12-notes" maxlength="2000" placeholder="Share any other thoughts, corrections, or directions here..." oninput="markAnswered('dq12'); updateCount('d12-notes','d12-count')"></textarea>
+    <div class="df-char-count" id="d12-count">0 / 2000</div>
+    <div class="df-answered-label" id="ans-dq12">✓ Answered</div>
+  </div>
+
+  <!-- FINAL REMINDER -->
+  <div style="background:var(--ro-d);border:2px solid var(--ro-m);border-radius:var(--r);padding:28px 32px;margin-top:32px;text-align:center;">
+    <div style="font-size:36px;margin-bottom:12px;">📸</div>
+    <div style="font-family:var(--fh);font-size:22px;font-weight:800;color:var(--ro);margin-bottom:10px;">Before You Leave This Page</div>
+    <div style="font-size:16px;color:var(--mu);line-height:1.8;max-width:560px;margin:0 auto 18px;">Take a <strong style="color:var(--ink)">screenshot of all your completed answers</strong> and send via <strong style="color:var(--ink)">WhatsApp to the Design Team.</strong></div>
+    <div style="font-size:15px;color:var(--ro);font-weight:700;">Do not close this page or press back before taking your screenshot.</div>
+    <div style="margin-top:18px;font-size:14px;color:var(--mu);">There is no save button. Your answers exist only while this page is open.</div>
+  </div>
+</section>
+
+<footer>
+  <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--teal);margin-bottom:8px;letter-spacing:-.02em;">Ajdur International</div>
+  <p style="font-size:15px;">UX/UI Deliverable v5 · Based on brief from Prof. Kewunla + Ajdur Team · April 2026</p>
+  <p style="margin-top:6px;font-size:14px;">Stakeholders: <strong style="color:var(--ink)">Prof. Kewunla</strong> (App Owner &amp; Founder) · <strong style="color:var(--ink)">Ajdur App Team</strong> · Design Review Team</p>
+  <p style="margin-top:6px;font-size:13px;color:var(--fa);">6 deliverables · 8 user flows · 2 design options · 12 decisions required · 19 copy upgrades</p>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+function markAnswered(id){
+  const card=document.getElementById(id);
+  if(card){card.classList.add('answered');}
+}
+function toggleOpt(btn,cardId){
+  btn.classList.toggle('selected');
+  markAnswered(cardId);
+}
+function selectYN(cardId,val,btn){
+  const ynGroup=document.getElementById(cardId+'-yn');
+  if(ynGroup){ynGroup.querySelectorAll('.df-yn-btn').forEach(b=>b.classList.remove('selected'));}
+  btn.classList.add('selected');
+  markAnswered(cardId);
+}
+function updateCount(taId,countId){
+  const ta=document.getElementById(taId);
+  const cnt=document.getElementById(countId);
+  if(ta&&cnt){
+    const len=ta.value.length;
+    cnt.textContent=len+' / 2000';
+    cnt.className='df-char-count';
+    if(len>1800)cnt.className='df-char-count warn';
+    if(len>=2000)cnt.className='df-char-count over';
+    if(len>0){
+      const parent=ta.closest('.df-q');
+      if(parent)parent.classList.add('answered');
+    }
+  }
+}
+document.querySelectorAll('.df-select').forEach(sel=>{
+  sel.addEventListener('change',function(){
+    if(this.value){
+      const parent=this.closest('.df-q');
+      if(parent)parent.classList.add('answered');
+    }
+  });
+});
+document.querySelectorAll('input.df-select').forEach(inp=>{
+  inp.addEventListener('input',function(){
+    if(this.value.trim()){
+      const parent=this.closest('.df-q');
+      if(parent)parent.classList.add('answered');
+    }
+  });
+});
+</script>
+</body>
+</html>
