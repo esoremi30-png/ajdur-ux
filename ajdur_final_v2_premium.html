@@ -1,0 +1,2067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajdur International — Final UX/UI Design Output</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   FINAL DESIGN TOKEN SYSTEM
+   Hybrid: Dark Luxury Spiritual + Turquoise Intelligence
+══════════════════════════════════════════ */
+:root{
+  /* Document shell — Mystic Mint */
+  --bg:#D9E8E3; --bg2:#E4EDEA; --sf:#fff;
+  --ink:#052018; --mu:#3A6560; --fa:#7AADA8;
+  /* Teal — Ajdur brand turquoise */
+  --tc:#00BBCF; --tc-d:rgba(0,187,207,.09); --tc-m:rgba(0,187,207,.24);
+  --tc2:#007A88; --tc2-d:rgba(0,122,136,.07);
+  /* Gold — premium tier */
+  --gd:#C8A84B; --gd-d:rgba(200,168,75,.10); --gd-m:rgba(200,168,75,.25);
+  /* Status */
+  --gr:#0A845A; --gr-d:rgba(10,132,90,.08); --gr-m:rgba(10,132,90,.22);
+  --ro:#C0284A; --ro-d:rgba(192,40,74,.08); --ro-m:rgba(192,40,74,.22);
+  --go:#B8720E; --go-d:rgba(184,114,14,.09); --go-m:rgba(184,114,14,.24);
+  --pu:#7B5EA7; --pu-d:rgba(123,94,167,.09); --pu-m:rgba(123,94,167,.24);
+  /* App screen tokens — Dark Luxury + Turquoise */
+  --dk:#07090F; --dk2:#0D1120; --dk3:#131928; --dk4:#1A2038;
+  --dk-br:rgba(0,187,207,.12); --dk-br2:rgba(255,255,255,.06);
+  /* Border */
+  --br:rgba(0,70,55,.09); --br-s:rgba(0,70,55,.18);
+  --r:14px; --fh:'Syne',sans-serif; --fb:'Outfit',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-size:15px;line-height:1.76;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,70,55,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(0,70,55,.055) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(217,232,227,.93);backdrop-filter:blur(20px);border-bottom:1.5px solid var(--br-s);display:flex;align-items:center;justify-content:space-between;padding:12px 40px;}
+.nav-logo{font-family:var(--fh);font-size:17px;font-weight:800;color:var(--tc2);letter-spacing:-.01em;}
+.nav-links{display:flex;gap:20px;}
+.nav-links a{color:var(--mu);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--tc2);}
+.nav-badge{font-size:12px;font-weight:700;background:linear-gradient(135deg,var(--tc),var(--tc2));color:#fff;padding:5px 14px;border-radius:100px;}
+
+/* ── WRAP ── */
+.wrap{position:relative;z-index:1;max-width:1140px;margin:0 auto;}
+section{padding:100px 44px 80px;}
+section+section{border-top:1.5px solid var(--br-s);}
+.eye{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--tc);margin-bottom:12px;}
+h1{font-family:var(--fh);font-size:clamp(36px,5vw,60px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--ink);}
+h2{font-family:var(--fh);font-size:clamp(22px,3.5vw,36px);font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px;}
+h3{font-family:var(--fh);font-size:20px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+h4{font-family:var(--fb);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--tc2);margin-bottom:14px;}
+p{color:var(--mu);line-height:1.78;font-size:15px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.card{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:24px;}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px;}
+.b-res{background:var(--gr-d);color:var(--gr);border:1px solid var(--gr-m);}
+.b-act{background:var(--gr-d);color:var(--gr);border:1px solid var(--gr-m);}
+.b-com{background:var(--go-d);color:var(--go);border:1px solid var(--go-m);}
+.b-new{background:var(--tc-d);color:var(--tc2);border:1px solid var(--tc-m);}
+.b-final{background:linear-gradient(135deg,var(--tc),var(--tc2));color:#fff;border:none;}
+
+/* ── INFO BOXES ── */
+.info-box{background:var(--sf);border:1px solid var(--br-s);border-radius:var(--r);padding:22px 26px;margin-bottom:16px;border-left:4px solid var(--tc);}
+.info-box.res{border-left-color:var(--gr);}
+.info-box.gold{border-left-color:var(--gd);}
+.info-box.purple{border-left-color:var(--pu);}
+.ib-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.10em;margin-bottom:8px;}
+.ib-label.res{color:var(--gr);}
+.ib-label.tc{color:var(--tc2);}
+.ib-label.gd{color:var(--go);}
+.ib-label.pu{color:var(--pu);}
+.ib-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.ib-body{font-size:14px;color:var(--mu);line-height:1.72;}
+
+/* ── STAKEHOLDER ── */
+.sk-row{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0;}
+.sk-pill{background:var(--sf);border:1px solid var(--br-s);border-radius:100px;padding:10px 22px;display:flex;align-items:center;gap:10px;}
+.sk-dot{width:10px;height:10px;border-radius:50%;background:var(--tc);flex-shrink:0;}
+.sk-role{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tc);}
+.sk-name{font-size:15px;font-weight:600;color:var(--ink);}
+
+/* ── DECISION SUMMARY TABLE ── */
+.dt{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;margin-bottom:32px;overflow-x:auto;}
+.dt-head{display:grid;grid-template-columns:60px 200px 100px 1fr;background:var(--bg2);border-bottom:1.5px solid var(--br-s);}
+.dt-th{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--tc2);padding:11px 16px;border-right:1px solid var(--br);}
+.dt-th:last-child{border-right:none;}
+.dt-row{display:grid;grid-template-columns:60px 200px 100px 1fr;border-bottom:1px solid var(--br);}
+.dt-row:last-child{border:none;}
+.dt-row:hover{background:var(--bg2);}
+.dtc{padding:12px 16px;font-size:14px;border-right:1px solid var(--br);display:flex;flex-direction:column;gap:3px;align-items:flex-start;}
+.dtc:last-child{border-right:none;}
+.dtc-n{font-size:13px;font-weight:700;color:var(--tc);font-family:var(--fh);}
+.dtc-label{font-size:14px;font-weight:600;color:var(--ink);}
+.dtc-val{font-size:14px;color:var(--gr);font-weight:500;line-height:1.6;}
+
+/* ── REDESIGN PRIORITIES ── */
+.rp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;}
+.rp-card{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:22px;border-top:3px solid var(--tc);}
+.rp-num{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tc);margin-bottom:8px;}
+.rp-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.rp-body{font-size:14px;color:var(--mu);line-height:1.68;}
+
+/* ── FLOW DIAGRAMS ── */
+.flow-box{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:24px;overflow-x:auto;margin-bottom:24px;}
+.flow-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.flow-sub{font-size:14px;color:var(--mu);margin-bottom:16px;}
+
+/* ── COLOUR SYSTEM DISPLAY ── */
+.color-system{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;}
+.cs-chip{border-radius:12px;overflow:hidden;border:1px solid var(--br);flex:1;min-width:80px;}
+.cs-swatch{height:72px;}
+.cs-info{padding:8px 12px;background:var(--sf);}
+.cs-name{font-size:12px;font-weight:700;color:var(--ink);}
+.cs-hex{font-size:11px;color:var(--mu);font-family:monospace;}
+.cs-role{font-size:11px;color:var(--tc2);font-weight:600;}
+
+/* ── COPY TABLE ── */
+.ct{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;margin-bottom:20px;overflow-x:auto;}
+.ct-head{display:grid;grid-template-columns:190px 1fr 1fr;background:var(--bg2);border-bottom:1.5px solid var(--br-s);}
+.ct-th{font-size:12px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:var(--tc2);padding:11px 16px;border-right:1px solid var(--br);}
+.ct-th:last-child{border-right:none;}
+.ct-row{display:grid;grid-template-columns:190px 1fr 1fr;border-bottom:1px solid var(--br);}
+.ct-row:last-child{border:none;}
+.ct-row:hover{background:var(--bg2);}
+.ct-cell{padding:11px 16px;font-size:14px;border-right:1px solid var(--br);color:var(--mu);}
+.ct-cell:last-child{border-right:none;}
+.ct-old{color:var(--fa);text-decoration:line-through;}
+.ct-new{color:var(--gr);font-weight:600;}
+
+/* ── TESTIMONIALS ── */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0;}
+.test-card{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:24px;border-top:3px solid var(--gd);position:relative;}
+.test-card::before{content:'"';font-family:'Playfair Display',serif;font-size:60px;color:rgba(200,168,75,.15);position:absolute;top:10px;left:16px;line-height:1;}
+.test-body{font-size:15px;color:var(--ink);line-height:1.75;font-style:italic;margin-bottom:14px;padding-top:18px;}
+.test-author{font-size:13px;font-weight:700;color:var(--tc2);}
+.test-badge{font-size:11px;color:var(--fa);}
+
+/* ── COUPON TYPES TABLE ── */
+.coupon-grid{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;margin-bottom:24px;}
+.cg-head{display:grid;grid-template-columns:200px 1fr 1fr 1fr;background:var(--bg2);border-bottom:1.5px solid var(--br-s);}
+.cg-th{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--tc2);padding:11px 16px;border-right:1px solid var(--br);}
+.cg-th:last-child{border-right:none;}
+.cg-row{display:grid;grid-template-columns:200px 1fr 1fr 1fr;border-bottom:1px solid var(--br);}
+.cg-row:last-child{border:none;}
+.cg-row:hover{background:var(--bg2);}
+.cg-cell{padding:11px 16px;font-size:14px;border-right:1px solid var(--br);color:var(--mu);}
+.cg-cell:last-child{border-right:none;}
+.cg-cell.name{font-weight:600;color:var(--ink);}
+.cg-cell.val{color:var(--gr);font-weight:500;}
+
+/* ══════════════════════════════════════════
+   PREMIUM PHONE MOCKUP SYSTEM v2
+   Dark Luxury Spiritual + Turquoise Intelligence
+   Exceeds submitted sample — cinematic, sleek
+══════════════════════════════════════════ */
+
+/* Richer design tokens for app screens */
+:root {
+  --scr-bg:#040810; --scr-bg2:#07101C; --scr-bg3:#0D1828;
+  --scr-card:#111E2E; --scr-card2:#162234;
+  --ivory:#F2E8D8; --ivory2:#D4C9B8; --ivory3:rgba(242,232,216,.45);
+  --gold-hi:#E8C06A; --gold-mid:#C89832; --gold-lo:#9A7420;
+  --gold-grad:linear-gradient(135deg,#E8C06A 0%,#C89832 50%,#D4A844 100%);
+  --gold-btn-glow:0 4px 22px rgba(200,160,75,.38),0 0 40px rgba(200,160,75,.12),inset 0 1px 0 rgba(255,255,255,.18);
+  --tc-hi:#00D4E8; --tc-grad:linear-gradient(135deg,#00D4E8,#007A90);
+  --tc-glow:0 4px 18px rgba(0,200,230,.3),0 0 30px rgba(0,187,207,.12);
+}
+
+@keyframes orbPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.55}50%{transform:translate(-50%,-50%) scale(1.18);opacity:.9}}
+@keyframes orbRing{0%,100%{opacity:.28}50%{opacity:.6}}
+@keyframes orb2Pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.3}50%{transform:translate(-50%,-50%) scale(1.08);opacity:.55}}
+
+/* Logo Upload Zone */
+.logo-upload-zone{background:var(--sf);border:2px dashed var(--tc-m);border-radius:16px;padding:28px 32px;display:flex;align-items:center;gap:28px;margin-bottom:36px;flex-wrap:wrap;}
+.luz-preview{width:90px;height:90px;border-radius:50%;background:var(--scr-bg3);border:2px solid rgba(0,187,207,.28);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;position:relative;}
+.luz-preview img{width:80%;height:80%;object-fit:contain;border-radius:50%;}
+.luz-preview .luz-placeholder{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:rgba(0,187,207,.5);}
+.luz-info h4{margin-bottom:6px;font-size:14px;}
+.luz-info p{font-size:14px;color:var(--mu);margin-bottom:14px;max-width:440px;}
+.luz-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--tc),var(--tc2));color:#fff;font-family:var(--fb);font-size:14px;font-weight:600;padding:11px 24px;border-radius:100px;border:none;cursor:pointer;}
+.luz-note{font-size:13px;color:var(--fa);margin-top:8px;}
+.logo-img{width:100%;height:100%;object-fit:contain;border-radius:50%;}
+
+/* Phone frame */
+.screens-grid{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;margin-top:32px;}
+.ph-wrap{display:flex;flex-direction:column;align-items:center;}
+.ph{
+  width:264px;flex-shrink:0;
+  border-radius:40px;
+  overflow:hidden;
+  border:2px solid rgba(0,187,207,.22);
+  background:var(--scr-bg);
+  box-shadow:
+    0 32px 80px rgba(0,0,0,.65),
+    0 8px 24px rgba(0,0,0,.4),
+    0 0 0 1px rgba(0,187,207,.06),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+.ph-lbl{margin-top:16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.10em;color:var(--tc);text-align:center;}
+.ph-status{display:flex;justify-content:space-between;align-items:center;padding:14px 18px 4px;background:var(--scr-bg);}
+.ph-time{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;color:rgba(242,232,216,.9);letter-spacing:.02em;}
+.ph-notch{width:68px;height:5px;background:rgba(255,255,255,.07);border-radius:3px;}
+.ph-icons{font-size:11px;color:rgba(0,195,215,.7);letter-spacing:2px;}
+
+/* ── SCREEN: ONBOARDING ── */
+.scr-ob{
+  background:
+    radial-gradient(ellipse 70% 45% at 25% 8%, rgba(0,195,215,.16),transparent),
+    radial-gradient(ellipse 55% 45% at 82% 85%, rgba(200,160,75,.13),transparent),
+    radial-gradient(ellipse 60% 60% at 55% 35%, rgba(110,80,200,.10),transparent),
+    var(--scr-bg);
+  padding:0 18px 18px;
+}
+/* Star particles via box-shadow (no extra elements) */
+.scr-ob::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(1px 1px at 18% 12%, rgba(255,255,255,.55),transparent),
+    radial-gradient(1px 1px at 72% 8%, rgba(255,255,255,.4),transparent),
+    radial-gradient(1px 1px at 40% 5%, rgba(255,255,255,.5),transparent),
+    radial-gradient(1.5px 1.5px at 88% 18%, rgba(0,200,230,.7),transparent),
+    radial-gradient(1px 1px at 12% 28%, rgba(255,255,255,.35),transparent),
+    radial-gradient(1px 1px at 62% 22%, rgba(255,255,255,.3),transparent);
+}
+.ob-img{height:178px;display:flex;align-items:center;justify-content:center;position:relative;}
+.ob-circle{width:116px;height:116px;border-radius:50%;position:relative;}
+/* Outer ambient glow layer */
+.ob-glow{
+  position:absolute;width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,195,215,.16) 0%,rgba(110,80,200,.10) 40%,transparent 70%);
+  top:50%;left:50%;
+  animation:orbPulse 4s ease-in-out infinite;
+}
+/* Rings */
+.ob-ring{position:absolute;border-radius:50%;border:1px solid;top:50%;left:50%;transform:translate(-50%,-50%);}
+.ob-r1{
+  width:112px;height:112px;
+  border-color:rgba(0,195,215,.22);
+  animation:orbRing 3.5s ease-in-out infinite;
+}
+.ob-r2{
+  width:84px;height:84px;
+  border-color:rgba(0,195,215,.36);
+  animation:orbRing 3.5s ease-in-out infinite .5s;
+}
+.ob-r3{
+  width:58px;height:58px;
+  background:radial-gradient(circle at 38% 32%,#9370D8 0%,#00BBCF 50%,#C89832 85%);
+  border:1.5px solid rgba(200,160,75,.45);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 24px rgba(147,112,216,.55),0 0 48px rgba(0,187,207,.25),0 0 80px rgba(0,187,207,.10);
+  animation:orb2Pulse 4s ease-in-out infinite 1s;
+}
+.ob-r3 .logo-img-sm{width:36px;height:36px;border-radius:50%;object-fit:contain;}
+.ob-r3 span.ob-fallback{font-family:'Playfair Display',serif;font-size:8px;font-style:italic;color:rgba(242,232,216,.95);}
+.ob-dots{display:flex;gap:5px;margin:6px 0 8px;}
+.ob-dot{width:5px;height:5px;border-radius:2.5px;background:rgba(255,255,255,.12);}
+.ob-dot.a{width:20px;background:linear-gradient(90deg,var(--tc-hi),var(--tc2));border-radius:3px;}
+.ob-skip-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+.ob-skip{font-size:10px;color:rgba(0,205,225,.42);cursor:pointer;letter-spacing:.04em;}
+.ob-h{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ivory);line-height:1.18;margin-bottom:6px;letter-spacing:-.01em;}
+.ob-h em{color:var(--tc-hi);font-style:italic;}
+.ob-sub{font-size:11px;color:var(--ivory2);line-height:1.65;margin-bottom:9px;}
+.ob-bullets{margin-bottom:10px;}
+.ob-b{display:flex;align-items:center;gap:7px;font-size:10px;color:var(--ivory2);padding:3px 0;}
+.ob-bd{width:5px;height:5px;border-radius:50%;background:var(--tc-hi);flex-shrink:0;box-shadow:0 0 5px rgba(0,212,232,.5);}
+.ob-trust{
+  font-size:9px;color:rgba(0,212,232,.62);letter-spacing:.07em;text-align:center;margin-bottom:7px;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+.ob-trust::before,.ob-trust::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,232,.2));}
+.ob-trust::after{background:linear-gradient(90deg,rgba(0,212,232,.2),transparent);}
+.ob-cta{
+  width:100%;
+  background:var(--gold-grad);
+  color:#07090F;
+  font-family:var(--fb);font-size:12px;font-weight:800;
+  padding:13px;border-radius:100px;border:none;
+  letter-spacing:.04em;
+  box-shadow:var(--gold-btn-glow);
+  text-transform:uppercase;
+}
+
+/* ── SCREEN: HOME DASHBOARD ── */
+.scr-home{background:var(--scr-bg2);}
+.hbar{
+  padding:11px 16px 9px;
+  background:rgba(4,8,16,.96);
+  backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(0,195,215,.08);
+}
+/* Logo container — handles white-bg logos gracefully */
+.hbar-logo-wrap{display:flex;align-items:center;gap:8px;}
+.hbar-logo-ring{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--scr-bg3);
+  border:1.5px solid rgba(0,195,215,.35);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  box-shadow:0 0 10px rgba(0,195,215,.18);
+}
+.hbar-logo-ring img,.hbar-logo-ring .logo-img{width:24px;height:24px;object-fit:contain;border-radius:50%;}
+.hbar-logo-text{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--gold-hi);letter-spacing:.04em;}
+.hbar-menu{width:20px;height:13px;display:flex;flex-direction:column;justify-content:space-between;}
+.hbar-menu span{height:1.5px;background:rgba(200,190,180,.55);border-radius:1px;display:block;}
+.hbar-menu span:last-child{width:55%;}
+.home-hero{
+  padding:18px 16px 15px;
+  background:
+    linear-gradient(170deg, rgba(0,195,215,.15) 0%, rgba(0,195,215,.04) 45%, var(--scr-bg2) 75%);
+}
+.hh-greet{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:rgba(0,212,232,.75);font-weight:700;margin-bottom:3px;}
+.hh-h1{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ivory);line-height:1.2;margin-bottom:5px;letter-spacing:-.01em;}
+.hh-h1 em{color:var(--tc-hi);font-style:italic;}
+.hh-quote{
+  font-size:9px;color:var(--ivory2);font-style:italic;
+  border-left:2px solid rgba(0,212,232,.5);padding-left:8px;margin:6px 0 11px;line-height:1.6;
+}
+.hh-btns{display:flex;gap:8px;}
+.hh-btn-p{
+  background:var(--gold-grad);color:#07090F;
+  font-size:9px;font-weight:800;padding:8px 13px;border-radius:100px;border:none;
+  font-family:var(--fb);letter-spacing:.03em;
+  box-shadow:0 3px 14px rgba(200,160,75,.3);
+}
+.hh-btn-o{
+  background:rgba(0,195,215,.08);color:rgba(0,212,232,.9);
+  font-size:9px;font-weight:600;padding:7px 12px;border-radius:100px;
+  border:1px solid rgba(0,195,215,.28);font-family:var(--fb);
+}
+.home-grid{padding:11px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.hg-card{
+  background:var(--scr-card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:12px;
+  transition:border-color .2s;
+}
+.hg-card.feat{
+  background:linear-gradient(#0D1828,#0D1828) padding-box,
+              linear-gradient(135deg,rgba(0,195,215,.4),rgba(0,195,215,.08)) border-box;
+  border:1px solid transparent;
+}
+.hg-card.gold{
+  background:linear-gradient(#0D1828,#0D1828) padding-box,
+              linear-gradient(135deg,rgba(232,192,106,.35),rgba(200,152,50,.08)) border-box;
+  border:1px solid transparent;
+}
+.hg-icon{width:24px;height:24px;border-radius:6px;margin-bottom:7px;display:flex;align-items:center;justify-content:center;}
+.hg-icon.t{background:rgba(0,195,215,.14);box-shadow:0 0 8px rgba(0,195,215,.15);}
+.hg-icon.g{background:rgba(232,192,106,.12);box-shadow:0 0 8px rgba(200,152,50,.12);}
+.hg-icon svg{width:12px;height:12px;fill:none;stroke-width:1.5;}
+.hg-icon.t svg{stroke:var(--tc-hi);}
+.hg-icon.g svg{stroke:var(--gold-hi);}
+.hg-name{font-family:'Playfair Display',serif;font-size:11px;color:var(--ivory);margin-bottom:2px;}
+.hg-sub{font-size:9px;color:rgba(180,170,160,.7);}
+.hg-sub.t{color:var(--tc-hi);font-weight:700;}
+.hg-sub.g{color:var(--gold-hi);font-weight:600;}
+/* Floating glass tab bar */
+.home-tab-wrap{padding:8px 10px;background:var(--scr-bg);}
+.home-tab{
+  display:flex;align-items:center;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:100px;
+  padding:4px;
+  backdrop-filter:blur(12px);
+}
+.tab-item{flex:1;padding:7px 3px 7px;display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:100px;}
+.tab-item svg{width:15px;height:15px;stroke:rgba(255,255,255,.22);fill:none;stroke-width:1.5;}
+.tab-item.active{background:rgba(0,195,215,.12);}
+.tab-item.active svg{stroke:var(--tc-hi);}
+.tab-item-lbl{font-size:8px;color:rgba(255,255,255,.2);}
+.tab-item.active .tab-item-lbl{color:var(--tc-hi);}
+.tab-center{flex:0 0 44px;display:flex;align-items:center;justify-content:center;}
+.tab-center-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--tc-hi),var(--tc2));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,195,215,.4);
+  overflow:hidden;
+}
+.tab-center-btn img,.tab-center-btn .logo-img{width:24px;height:24px;object-fit:contain;border-radius:50%;}
+.tab-center-btn .tab-center-text{font-family:'Playfair Display',serif;font-size:10px;font-style:italic;color:#fff;}
+
+/* ── SCREEN: DISCOVER HIDDEN PATTERNS ── */
+.scr-insights{background:var(--scr-bg2);}
+.ins-back{display:flex;align-items:center;gap:8px;padding:11px 16px 9px;background:rgba(4,8,16,.96);border-bottom:1px solid rgba(0,195,215,.07);}
+.ins-bb{width:26px;height:26px;background:var(--scr-card);border:1px solid rgba(0,195,215,.18);border-radius:7px;display:flex;align-items:center;justify-content:center;}
+.ins-bb svg{width:11px;height:11px;stroke:rgba(200,190,180,.6);fill:none;stroke-width:2;}
+.ins-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--ivory);}
+.ins-hero{
+  padding:14px 16px 12px;
+  background:linear-gradient(170deg,rgba(0,195,215,.14) 0%,var(--scr-bg2) 70%);
+}
+.ins-q-label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:rgba(0,212,232,.7);font-weight:700;margin-bottom:3px;}
+.ins-q-h{font-family:'Playfair Display',serif;font-size:14px;color:var(--ivory);line-height:1.3;margin-bottom:4px;}
+.ins-q-sub{font-size:9px;color:var(--ivory2);}
+.ins-card-grid{padding:10px 12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ins-card{
+  background:var(--scr-card);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;padding:12px;position:relative;
+  transition:border-color .2s;
+}
+.ins-card-tag{position:absolute;top:7px;right:7px;font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.03em;}
+.ins-card-tag.lock{background:rgba(0,195,215,.14);color:var(--tc-hi);}
+.ins-card-tag.free{background:rgba(10,132,90,.14);color:#0AC070;}
+.ins-card-tag.soon{background:rgba(232,192,106,.12);color:var(--gold-hi);}
+.ins-card-icon{width:26px;height:26px;border-radius:7px;margin-bottom:7px;display:flex;align-items:center;justify-content:center;}
+.ins-card-icon svg{width:13px;height:13px;fill:none;stroke-width:1.5;}
+.ins-card-icon.teal-i{background:rgba(0,195,215,.12);box-shadow:0 0 8px rgba(0,195,215,.15);}
+.ins-card-icon.teal-i svg{stroke:var(--tc-hi);}
+.ins-card-icon.gold-i{background:rgba(232,192,106,.11);}
+.ins-card-icon.gold-i svg{stroke:var(--gold-hi);}
+.ins-card-icon.pu-i{background:rgba(155,110,225,.13);}
+.ins-card-icon.pu-i svg{stroke:#B090E0;}
+.ins-card-name{font-family:'Playfair Display',serif;font-size:10px;color:var(--ivory);margin-bottom:2px;}
+.ins-card-hook{font-size:8px;color:var(--ivory2);line-height:1.5;margin-bottom:5px;}
+.ins-card-cta{font-size:8px;color:var(--tc-hi);font-weight:700;}
+.ins-card-ad{
+  background:rgba(0,195,215,.10);border:1px solid rgba(0,195,215,.22);
+  color:var(--tc-hi);font-size:7px;font-weight:700;
+  padding:2px 7px;border-radius:100px;margin-top:4px;display:inline-block;
+  letter-spacing:.02em;
+}
+
+/* ── SCREEN: SPEAK TO PROF. KEWUNLA ── */
+.scr-consult{background:var(--scr-bg2);}
+.con-back{display:flex;align-items:center;gap:8px;padding:11px 16px 9px;background:rgba(4,8,16,.96);border-bottom:1px solid rgba(0,195,215,.07);}
+.con-bb{width:26px;height:26px;background:var(--scr-card);border:1px solid rgba(0,195,215,.18);border-radius:7px;display:flex;align-items:center;justify-content:center;}
+.con-bb svg{width:11px;height:11px;stroke:rgba(200,190,180,.6);fill:none;stroke-width:2;}
+.con-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--ivory);}
+.con-hero{
+  padding:15px 16px 13px;
+  background:linear-gradient(170deg,rgba(0,195,215,.15) 0%,var(--scr-bg2) 70%);
+}
+.con-h{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ivory);line-height:1.22;margin-bottom:3px;letter-spacing:-.01em;}
+.con-h em{font-size:12px;color:rgba(0,212,232,.75);font-style:italic;display:block;margin-top:1px;}
+.con-sub{font-size:10px;color:var(--ivory2);line-height:1.6;margin-bottom:9px;}
+.con-cta-btn{
+  background:var(--tc-grad);color:#fff;font-size:9px;font-weight:700;
+  padding:8px 15px;border-radius:100px;border:none;font-family:var(--fb);
+  box-shadow:var(--tc-glow);letter-spacing:.02em;
+}
+/* Featured card — gradient border */
+.con-tier{margin:0 12px 9px;border-radius:12px;padding:13px;}
+.con-tier.feat{
+  background:linear-gradient(var(--scr-card),var(--scr-card)) padding-box,
+              linear-gradient(135deg,#E8C06A 0%,rgba(200,152,50,.35) 50%,#C89832 100%) border-box;
+  border:1.5px solid transparent;
+  box-shadow:0 4px 24px rgba(200,152,50,.12);
+}
+.con-tier.std{
+  background:linear-gradient(var(--scr-card),var(--scr-card)) padding-box,
+              linear-gradient(135deg,rgba(0,195,215,.35),rgba(0,195,215,.08)) border-box;
+  border:1.5px solid transparent;
+}
+.con-tier-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;flex-wrap:wrap;gap:4px;}
+.con-tier-name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;color:var(--ivory);}
+.con-tier-tag{font-size:7px;font-weight:800;padding:3px 8px;border-radius:100px;letter-spacing:.05em;text-transform:uppercase;}
+.ctt-gold{background:rgba(232,192,106,.16);color:var(--gold-hi);border:1px solid rgba(232,192,106,.2);}
+.ctt-teal{background:rgba(0,195,215,.12);color:var(--tc-hi);border:1px solid rgba(0,195,215,.18);}
+.ctt-mr{background:var(--gold-grad);color:#07090F;font-size:7px;box-shadow:0 2px 8px rgba(200,152,50,.25);}
+.con-tier-desc{font-size:9px;color:var(--ivory2);line-height:1.58;margin-bottom:7px;}
+.con-tier-meta{display:flex;gap:10px;}
+.con-tier-meta span{font-size:8px;color:rgba(200,185,165,.4);}
+.con-price{font-size:13px;font-weight:800;color:var(--gold-hi);margin-top:6px;letter-spacing:.01em;font-family:'Playfair Display',serif;}
+.con-scta{margin:8px 12px 13px;}
+.con-scta button{
+  width:100%;
+  background:var(--gold-grad);color:#07090F;
+  font-family:var(--fb);font-size:10px;font-weight:800;
+  padding:11px;border-radius:100px;border:none;
+  letter-spacing:.04em;text-transform:uppercase;
+  box-shadow:var(--gold-btn-glow);
+}
+
+/* ── SCREEN: DAILY WISDOM CENTER ── */
+.scr-wisdom{background:var(--scr-bg2);}
+.wis-hero{padding:15px 16px 13px;background:linear-gradient(170deg,rgba(0,195,215,.15),var(--scr-bg2) 70%);}
+.wis-label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:rgba(0,212,232,.7);font-weight:700;margin-bottom:3px;}
+.wis-h{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--ivory);line-height:1.25;margin-bottom:0;}
+.wis-oracle-box{
+  background:rgba(0,195,215,.07);
+  border:1px solid rgba(0,195,215,.18);
+  border-radius:12px;padding:13px;margin-bottom:10px;
+}
+.wis-oracle-lbl{font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:rgba(0,212,232,.7);font-weight:700;margin-bottom:5px;}
+.wis-oracle-msg{font-family:'Playfair Display',serif;font-size:11px;font-style:italic;color:var(--ivory);line-height:1.6;}
+.wis-unlock-btn{
+  background:rgba(0,195,215,.12);border:1px solid rgba(0,195,215,.25);
+  color:var(--tc-hi);font-size:9px;font-weight:700;padding:5px 13px;border-radius:100px;
+  font-family:var(--fb);margin-top:7px;display:inline-block;letter-spacing:.02em;
+}
+.wis-teachings{padding:0 12px 12px;}
+.wis-lesson{
+  background:var(--scr-card);border:1px solid rgba(255,255,255,.06);
+  border-radius:10px;padding:11px;margin-bottom:8px;
+}
+.wis-les-label{font-size:8px;text-transform:uppercase;letter-spacing:.09em;color:rgba(0,212,232,.65);font-weight:700;margin-bottom:3px;}
+.wis-les-title{font-family:'Playfair Display',serif;font-size:11px;color:var(--ivory);margin-bottom:3px;}
+.wis-les-body{font-size:9px;color:var(--ivory2);line-height:1.6;}
+.wis-les-link{font-size:9px;color:var(--tc-hi);font-weight:700;margin-top:5px;}
+
+/* ── SCREEN: UNLOCK DISCOUNT ACCESS ── */
+.scr-coupon{background:var(--scr-bg2);}
+.cpn-hero{padding:14px 16px 12px;background:linear-gradient(170deg,rgba(0,195,215,.14),var(--scr-bg2) 70%);}
+.cpn-h{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ivory);margin-bottom:4px;line-height:1.22;letter-spacing:-.01em;}
+.cpn-sub{font-size:10px;color:var(--ivory2);line-height:1.6;}
+.cpn-form{padding:0 12px 12px;}
+.cpn-ctx{
+  background:rgba(0,195,215,.07);border:1px solid rgba(0,195,215,.16);
+  border-radius:10px;padding:9px 12px;margin:10px 0;font-size:9px;color:rgba(0,212,232,.85);line-height:1.6;
+}
+.cpn-label{font-size:9px;text-transform:uppercase;letter-spacing:.09em;color:rgba(0,212,232,.6);font-weight:700;margin-bottom:3px;}
+.cpn-input{
+  width:100%;padding:9px 12px;background:var(--scr-card);
+  border:1px solid rgba(0,195,215,.16);border-radius:9px;
+  color:var(--ivory);font-size:11px;font-family:var(--fb);margin-bottom:8px;
+}
+.cpn-select{
+  width:100%;padding:9px 12px;background:var(--scr-card);
+  border:1px solid rgba(0,195,215,.16);border-radius:9px;
+  color:var(--ivory2);font-size:11px;appearance:none;margin-bottom:10px;
+}
+.cpn-submit{
+  width:100%;background:var(--tc-grad);color:#fff;
+  font-family:var(--fb);font-size:11px;font-weight:700;
+  padding:11px;border-radius:100px;border:none;margin-bottom:9px;
+  box-shadow:var(--tc-glow);letter-spacing:.02em;
+}
+.cpn-alt{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:11px;text-align:center;}
+.cpn-alt-q{font-size:9px;color:var(--ivory2);margin-bottom:5px;}
+.cpn-alt-btn{
+  background:transparent;border:1px solid rgba(0,195,215,.28);
+  color:var(--tc-hi);font-size:9px;font-weight:700;padding:5px 13px;
+  border-radius:100px;font-family:var(--fb);letter-spacing:.02em;
+}
+
+/* ── AD POPUP ── */
+.ad-modal{
+  background:linear-gradient(#111E2E,#0D1828) padding-box,
+             linear-gradient(135deg,rgba(0,195,215,.3),rgba(0,195,215,.06)) border-box;
+  border:1px solid transparent;
+  border-radius:16px;padding:20px;width:100%;
+  box-shadow:0 8px 40px rgba(0,0,0,.5);
+}
+.ad-modal-title{font-family:'Playfair Display',serif;font-size:15px;color:var(--ivory);text-align:center;margin-bottom:4px;letter-spacing:.01em;}
+.ad-modal-sub{font-size:9px;color:var(--ivory2);text-align:center;margin-bottom:16px;}
+.ad-opt{border-radius:11px;padding:12px 13px;margin-bottom:8px;}
+.ad-opt.pay{
+  background:rgba(232,192,106,.08);
+  border:1px solid rgba(232,192,106,.25);
+}
+.ad-opt.free{
+  background:rgba(0,195,215,.07);
+  border:1px solid rgba(0,195,215,.2);
+}
+.ad-opt-label{font-size:8px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px;}
+.ad-opt.pay .ad-opt-label{color:var(--gold-hi);}
+.ad-opt.free .ad-opt-label{color:var(--tc-hi);}
+.ad-opt-desc{font-size:9px;color:var(--ivory2);margin-bottom:8px;line-height:1.55;}
+.ad-opt-btn{width:100%;padding:9px;border-radius:100px;border:none;font-family:var(--fb);font-size:9px;font-weight:800;cursor:pointer;letter-spacing:.03em;text-transform:uppercase;}
+.ad-opt-btn.gold{background:var(--gold-grad);color:#07090F;box-shadow:0 3px 14px rgba(200,152,50,.28);}
+.ad-opt-btn.teal{background:var(--tc-grad);color:#fff;box-shadow:0 3px 12px rgba(0,195,215,.28);}
+.ad-divider{text-align:center;font-size:9px;color:rgba(200,185,165,.35);margin:8px 0;}
+
+/* ── SIDE MENU ── */
+.scr-menu-wrapper{display:flex;height:520px;overflow:hidden;}
+.side-drawer{
+  width:184px;
+  background:linear-gradient(180deg,#0A1520,#07101A);
+  border-right:1px solid rgba(0,195,215,.08);
+  padding:18px 10px;flex-shrink:0;display:flex;flex-direction:column;
+}
+.sd-logo-wrap{display:flex;align-items:center;gap:8px;padding:0 4px;margin-bottom:22px;}
+.sd-logo-ring{width:26px;height:26px;border-radius:50%;background:var(--scr-bg3);border:1.5px solid rgba(0,195,215,.3);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.sd-logo-ring img,.sd-logo-ring .logo-img{width:20px;height:20px;object-fit:contain;border-radius:50%;}
+.sd-logo-text{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--gold-hi);}
+.sd-mi{display:flex;align-items:center;gap:9px;padding:9px 9px;border-radius:9px;margin-bottom:2px;cursor:pointer;}
+.sd-mi svg{width:13px;height:13px;stroke:rgba(180,175,165,.45);fill:none;stroke-width:1.5;flex-shrink:0;}
+.sd-mi span{font-size:11px;color:rgba(180,175,165,.65);}
+.sd-mi.active{background:rgba(0,195,215,.10);border:1px solid rgba(0,195,215,.14);}
+.sd-mi.active span{color:var(--tc-hi);font-weight:600;}
+.sd-mi.active svg{stroke:var(--tc-hi);}
+.sd-divider{height:1px;background:rgba(255,255,255,.05);margin:11px 0;}
+.sd-ver{font-size:9px;color:rgba(255,255,255,.18);padding:4px 9px;margin-top:auto;}
+.sd-dim{flex:1;background:rgba(0,0,0,.6);backdrop-filter:blur(2px);}
+
+/* ══════════════════════════════════════════
+   NEW SCREENS CSS
+══════════════════════════════════════════ */
+
+/* ── Welcome Landing (Onboarding Slide 1 — with video) ── */
+.scr-welcome{background:var(--scr-bg2);}
+.wel-logo-top{display:flex;justify-content:center;padding:12px 0 6px;}
+.wel-logo-circle{
+  width:52px;height:52px;border-radius:50%;
+  background:var(--scr-bg);
+  border:2px solid rgba(0,195,215,.35);
+  box-shadow:0 0 16px rgba(0,195,215,.22);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.wel-logo-circle img,.wel-logo-circle .logo-img{width:40px;height:40px;object-fit:contain;border-radius:50%;}
+.wel-logo-circle .wel-logo-fb{font-family:'Playfair Display',serif;font-size:11px;font-style:italic;color:rgba(0,205,225,.7);}
+.wel-title-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 16px 10px;
+  background:rgba(4,8,16,.96);
+  border-bottom:1px solid rgba(0,195,215,.07);
+}
+.wel-hm{width:18px;height:12px;display:flex;flex-direction:column;justify-content:space-between;}
+.wel-hm span{height:1.5px;background:rgba(200,190,180,.5);border-radius:1px;display:block;}
+.wel-hm span:last-child{width:60%;}
+.wel-page-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--ivory);text-align:center;flex:1;}
+.wel-skip-btn{font-size:10px;color:rgba(0,212,232,.42);letter-spacing:.04em;}
+.wel-ob-dots{display:flex;gap:5px;padding:8px 16px 4px;}
+.wel-ob-dot{width:5px;height:5px;border-radius:2.5px;background:rgba(255,255,255,.12);}
+.wel-ob-dot.a{width:20px;background:linear-gradient(90deg,var(--tc-hi),var(--tc2));border-radius:3px;}
+.wel-body-text{padding:10px 16px 8px;font-size:10px;color:var(--ivory2);line-height:1.7;}
+.wel-body-text strong{color:var(--tc-hi);}
+/* Video placeholder */
+.wel-video{
+  margin:0 14px 12px;height:150px;border-radius:12px;overflow:hidden;
+  position:relative;
+  background:linear-gradient(145deg,#0A1520,#0F1E30);
+  border:1px solid rgba(0,195,215,.16);
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+.wel-video-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 75% 30%,rgba(0,195,215,.08),transparent 50%),
+    linear-gradient(155deg,#0A1828,#050D18);
+  display:flex;align-items:center;justify-content:center;
+}
+/* Prof. Kewunla silhouette suggestion using CSS */
+.wel-vid-figure{
+  width:70px;height:100px;
+  background:linear-gradient(160deg,rgba(40,50,70,.8),rgba(20,30,50,.9));
+  border-radius:35px 35px 8px 8px;
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  opacity:.35;
+}
+.wel-vid-head{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(60,70,90,.7);
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+}
+.wel-play-wrap{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  z-index:2;
+}
+.wel-play-btn{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(0,195,215,.18);
+  border:2px solid rgba(0,195,215,.5);
+  backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 20px rgba(0,195,215,.25);
+}
+.wel-play-btn svg{width:14px;height:14px;fill:var(--tc-hi);margin-left:2px;}
+.wel-vid-label{
+  font-size:9px;color:rgba(200,190,180,.6);letter-spacing:.04em;
+  background:rgba(4,8,16,.7);padding:3px 10px;border-radius:100px;
+}
+.wel-vid-badge{
+  position:absolute;top:8px;left:10px;
+  background:rgba(0,195,215,.15);border:1px solid rgba(0,195,215,.28);
+  font-size:8px;color:var(--tc-hi);font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.05em;
+}
+.wel-tab{
+  display:flex;background:var(--scr-bg);border-top:1px solid rgba(255,255,255,.05);
+  position:relative;
+}
+.wel-tab-item{flex:1;padding:10px 4px 12px;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.wel-tab-item svg{width:18px;height:18px;stroke:rgba(255,255,255,.22);fill:none;stroke-width:1.5;}
+.wel-tab-item.active svg{stroke:var(--tc-hi);}
+.wel-tab-lbl{font-size:9px;color:rgba(255,255,255,.22);}
+.wel-tab-item.active .wel-tab-lbl{color:var(--tc-hi);font-weight:700;}
+/* Floating logo in tab center */
+.wel-tab-logo{
+  position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+  width:46px;height:46px;border-radius:50%;
+  background:var(--scr-bg);
+  border:2px solid rgba(0,195,215,.35);
+  box-shadow:0 -4px 16px rgba(0,195,215,.2);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.wel-tab-logo img,.wel-tab-logo .logo-img{width:36px;height:36px;object-fit:contain;border-radius:50%;}
+.wel-tab-logo .wel-logo-fb2{font-family:'Playfair Display',serif;font-size:10px;font-style:italic;color:var(--tc-hi);}
+
+/* ── Spiritual Academy Login ── */
+.scr-academy{background:var(--scr-bg);}
+.ac-hero{
+  padding:20px 18px 16px;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%,rgba(200,152,50,.12),transparent),
+    linear-gradient(180deg,rgba(0,195,215,.08),var(--scr-bg) 70%);
+  text-align:center;
+}
+.ac-emblem{
+  width:60px;height:60px;border-radius:50%;margin:0 auto 12px;
+  background:linear-gradient(#111E2E,#111E2E) padding-box,
+             linear-gradient(135deg,#E8C06A,rgba(200,152,50,.3)) border-box;
+  border:1.5px solid transparent;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(200,152,50,.18);
+}
+.ac-emblem svg{width:28px;height:28px;stroke:var(--gold-hi);fill:none;stroke-width:1.2;}
+.ac-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--ivory);margin-bottom:3px;}
+.ac-sub{font-size:10px;color:var(--ivory2);margin-bottom:0;}
+/* Programmes strip */
+.ac-programmes{
+  display:flex;gap:6px;padding:10px 14px;overflow-x:auto;
+  scrollbar-width:none;
+}
+.ac-prog{
+  flex-shrink:0;background:var(--scr-card);border:1px solid rgba(200,152,50,.18);
+  border-radius:8px;padding:8px 10px;min-width:80px;
+}
+.ac-prog-title{font-size:9px;font-weight:700;color:var(--ivory);margin-bottom:2px;}
+.ac-prog-dur{font-size:8px;color:var(--ivory2);}
+.ac-prog-mode{font-size:8px;color:var(--gold-hi);margin-top:2px;font-weight:700;}
+.ac-form{padding:10px 14px 14px;}
+.ac-form-label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(0,212,232,.6);font-weight:700;margin-bottom:3px;}
+.ac-input{
+  width:100%;padding:9px 12px;background:var(--scr-card);
+  border:1px solid rgba(0,195,215,.16);border-radius:9px;
+  color:var(--ivory);font-size:11px;font-family:var(--fb);margin-bottom:8px;
+}
+.ac-btn{
+  width:100%;
+  background:var(--gold-grad);color:#07090F;
+  font-family:var(--fb);font-size:11px;font-weight:800;
+  padding:12px;border-radius:100px;border:none;
+  box-shadow:var(--gold-btn-glow);letter-spacing:.04em;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.ac-links{display:flex;justify-content:space-between;align-items:center;}
+.ac-link{font-size:9px;color:var(--tc-hi);font-weight:600;}
+.ac-divider-link{font-size:9px;color:rgba(200,185,165,.3);}
+.ac-note{
+  margin:0 14px 14px;background:rgba(200,152,50,.07);
+  border:1px solid rgba(200,152,50,.18);border-radius:9px;padding:9px 11px;
+  font-size:9px;color:var(--ivory2);line-height:1.6;
+}
+
+/* ── Contact Screen ── */
+.scr-contact-screen{background:var(--scr-bg2);}
+.con-scr-hero{
+  padding:14px 16px 12px;
+  background:linear-gradient(170deg,rgba(0,195,215,.14),var(--scr-bg2) 70%);
+}
+.con-scr-h{font-family:'Playfair Display',serif;font-size:16px;color:var(--ivory);margin-bottom:4px;line-height:1.25;}
+.con-scr-sub{font-size:10px;color:var(--ivory2);line-height:1.6;}
+.con-options{padding:10px 12px;}
+/* WhatsApp option */
+.con-opt{
+  display:flex;align-items:center;gap:12px;
+  background:var(--scr-card);border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:13px 14px;margin-bottom:8px;cursor:pointer;
+}
+.con-opt.primary{
+  background:linear-gradient(var(--scr-card),var(--scr-card)) padding-box,
+             linear-gradient(135deg,rgba(0,195,215,.35),rgba(0,195,215,.08)) border-box;
+  border:1px solid transparent;
+}
+.con-opt.gold-opt{
+  background:linear-gradient(var(--scr-card),var(--scr-card)) padding-box,
+             linear-gradient(135deg,rgba(232,192,106,.35),rgba(200,152,50,.08)) border-box;
+  border:1px solid transparent;
+}
+.con-opt-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.con-opt-icon.wa{background:rgba(37,211,102,.15);}
+.con-opt-icon.em{background:rgba(0,195,215,.12);}
+.con-opt-icon.ph{background:rgba(200,152,50,.12);}
+.con-opt-icon svg{width:18px;height:18px;fill:none;stroke-width:1.5;}
+.con-opt-icon.wa svg{stroke:#25D366;}
+.con-opt-icon.em svg{stroke:var(--tc-hi);}
+.con-opt-icon.ph svg{stroke:var(--gold-hi);}
+.con-opt-text h5{font-size:12px;font-weight:700;color:var(--ivory);margin-bottom:1px;}
+.con-opt-text p{font-size:9px;color:var(--ivory2);}
+.con-opt-arrow{margin-left:auto;font-size:12px;color:rgba(200,185,165,.3);}
+/* Quick message */
+.con-msg-box{
+  margin:4px 12px 12px;
+  background:var(--scr-card);border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:12px;
+}
+.con-msg-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:rgba(0,212,232,.6);font-weight:700;margin-bottom:6px;}
+.con-msg-ta{
+  width:100%;height:60px;padding:8px 10px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(0,195,215,.12);
+  border-radius:8px;color:var(--ivory2);font-family:var(--fb);font-size:10px;
+  resize:none;outline:none;
+}
+.con-msg-send{
+  width:100%;margin-top:8px;
+  background:var(--tc-grad);color:#fff;
+  font-family:var(--fb);font-size:10px;font-weight:700;
+  padding:10px;border-radius:100px;border:none;
+  box-shadow:var(--tc-glow);
+}
+
+/* ── Discover Hidden Patterns — Scrollable Full View ── */
+.scr-ins-full{background:var(--scr-bg2);}
+/* Scroll indicator arrow */
+.scroll-indicator{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:6px 0 8px;opacity:.5;
+}
+.scroll-indicator span{font-size:8px;color:var(--tc-hi);letter-spacing:.06em;}
+.scroll-indicator svg{width:12px;height:12px;stroke:var(--tc-hi);fill:none;stroke-width:2;}
+/* "Coming" placeholder overlay */
+.ins-card-coming{
+  position:relative;overflow:hidden;
+  opacity:.6;
+}
+.ins-card-coming::after{
+  content:'';
+  position:absolute;inset:0;border-radius:inherit;
+  background:rgba(4,8,16,.65);
+  backdrop-filter:blur(1px);
+}
+.coming-badge{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  z-index:2;background:rgba(200,152,50,.18);
+  border:1px solid rgba(200,152,50,.35);
+  border-radius:6px;padding:5px 10px;
+  font-size:9px;font-weight:800;color:var(--gold-hi);
+  letter-spacing:.08em;text-transform:uppercase;
+  text-align:center;white-space:nowrap;
+}
+/* Category separator */
+.ins-cat-sep{
+  padding:5px 12px 3px;font-size:9px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.12em;color:rgba(0,212,232,.5);
+  display:flex;align-items:center;gap:8px;
+}
+.ins-cat-sep::after{content:'';flex:1;height:1px;background:rgba(0,195,215,.1);}
+
+/* ── Full Side Navigation ── */
+.scr-full-menu{background:var(--scr-bg);}
+.fm-header{
+  padding:14px 16px 12px;
+  background:rgba(4,8,16,.98);
+  border-bottom:1px solid rgba(0,195,215,.08);
+  display:flex;align-items:center;gap:10px;
+}
+.fm-logo-wrap{display:flex;align-items:center;gap:8px;}
+.fm-logo-ring{width:28px;height:28px;border-radius:50%;background:var(--scr-bg3);border:1.5px solid rgba(0,195,215,.32);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.fm-logo-ring img,.fm-logo-ring .logo-img{width:22px;height:22px;object-fit:contain;border-radius:50%;}
+.fm-logo-ring .fm-logo-fb{font-family:'Playfair Display',serif;font-size:10px;font-style:italic;color:rgba(0,205,225,.65);}
+.fm-logo-text{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:var(--gold-hi);}
+.fm-close{margin-left:auto;width:24px;height:24px;background:var(--scr-card);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.fm-close svg{width:10px;height:10px;stroke:rgba(200,185,165,.5);fill:none;stroke-width:2;}
+.fm-list{padding:8px 12px;overflow-y:auto;}
+.fm-section{margin-bottom:4px;}
+.fm-section-label{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:rgba(0,195,215,.4);padding:8px 6px 4px;}
+.fm-item{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 9px;border-radius:9px;margin-bottom:1px;
+}
+.fm-item.active{background:rgba(0,195,215,.10);border:1px solid rgba(0,195,215,.14);}
+.fm-item svg{width:13px;height:13px;stroke:rgba(200,190,180,.4);fill:none;stroke-width:1.5;flex-shrink:0;}
+.fm-item.active svg{stroke:var(--tc-hi);}
+.fm-item-text{font-size:11px;color:rgba(200,190,180,.6);flex:1;}
+.fm-item.active .fm-item-text{color:var(--tc-hi);font-weight:700;}
+.fm-item-badge{font-size:8px;font-weight:700;padding:2px 7px;border-radius:100px;}
+.fm-badge-coming{background:rgba(200,152,50,.14);color:var(--gold-hi);border:1px solid rgba(200,152,50,.2);}
+.fm-badge-free{background:rgba(10,132,90,.12);color:#0AC070;}
+.fm-badge-new{background:rgba(0,195,215,.12);color:var(--tc-hi);}
+.fm-divider{height:1px;background:rgba(255,255,255,.05);margin:6px 0;}
+.fm-footer{padding:8px 18px 12px;border-top:1px solid rgba(255,255,255,.04);}
+.fm-ver{font-size:9px;color:rgba(255,255,255,.18);}
+
+/* ── Handoff spec ── */
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+.spec-card{background:var(--sf);border:1px solid var(--br);border-radius:var(--r);padding:20px;}
+.spec-num{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--tc);margin-bottom:8px;}
+.spec-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.spec-body{font-size:14px;color:var(--mu);line-height:1.68;}
+.spec-code{font-family:monospace;font-size:13px;background:var(--bg2);border:1px solid var(--br);border-radius:6px;padding:3px 8px;color:var(--tc2);}
+
+/* ── Footer ── */
+footer{text-align:center;padding:60px 44px;border-top:1.5px solid var(--br-s);background:linear-gradient(180deg,var(--bg2),var(--bg));}
+
+/* ── Responsive ── */
+@media(max-width:820px){
+  nav{padding:12px 20px;}.nav-links{display:none;}
+  section{padding:88px 20px 60px;}
+  .g2,.g3,.rp-grid,.spec-grid,.test-grid{grid-template-columns:1fr;}
+  .dt-head,.dt-row{grid-template-columns:50px 1fr 80px;}
+  .dt-row>:last-child{display:none;}
+  h1{font-size:32px;}
+  .screens-grid{gap:20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Ajdur International</div>
+  <div class="nav-links">
+    <a href="#intro">Intro</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#design">Design System</a>
+    <a href="#screens">Screens</a>
+    <a href="#flows">Flows</a>
+    <a href="#copy">Copy</a>
+    <a href="#handoff">Handoff</a>
+  </div>
+  <div class="nav-badge">Final Output · April 2026</div>
+</nav>
+
+<div class="wrap">
+
+<!-- ══════════ HERO / INTRO ══════════ -->
+<section id="intro" style="padding-top:140px;padding-bottom:56px;">
+  <div style="position:absolute;top:90px;left:50%;transform:translateX(-50%);width:660px;height:300px;background:radial-gradient(ellipse,rgba(0,187,207,.09),transparent 70%);pointer-events:none;"></div>
+  <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(0,187,207,.12),rgba(0,122,136,.08));border:1px solid var(--tc-m);color:var(--tc2);padding:7px 18px;border-radius:100px;font-size:13px;font-weight:700;margin-bottom:24px;letter-spacing:.02em;">
+    <span style="width:8px;height:8px;border-radius:50%;background:var(--tc);display:inline-block;animation:pulse 2s ease-in-out infinite;"></span>
+    FINAL UX/UI DESIGN OUTPUT · All Decisions Resolved
+  </div>
+  <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}</style>
+  <h1>Ajdur International<br><span style="color:var(--tc);">Final Design Specification</span></h1>
+  <p style="font-size:16px;max-width:700px;margin:20px 0 26px;color:var(--mu);font-weight:300;line-height:1.82;">Based on the submitted <strong style="color:var(--ink);">132-page Ajdur App strategic brief</strong> and the audio conversation with <strong style="color:var(--ink);">Prof. Kewunla</strong> (Ajdur App Owner &amp; Founder), and incorporating all responses to the 12-decision form submitted by the Ajdur team, this document represents the <em style="color:var(--tc2);">complete UX/UI design specification</em> for the Ajdur Spiritual Intelligence Platform. All decisions have been resolved. This is the final design direction.</p>
+
+  <div class="sk-row">
+    <div class="sk-pill"><div class="sk-dot" style="background:var(--gd);"></div><div><div class="sk-role">App Owner &amp; Founder</div><div class="sk-name">Prof. Kewunla</div></div></div>
+    <div class="sk-pill"><div class="sk-dot"></div><div><div class="sk-role">Project Team</div><div class="sk-name">Ajdur App Team</div></div></div>
+    <div class="sk-pill"><div class="sk-dot" style="background:var(--tc-m);border-color:var(--tc);"></div><div><div class="sk-role">UX/UI Design</div><div class="sk-name">Design Review Team</div></div></div>
+  </div>
+
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">Decisions <strong style="color:var(--gr);">All 12 Resolved ✓</strong></div>
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">Design Direction <strong style="color:var(--ink);">Hybrid Dark + Turquoise</strong></div>
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">Screens designed <strong style="color:var(--tc2);">8</strong></div>
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">User flows <strong style="color:var(--tc2);">8</strong></div>
+    <div style="background:var(--sf);border:1px solid var(--br-s);padding:8px 18px;border-radius:100px;font-size:14px;font-weight:500;color:var(--mu);">Copy upgrades <strong style="color:var(--gr);">19</strong></div>
+  </div>
+</section>
+
+<!-- ══════════ RESOLVED DECISIONS ══════════ -->
+<section id="decisions">
+  <div class="eye">All Decisions — Confirmed by Ajdur Team</div>
+  <h2>Final Decision Summary</h2>
+  <p style="max-width:640px;margin-bottom:28px;">All 12 decisions submitted to Prof. Kewunla and the Ajdur team have been answered. The table below records every confirmed choice. These are now locked as design requirements.</p>
+
+  <div class="dt">
+    <div class="dt-head"><div class="dt-th">#</div><div class="dt-th">Decision</div><div class="dt-th">Status</div><div class="dt-th">Final Answer from Ajdur Team</div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D01</div></div><div class="dtc"><div class="dtc-label">Visual Design Direction</div></div><div class="dtc"><span class="badge b-final">✓ Final</span></div><div class="dtc"><div class="dtc-val"><strong>Hybrid: Option A + Turquoise Intelligence Accent.</strong> Dark Luxury Spiritual base (Midnight Blue + Ivory) PLUS Turquoise Blue as key brand accent representing Clarity, Insight, and Spiritual Intelligence. Tagline: "Dark Luxury Spiritual + Turquoise Intelligence Accent."</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D02</div></div><div class="dtc"><div class="dtc-label">Clarity Session Price</div></div><div class="dtc"><span class="badge b-res">✓ Set</span></div><div class="dtc"><div class="dtc-val">₦10,000 (To be confirmed with Prof. Kewunla). Strategy: Affordable entry point to encourage first-time conversion.</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D03</div></div><div class="dtc"><div class="dtc-label">Deep Destiny Consultation Price</div></div><div class="dtc"><span class="badge b-res">✓ Set</span></div><div class="dtc"><div class="dtc-val">₦35,000 (To be confirmed with Prof. Kewunla). Reflects exclusivity of direct access to Prof. Kewunla and anchors perceived platform value.</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D04</div></div><div class="dtc"><div class="dtc-label">Coupon Types</div></div><div class="dtc"><span class="badge b-res">✓ Defined</span></div><div class="dtc"><div class="dtc-val">All 5 types confirmed: Consultation Discount (10–30%) · Reading Credit (1–3 premium insights) · Store Voucher (₦1,000–₦5,000, to confirm) · Event/Community Access (special invite) · Full Free Consultation (manual approval, special cases only).</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D05</div></div><div class="dtc"><div class="dtc-label">AdMob Rewarded Ads Timing</div></div><div class="dtc"><span class="badge b-res">✓ Set</span></div><div class="dtc"><div class="dtc-val">Go live immediately at launch. Core revenue stream from day one. Builds habit loop: Watch → Unlock → Return. Must feel like "Earned Access" — never interruptive.</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D06</div></div><div class="dtc"><div class="dtc-label">In-App Store Timeline</div></div><div class="dtc"><span class="badge b-res">✓ Set</span></div><div class="dtc"><div class="dtc-val">Phase 2 — 30 to 60 days after launch. Phase 1 focuses on user acquisition, engagement, and consultation revenue. Phase 2 adds Books, Incenses, and Spiritual Tools.</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D07</div></div><div class="dtc"><div class="dtc-label">Testimonials</div></div><div class="dtc"><span class="badge b-res">✓ Provided</span></div><div class="dtc"><div class="dtc-val">Yes — 3 real testimonials provided by team. See Testimonials section below. To appear on Consultation page.</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D08</div></div><div class="dtc"><div class="dtc-label">Skip Button on Onboarding</div></div><div class="dtc"><span class="badge b-res">✓ Set</span></div><div class="dtc"><div class="dtc-val">Yes — include Skip button (top right of each onboarding slide). Reduces friction for fast users and return visitors.</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D09</div></div><div class="dtc"><div class="dtc-label">Daily Wisdom Content Creator</div></div><div class="dtc"><span class="badge b-res">✓ Set</span></div><div class="dtc"><div class="dtc-val">Prof. Kewunla provides: weekly teachings, oracle messages, core insights. Team handles: scheduling, uploading, formatting. Content prepared weekly in batches, auto-scheduled daily.</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D10</div></div><div class="dtc"><div class="dtc-label">Dream Interpretation vs Oraculum</div></div><div class="dtc"><span class="badge b-res">✓ Set</span></div><div class="dtc"><div class="dtc-val">DIFFERENT services — keep both, with distinct visuals and descriptions. Dream Interpretation: text-based, user submits dream, interpretation based on patterns. Oraculum: spiritual/oracle-based, more intuitive and guided insight experience.</div></div></div>
+
+    <div class="dt-row"><div class="dtc"><div class="dtc-n">D11</div></div><div class="dtc"><div class="dtc-label">WhatsApp Contact Number</div></div><div class="dtc"><span class="badge b-new">Pending</span></div><div class="dtc"><div class="dtc-val">+234 XXX XXX XXXX — actual number to be confirmed by Prof. Kewunla. Design shows placeholder; developer replaces before launch.</div></div></div>
+
+    <div class="dt-row" style="border:none;"><div class="dtc"><div class="dtc-n">D12</div></div><div class="dtc"><div class="dtc-label">Additional Design Direction</div></div><div class="dtc"><span class="badge b-res">✓ Set</span></div><div class="dtc"><div class="dtc-val">Replace "Founder/Owner" with "Prof. Kewunla" everywhere in app. Apple-level simplicity + Spiritual depth + Premium exclusivity. No dead ends — every screen leads to Insight or Consultation. Build something that feels: "You are entering a deeper level of understanding." This is a global scalable product.</div></div></div>
+  </div>
+
+  <!-- Testimonials -->
+  <h3 style="margin-top:36px;margin-bottom:6px;">Testimonials — Confirmed by Ajdur Team</h3>
+  <p style="font-size:14px;color:var(--mu);margin-bottom:20px;">To appear on the "Speak to Prof. Kewunla" Consultation page. These are real client testimonials provided by the Ajdur team.</p>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-body">"I came to Ajdur confused about my life direction. The insights revealed patterns I had been ignoring for years. After my consultation, everything became clearer."</div>
+      <div class="test-author">— Verified User</div>
+      <div class="test-badge">Lagos, Nigeria</div>
+    </div>
+    <div class="test-card">
+      <div class="test-body">"This is not just an app, it's an experience. It opened my eyes to things about myself I couldn't explain before."</div>
+      <div class="test-author">— Verified User</div>
+      <div class="test-badge">Abuja, Nigeria</div>
+    </div>
+    <div class="test-card">
+      <div class="test-body">"Speaking directly with Prof. Kewunla gave me clarity and peace. It felt like someone finally understood my journey."</div>
+      <div class="test-author">— Verified User</div>
+      <div class="test-badge">United Kingdom</div>
+    </div>
+  </div>
+
+  <!-- Coupon Types Breakdown -->
+  <h3 style="margin-top:36px;margin-bottom:6px;">Coupon System — Confirmed Structure</h3>
+  <p style="font-size:14px;color:var(--mu);margin-bottom:20px;">All 5 types confirmed. Dropdown in "Unlock Discount Access" screen must list these options. Store Voucher value to be confirmed with Prof. Kewunla.</p>
+  <div class="coupon-grid">
+    <div class="cg-head"><div class="cg-th">Coupon Type</div><div class="cg-th">Value / Range</div><div class="cg-th">Access Method</div><div class="cg-th">Approval</div></div>
+    <div class="cg-row"><div class="cg-cell name">Consultation Discount</div><div class="cg-cell val">10% – 30% off</div><div class="cg-cell">Request form → team emails code</div><div class="cg-cell">Auto (within defined %)</div></div>
+    <div class="cg-row"><div class="cg-cell name">Reading Credit</div><div class="cg-cell val">Unlock 1–3 premium insights</div><div class="cg-cell">Code applied on Insights card</div><div class="cg-cell">Auto</div></div>
+    <div class="cg-row"><div class="cg-cell name">Store Voucher</div><div class="cg-cell val">₦1,000 – ₦5,000 (to confirm)</div><div class="cg-cell">Applied at store checkout</div><div class="cg-cell">Auto</div></div>
+    <div class="cg-row"><div class="cg-cell name">Event / Community Access</div><div class="cg-cell val">Special invite or partial discount</div><div class="cg-cell">Invite code or link</div><div class="cg-cell">Manual</div></div>
+    <div class="cg-row" style="border:none;"><div class="cg-cell name">Full Free Consultation</div><div class="cg-cell val">100% off (1 session)</div><div class="cg-cell">Team issues manually</div><div class="cg-cell">Manual — special cases only</div></div>
+  </div>
+</section>
+
+<!-- ══════════ DESIGN SYSTEM ══════════ -->
+<section id="design">
+  <div class="eye">Final Design System</div>
+  <h2>Dark Luxury Spiritual + Turquoise Intelligence</h2>
+  <p style="max-width:640px;margin-bottom:32px;">The confirmed hybrid direction: Midnight Dark as the premium base, Turquoise as the Ajdur brand intelligence accent, Elegant Gold for the highest-tier premium moments, Ivory for readability. This combination communicates authority, mystery, and digital precision simultaneously.</p>
+
+  <!-- Color System -->
+  <h4>Final Colour Palette</h4>
+  <div class="color-system">
+    <div class="cs-chip"><div class="cs-swatch" style="background:#07090F;"></div><div class="cs-info"><div class="cs-name">Midnight</div><div class="cs-hex">#07090F</div><div class="cs-role">Primary background</div></div></div>
+    <div class="cs-chip"><div class="cs-swatch" style="background:#131928;"></div><div class="cs-info"><div class="cs-name">Surface Dark</div><div class="cs-hex">#131928</div><div class="cs-role">Card / panel BG</div></div></div>
+    <div class="cs-chip"><div class="cs-swatch" style="background:#1A2038;"></div><div class="cs-info"><div class="cs-name">Card Dark</div><div class="cs-hex">#1A2038</div><div class="cs-role">Insight cards</div></div></div>
+    <div class="cs-chip"><div class="cs-swatch" style="background:linear-gradient(135deg,#00BBCF,#007A88);"></div><div class="cs-info"><div class="cs-name">Turquoise ✦</div><div class="cs-hex">#00BBCF → #007A88</div><div class="cs-role">Brand accent — primary CTA</div></div></div>
+    <div class="cs-chip"><div class="cs-swatch" style="background:#C8A84B;"></div><div class="cs-info"><div class="cs-name">Elegant Gold</div><div class="cs-hex">#C8A84B</div><div class="cs-role">Platinum / Deep Destiny only</div></div></div>
+    <div class="cs-chip"><div class="cs-swatch" style="background:#EEE5D0;"></div><div class="cs-info"><div class="cs-name">Ivory</div><div class="cs-hex">#EEE5D0</div><div class="cs-role">Primary text on dark</div></div></div>
+    <div class="cs-chip"><div class="cs-swatch" style="background:#B8AF9E;"></div><div class="cs-info"><div class="cs-name">Warm Grey</div><div class="cs-hex">#B8AF9E</div><div class="cs-role">Body text / metadata</div></div></div>
+    <div class="cs-chip"><div class="cs-swatch" style="background:#7B5EA7;"></div><div class="cs-info"><div class="cs-name">Mystic Purple</div><div class="cs-hex">#7B5EA7</div><div class="cs-role">Oracle / mystical features</div></div></div>
+  </div>
+
+  <div class="g2" style="gap:20px;margin-bottom:32px;">
+    <div class="info-box res">
+      <div class="ib-label res">Typography System</div>
+      <div class="ib-title">Display: Playfair Display (400, 600) — Serif Authority</div>
+      <div class="ib-body" style="margin-top:8px;">All screen titles, service names, oracle messages, and headings. Communicates timeless wisdom and premium authority.<br><br>Body: Outfit / Manrope (400, 500, 600) — Modern Clarity<br>All body copy, labels, buttons, metadata. Clean, readable, digital. Contrast with Playfair creates the "Apple-level simplicity + Spiritual depth" dynamic Prof. Kewunla requested.</div>
+    </div>
+    <div class="info-box gold">
+      <div class="ib-label gd">Turquoise Usage Rules</div>
+      <div class="ib-title">Turquoise is the Ajdur brand accent — use precisely</div>
+      <div class="ib-body" style="margin-top:8px;"><strong>Primary CTAs</strong> — all main action buttons use the turquoise gradient (#00BBCF → #007A88)<br><strong>Active states</strong> — nav menu, tab bar, active card borders<br><strong>Brand moments</strong> — logo, key insights, oracle labels, daily wisdom<br><strong>Never compete with Gold</strong> — Gold is exclusively for Deep Destiny / Platinum tier. Turquoise and Gold must not appear on the same element.</div>
+    </div>
+  </div>
+
+  <!-- Redesign Priorities -->
+  <h4 style="margin-top:8px;">6 Screen Redesign Priorities</h4>
+  <div class="rp-grid">
+    <div class="rp-card" style="border-top-color:var(--pu);">
+      <div class="rp-num" style="color:var(--pu);">01 · Onboarding</div>
+      <div class="rp-title">From Informative to Irresistible</div>
+      <div class="rp-body">3 slides with new emotional headlines. Skip button top right. Trust signal before CTA. "Reveal My Blueprint" replaces "Get Started." Turquoise orbital ring replaces generic imagery. Fade-in animation per slide.</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--tc);">
+      <div class="rp-num" style="color:var(--tc);">02 · Home Dashboard</div>
+      <div class="rp-title">Guided Entry, Not a Menu</div>
+      <div class="rp-body">Daily oracle quote, dual CTA strip (Reveal Blueprint / Book Consultation), 2×2 feature grid with free/unlock indicators, turquoise hero gradient, bottom tab with centered Ajdur monogram.</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--tc);">
+      <div class="rp-num" style="color:var(--tc);">03 · Discover Hidden Patterns</div>
+      <div class="rp-title">Discovery Hub with Status Badges</div>
+      <div class="rp-body">Hero section with daily question. Cards show Free / Unlock / Coming Soon badges. Each card has emotional hook copy + CTA. "Watch &amp; Unlock" ad button on gated cards. Post-result Consultation CTA mandatory.</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--gd);">
+      <div class="rp-num" style="color:var(--go);">04 · Speak to Prof. Kewunla</div>
+      <div class="rp-title">Premium Conversion Engine</div>
+      <div class="rp-body">Hero with "Need Clear Answers?" Gold tier visually dominates. Prices shown (₦10,000 / ₦35,000). "MOST RECOMMENDED" badge. 3 real testimonials. Trust builder block. Limited slots urgency. Post-result upsell mandatory.</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--ro);">
+      <div class="rp-num" style="color:var(--ro);">05 · Unlock Discount Access</div>
+      <div class="rp-title">Accessibility Pathway, Not Begging</div>
+      <div class="rp-body">"Everyone Deserves Clarity" framing. Context box: what coupons unlock. Dual path: Request Support form + "Prefer Free Access? Watch &amp; Unlock" block. All 5 coupon types in dropdown. WhatsApp Contact Us button.</div>
+    </div>
+    <div class="rp-card" style="border-top-color:var(--gr);">
+      <div class="rp-num" style="color:var(--gr);">06 · Daily Wisdom Center</div>
+      <div class="rp-title">Prof. Kewunla's Authority Hub</div>
+      <div class="rp-body">Daily oracle message (Watch &amp; Unlock for premium). Daily teaching from Prof. Kewunla. Numerology of the day. Dream tip. Spiritual Academy login separate from daily content. Content rotates daily, prepared weekly in batches.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SCREENS ══════════ -->
+<section id="screens">
+  <div class="eye">Final Screen Designs — Premium Edition</div>
+  <h2>8 Key Screens — Elevated Design</h2>
+  <p style="max-width:640px;margin-bottom:12px;">All screens rebuilt with deeper contrast, cinematic backgrounds, gradient borders, animated orb, and premium gold CTAs that exceed the submitted sample. Upload the Ajdur logo below to see exactly how it integrates into every screen.</p>
+
+  <!-- LOGO UPLOAD ZONE -->
+  <div class="logo-upload-zone">
+    <div class="luz-preview" id="logo-preview-main">
+      <span class="luz-placeholder">A</span>
+    </div>
+    <div class="luz-info">
+      <h4>Upload Ajdur Logo</h4>
+      <p>The Ajdur logo (white background) will be placed inside a dark circular container across all screens. Upload to preview exactly how it integrates with the Dark Luxury design. For production, provide a PNG with transparent background.</p>
+      <input type="file" id="logo-file-input" accept="image/*" style="display:none;">
+      <label for="logo-file-input">
+        <div class="luz-btn" style="cursor:pointer;">
+          <svg style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;" viewBox="0 0 16 16"><path d="M8 2v8M4 6l4-4 4 4"/><path d="M2 12h12"/></svg>
+          Choose Logo File
+        </div>
+      </label>
+      <div class="luz-note">Supported: PNG, JPG, SVG · White background logos display correctly in the dark circular container shown above</div>
+    </div>
+  </div>
+
+  <div class="screens-grid">
+
+    <!-- SCREEN 1: ONBOARDING S3 -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-ob" style="position:relative;">
+          <div class="ob-img">
+            <div class="ob-glow"></div>
+            <div class="ob-circle">
+              <div class="ob-ring ob-r1"></div>
+              <div class="ob-ring ob-r2"></div>
+              <div class="ob-ring ob-r3">
+                <img class="logo-img-sm screen-logo" src="" alt="" style="display:none;">
+                <span class="ob-fallback" id="ob-fallback">Ajdur</span>
+              </div>
+            </div>
+          </div>
+          <div class="ob-skip-row">
+            <div class="ob-dots"><div class="ob-dot a"></div><div class="ob-dot"></div><div class="ob-dot"></div></div>
+            <div class="ob-skip">Skip</div>
+          </div>
+          <div class="ob-h">Your Birthdate<br>Is <em>Not Random</em></div>
+          <div class="ob-sub">Your name and birthdate reveal patterns of strength, life lessons, hidden challenges, and purpose.</div>
+          <div class="ob-bullets">
+            <div class="ob-b"><div class="ob-bd"></div>Core traits &amp; natural talents</div>
+            <div class="ob-b"><div class="ob-bd"></div>Hidden life challenges &amp; purpose</div>
+            <div class="ob-b"><div class="ob-bd"></div>Your destiny patterns decoded</div>
+          </div>
+          <div class="ob-trust">✦ Trusted by Thousands Seeking Clarity</div>
+          <button class="ob-cta">Reveal My Blueprint</button>
+        </div>
+      </div>
+      <div class="ph-lbl">Onboarding · Screen 3</div>
+    </div>
+
+    <!-- SCREEN 2: HOME DASHBOARD -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-home">
+          <div class="hbar">
+            <div class="hbar-logo-wrap">
+              <div class="hbar-logo-ring">
+                <img class="logo-img screen-logo" src="" alt="" style="display:none;">
+                <span class="logo-fallback-text" style="font-family:'Playfair Display',serif;font-size:11px;font-style:italic;color:rgba(0,205,225,.7);">A</span>
+              </div>
+              <div class="hbar-logo-text">Ajdur</div>
+            </div>
+            <div class="hbar-menu"><span></span><span></span><span></span></div>
+          </div>
+          <div class="home-hero">
+            <div class="hh-greet">Welcome Back</div>
+            <div class="hh-h1">Your journey to<br><em>clarity</em> begins here</div>
+            <div class="hh-quote">"Patterns repeat until lessons are understood."</div>
+            <div class="hh-btns">
+              <button class="hh-btn-p">Reveal Blueprint</button>
+              <button class="hh-btn-o">Speak to Prof. Kewunla</button>
+            </div>
+          </div>
+          <div class="home-grid">
+            <div class="hg-card feat">
+              <div class="hg-icon t"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg></div>
+              <div class="hg-name">Hidden Patterns</div>
+              <div class="hg-sub t">Free + Unlock</div>
+            </div>
+            <div class="hg-card gold">
+              <div class="hg-icon g"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6"/></svg></div>
+              <div class="hg-name">Consult Prof. K.</div>
+              <div class="hg-sub g">₦10K – ₦35K</div>
+            </div>
+            <div class="hg-card">
+              <div class="hg-icon t"><svg viewBox="0 0 16 16"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg></div>
+              <div class="hg-name">Daily Wisdom</div>
+              <div class="hg-sub">Today's insight</div>
+            </div>
+            <div class="hg-card">
+              <div class="hg-icon t"><svg viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/></svg></div>
+              <div class="hg-name">Discount Access</div>
+              <div class="hg-sub">Support request</div>
+            </div>
+          </div>
+          <div class="home-tab-wrap">
+            <div class="home-tab">
+              <div class="tab-item active">
+                <svg viewBox="0 0 18 18"><rect x="2" y="2" width="6" height="6" rx="1.5"/><rect x="10" y="2" width="6" height="6" rx="1.5"/><rect x="2" y="10" width="6" height="6" rx="1.5"/><rect x="10" y="10" width="6" height="6" rx="1.5"/></svg>
+                <div class="tab-item-lbl">Explore</div>
+              </div>
+              <div class="tab-center">
+                <div class="tab-center-btn">
+                  <img class="logo-img screen-logo" src="" alt="" style="display:none;">
+                  <span class="tab-center-text" id="tab-center-text">A</span>
+                </div>
+              </div>
+              <div class="tab-item">
+                <svg viewBox="0 0 18 18"><path d="M9 2v2M9 14v2M2 9h2M14 9h2"/></svg>
+                <div class="tab-item-lbl">Results</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-lbl">Home Dashboard</div>
+    </div>
+
+    <!-- SCREEN 3: DISCOVER HIDDEN PATTERNS -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-insights">
+          <div class="ins-back" style="background:#040810;">
+            <div class="ins-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div>
+            <div class="ins-title">Discover Hidden Patterns</div>
+          </div>
+          <div class="ins-hero">
+            <div class="ins-q-label">Today's Question</div>
+            <div class="ins-q-h">What is affecting your life right now?</div>
+            <div class="ins-q-sub">Your answers are written in your face, dreams, numbers &amp; destiny patterns.</div>
+          </div>
+          <div class="ins-card-grid">
+            <div class="ins-card" style="border-color:rgba(232,192,106,.22);">
+              <div class="ins-card-tag lock">Unlock</div>
+              <div class="ins-card-icon gold-i"><svg viewBox="0 0 16 16"><path d="M8 2C5.79 2 4 4 4 6.5c0 3.5 4 7.5 4 7.5s4-4 4-7.5C12 4 10.21 2 8 2z"/></svg></div>
+              <div class="ins-card-name">Face Reading</div>
+              <div class="ins-card-hook">Your face reveals hidden life patterns</div>
+              <div class="ins-card-cta">Unlock Insight →</div>
+              <div class="ins-card-ad">Watch &amp; Unlock</div>
+            </div>
+            <div class="ins-card" style="border-color:rgba(155,110,225,.22);">
+              <div class="ins-card-tag lock">Unlock</div>
+              <div class="ins-card-icon pu-i"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><path d="M8 5v3l2 2"/></svg></div>
+              <div class="ins-card-name">Oraculum</div>
+              <div class="ins-card-hook">Hidden messages may be waiting</div>
+              <div class="ins-card-cta">Unlock Insight →</div>
+              <div class="ins-card-ad">Watch &amp; Unlock</div>
+            </div>
+            <div class="ins-card">
+              <div class="ins-card-tag free">Free</div>
+              <div class="ins-card-icon teal-i"><svg viewBox="0 0 16 16"><path d="M3 8a5 5 0 0110 0 5 5 0 01-10 0z"/><path d="M8 3v2M8 11v2"/></svg></div>
+              <div class="ins-card-name">Dream Interpretation</div>
+              <div class="ins-card-hook">Dreams may be sending warnings</div>
+              <div class="ins-card-cta">Decode My Dream →</div>
+            </div>
+            <div class="ins-card">
+              <div class="ins-card-tag free">Free</div>
+              <div class="ins-card-icon teal-i"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div>
+              <div class="ins-card-name">Card Reading</div>
+              <div class="ins-card-hook">What energy surrounds your next move?</div>
+              <div class="ins-card-cta">Reveal My Card →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-lbl">Discover Hidden Patterns</div>
+    </div>
+
+    <!-- SCREEN 4: CONSULTATION -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-consult">
+          <div class="con-back" style="background:#040810;">
+            <div class="con-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div>
+            <div class="con-title">Speak to Prof. Kewunla</div>
+          </div>
+          <div class="con-hero">
+            <div class="con-h">Need Clear Answers?<em>Deeper insight awaits.</em></div>
+            <div class="con-sub">Speak directly with Prof. Kewunla for personal guidance on relationships, purpose, destiny, and life direction.</div>
+            <button class="con-cta-btn">Book My Consultation</button>
+          </div>
+          <!-- DEEP DESTINY — gradient border featured card -->
+          <div class="con-tier feat">
+            <div class="con-tier-top">
+              <div class="con-tier-name">Deep Destiny Consultation</div>
+              <div class="con-tier-tag ctt-mr">MOST RECOMMENDED</div>
+            </div>
+            <div style="margin:4px 0 7px;"><span class="con-tier-tag ctt-gold">Platinum / Diamond</span></div>
+            <div class="con-tier-desc">Full spiritual diagnosis, destiny mapping &amp; life blueprint — private 30-min video with Prof. Kewunla.</div>
+            <div class="con-tier-meta"><span>⏱ 1 week</span><span>📹 Private video</span></div>
+            <div class="con-price">₦35,000</div>
+          </div>
+          <!-- CLARITY SESSION — teal border card -->
+          <div class="con-tier std">
+            <div class="con-tier-top">
+              <div class="con-tier-name">Clarity Session</div>
+              <div class="con-tier-tag ctt-teal">Standard</div>
+            </div>
+            <div class="con-tier-desc">Focused guidance for present questions via structured live chat.</div>
+            <div class="con-tier-meta"><span>⏱ 1 week</span><span>💬 Live chat</span></div>
+            <div class="con-price" style="color:var(--tc-hi);">₦10,000</div>
+          </div>
+          <div class="con-scta"><button>Unlock Deep Destiny Session</button></div>
+        </div>
+      </div>
+      <div class="ph-lbl">Speak to Prof. Kewunla</div>
+    </div>
+
+    <!-- SCREEN 5: DAILY WISDOM CENTER -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-wisdom">
+          <div class="ins-back" style="background:#040810;">
+            <div class="ins-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div>
+            <div class="ins-title">Daily Wisdom Center</div>
+          </div>
+          <div class="wis-hero" style="padding-bottom:10px;">
+            <div class="wis-label">By Prof. Kewunla · Daily Oracle</div>
+            <div class="wis-h">Learn the Patterns<br>Behind Life</div>
+          </div>
+          <div style="padding:0 12px 10px;">
+            <div class="wis-oracle-box">
+              <div class="wis-oracle-lbl">Today's Oracle Message</div>
+              <div class="wis-oracle-msg">"Silence often reveals what noise hides. When life repeats a pattern, it is asking you to listen differently."</div>
+              <div class="wis-unlock-btn">Watch &amp; Unlock Full Message</div>
+            </div>
+            <div class="wis-teachings" style="padding:0;">
+              <div class="wis-lesson">
+                <div class="wis-les-label">Today's Teaching</div>
+                <div class="wis-les-title">Why Certain Life Patterns Repeat</div>
+                <div class="wis-les-body">Sometimes repeated struggles are not bad luck — they are unfinished lessons.</div>
+                <div class="wis-les-link">Read More →</div>
+              </div>
+              <div class="wis-lesson" style="margin-bottom:0;">
+                <div class="wis-les-label">Numerology of the Day</div>
+                <div class="wis-les-title">Your Number: 7 — Seeker of Truth</div>
+                <div class="wis-les-body">Today invites deep reflection. Trust inner knowing.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-lbl">Daily Wisdom Center</div>
+    </div>
+
+    <!-- SCREEN 6: UNLOCK DISCOUNT ACCESS -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-coupon">
+          <div class="ins-back" style="background:#040810;">
+            <div class="ins-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div>
+            <div class="ins-title">Unlock Discount Access</div>
+          </div>
+          <div class="cpn-hero">
+            <div class="cpn-h">Everyone Deserves<br>Clarity</div>
+            <div class="cpn-sub">Request support and explore flexible access pathways.</div>
+          </div>
+          <div class="cpn-form">
+            <div class="cpn-ctx">✦ Coupons unlock: Consultation discounts · Reading credits · Store vouchers · Event access</div>
+            <div class="cpn-label">Full Name</div>
+            <input class="cpn-input" placeholder="Your name" type="text" readonly>
+            <div class="cpn-label">Email Address</div>
+            <input class="cpn-input" placeholder="your@email.com" type="email" readonly>
+            <div class="cpn-label">Coupon Type</div>
+            <select class="cpn-select">
+              <option>Select type...</option>
+              <option>Consultation Discount (10–30%)</option>
+              <option>Reading Credit (1–3 insights)</option>
+              <option>Store Voucher</option>
+              <option>Event Access</option>
+              <option>Full Free Consultation (special)</option>
+            </select>
+            <button class="cpn-submit">Request Access Support</button>
+            <div class="cpn-alt">
+              <div class="cpn-alt-q">Prefer free access?</div>
+              <button class="cpn-alt-btn">Watch &amp; Unlock</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-lbl">Unlock Discount Access</div>
+    </div>
+
+    <!-- SCREEN 7: AD POPUP -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div style="height:528px;background:linear-gradient(180deg,rgba(4,8,16,.96),rgba(7,12,22,.98));display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;position:relative;">
+          <!-- Blur overlay suggesting content behind -->
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(0,195,215,.08),transparent 60%);pointer-events:none;"></div>
+          <div class="ad-modal">
+            <div class="ad-modal-title">Unlock Your Insight</div>
+            <div class="ad-modal-sub">Choose how you'd like to continue</div>
+            <div class="ad-opt pay">
+              <div class="ad-opt-label">Premium Instant Access</div>
+              <div class="ad-opt-desc">Get your full personalised reading now with direct access to results.</div>
+              <button class="ad-opt-btn gold">Continue with Payment</button>
+            </div>
+            <div class="ad-divider">— or —</div>
+            <div class="ad-opt free">
+              <div class="ad-opt-label">Free Access Option</div>
+              <div class="ad-opt-desc">Watch a short video to unlock a starter version of your reading.</div>
+              <button class="ad-opt-btn teal">Watch &amp; Unlock</button>
+            </div>
+          </div>
+          <div style="font-size:9px;color:rgba(200,185,165,.28);text-align:center;margin-top:12px;line-height:1.5;">Your choice is always voluntary.<br>Premium users never see forced ads.</div>
+        </div>
+      </div>
+      <div class="ph-lbl">Unlock Insight Popup</div>
+    </div>
+
+    <!-- SCREEN 8: SIDE MENU -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-menu-wrapper">
+          <div class="side-drawer">
+            <div class="sd-logo-wrap">
+              <div class="sd-logo-ring">
+                <img class="logo-img screen-logo" src="" alt="" style="display:none;">
+                <span class="logo-fallback-sm" style="font-family:'Playfair Display',serif;font-size:10px;font-style:italic;color:rgba(0,205,225,.6);">A</span>
+              </div>
+              <div class="sd-logo-text">Ajdur</div>
+            </div>
+            <div class="sd-mi active"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg><span>Discover Patterns</span></div>
+            <div class="sd-mi"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6M5 9.5h4"/></svg><span>Speak to Prof. K.</span></div>
+            <div class="sd-mi"><svg viewBox="0 0 16 16"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg><span>Daily Wisdom</span></div>
+            <div class="sd-mi"><svg viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/></svg><span>Discount Access</span></div>
+            <div class="sd-divider"></div>
+            <div class="sd-mi"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg><span>Account &amp; Prefs</span></div>
+            <div class="sd-mi"><svg viewBox="0 0 16 16"><path d="M8 2v6l3 3"/><circle cx="8" cy="8" r="6"/></svg><span>Privacy Policy</span></div>
+            <div class="sd-mi"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="6" height="12" rx="1"/><path d="M11 5h3M11 8h3"/></svg><span>Terms</span></div>
+            <div class="sd-ver">Version 1.0.10 (91)</div>
+          </div>
+          <div class="sd-dim"></div>
+        </div>
+      </div>
+      <div class="ph-lbl">Side Navigation Menu</div>
+    </div>
+
+    <!-- SCREEN 9: WELCOME LANDING — Onboarding Slide 1 with video placeholder -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-welcome">
+          <div class="wel-logo-top">
+            <div class="wel-logo-circle">
+              <img class="logo-img screen-logo" src="" alt="" style="display:none;">
+              <span class="wel-logo-fb">A</span>
+            </div>
+          </div>
+          <div class="wel-title-bar">
+            <div class="wel-hm"><span></span><span></span><span></span></div>
+            <div class="wel-page-title">Self Exploration</div>
+            <div class="wel-skip-btn">Skip</div>
+          </div>
+          <div class="wel-ob-dots">
+            <div class="wel-ob-dot a"></div><div class="wel-ob-dot"></div><div class="wel-ob-dot"></div>
+          </div>
+          <div class="wel-body-text">
+            At <strong>AJDUR International</strong>, a member of RMQK spiritual family, we believe the journey of self-discovery and the pursuit of spiritual wisdom are fundamental aspects of human existence. We invite you to embark on a profound journey with us.
+          </div>
+          <!-- Video placeholder matching live app screenshot -->
+          <div class="wel-video">
+            <div class="wel-video-bg">
+              <div style="position:relative;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;">
+                <!-- Abstract suggestion of Prof. Kewunla -->
+                <div style="width:88px;height:118px;background:linear-gradient(170deg,rgba(30,44,62,.92),rgba(12,22,36,.96));border-radius:44px 44px 6px 6px;position:relative;opacity:.55;margin-bottom:0;">
+                  <div style="width:34px;height:34px;border-radius:50%;background:rgba(45,58,78,.8);position:absolute;top:-18px;left:50%;transform:translateX(-50%);"></div>
+                  <div style="width:50px;height:4px;background:rgba(60,75,95,.7);position:absolute;top:22px;left:50%;transform:translateX(-50%);border-radius:2px;"></div>
+                </div>
+                <div style="position:absolute;bottom:4px;right:8px;background:rgba(0,195,215,.12);border:1px solid rgba(0,195,215,.2);border-radius:4px;padding:2px 6px;font-size:8px;color:var(--tc-hi);font-weight:700;">AJDUR RUWHAANIY INTERNATIONAL</div>
+              </div>
+            </div>
+            <div class="wel-vid-badge">▶ INTRO</div>
+            <div class="wel-play-wrap">
+              <div class="wel-play-btn"><svg viewBox="0 0 14 14"><polygon points="3,1 13,7 3,13"/></svg></div>
+              <div class="wel-vid-label">Prof. Kewunla · Founder</div>
+            </div>
+          </div>
+          <!-- Bottom tab with floating Ajdur logo — matches live app -->
+          <div class="wel-tab" style="padding-top:24px;">
+            <div class="wel-tab-logo">
+              <img class="logo-img screen-logo" src="" alt="" style="display:none;">
+              <span class="wel-logo-fb2">A</span>
+            </div>
+            <div class="wel-tab-item active">
+              <svg viewBox="0 0 18 18"><rect x="2" y="2" width="6" height="6" rx="1.5"/><rect x="10" y="2" width="6" height="6" rx="1.5"/><rect x="2" y="10" width="6" height="6" rx="1.5"/><rect x="10" y="10" width="6" height="6" rx="1.5"/></svg>
+              <div class="wel-tab-lbl">Self Exploration</div>
+            </div>
+            <div class="wel-tab-item">
+              <svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="6"/><path d="M9 5v5l3 2"/></svg>
+              <div class="wel-tab-lbl">Reading Result</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ph-lbl">Onboarding Slide 1 · Welcome + Video</div>
+    </div>
+
+    <!-- SCREEN 10: SPIRITUAL ACADEMY LOGIN -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-academy">
+          <div class="ins-back" style="background:#040810;">
+            <div class="ins-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div>
+            <div class="ins-title">Spiritual Academy</div>
+          </div>
+          <div class="ac-hero">
+            <div class="ac-emblem">
+              <svg viewBox="0 0 32 32"><path d="M16 3L19.5 11.5H28L21 17.5L23.5 26L16 21L8.5 26L11 17.5L4 11.5H12.5Z" stroke-width="1.2"/></svg>
+            </div>
+            <div class="ac-title">Ajdur Institute of Spirit Science</div>
+            <div class="ac-sub">Your gateway to spiritual knowledge &amp; wisdom</div>
+          </div>
+          <!-- Programme types -->
+          <div class="ac-programmes">
+            <div class="ac-prog"><div class="ac-prog-title">Online Class</div><div class="ac-prog-dur">1 Year</div><div class="ac-prog-mode">Online</div></div>
+            <div class="ac-prog"><div class="ac-prog-title">Advanced</div><div class="ac-prog-dur">3–5 Years</div><div class="ac-prog-mode">Online · Prereq.</div></div>
+            <div class="ac-prog"><div class="ac-prog-title">In-Person</div><div class="ac-prog-dur">Flexible</div><div class="ac-prog-mode">Prereq. req.</div></div>
+            <div class="ac-prog"><div class="ac-prog-title">Spiritism</div><div class="ac-prog-dur">Community</div><div class="ac-prog-mode">Knowledge</div></div>
+          </div>
+          <div class="ac-form">
+            <div class="ac-form-label">Student Email</div>
+            <input class="ac-input" placeholder="your@email.com" type="email" readonly>
+            <div class="ac-form-label">Password</div>
+            <input class="ac-input" placeholder="••••••••" type="password" readonly>
+            <button class="ac-btn">Access My Classes</button>
+            <div class="ac-links">
+              <div class="ac-link">Forgot password?</div>
+              <div class="ac-divider-link">|</div>
+              <div class="ac-link">Learn about enrolment</div>
+            </div>
+          </div>
+          <div class="ac-note">✦ The Academy portal is external. Your login credentials will be provided upon successful enrolment and confirmation by Prof. Kewunla's team.</div>
+        </div>
+      </div>
+      <div class="ph-lbl">Spiritual Academy Login</div>
+    </div>
+
+    <!-- SCREEN 11: CONTACT US -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-contact-screen">
+          <div class="ins-back" style="background:#040810;">
+            <div class="ins-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div>
+            <div class="ins-title">Contact Us</div>
+          </div>
+          <div class="con-scr-hero">
+            <div class="con-scr-h">Speak to Prof. Kewunla's Team</div>
+            <div class="con-scr-sub">We're here to help with your spiritual journey. Choose your preferred method of contact.</div>
+          </div>
+          <div class="con-options">
+            <div class="con-opt primary">
+              <div class="con-opt-icon wa"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12 12 0 00-1.04 2.479c0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" fill="none" stroke="#25D366" stroke-width="1.5"/></svg></div>
+              <div class="con-opt-text"><h5>WhatsApp</h5><p>+234 XXX XXX XXXX (to be confirmed)</p></div>
+              <div class="con-opt-arrow">›</div>
+            </div>
+            <div class="con-opt">
+              <div class="con-opt-icon em"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg></div>
+              <div class="con-opt-text"><h5>Email</h5><p>info@ajdur.com (to be confirmed)</p></div>
+              <div class="con-opt-arrow">›</div>
+            </div>
+            <div class="con-opt gold-opt">
+              <div class="con-opt-icon ph"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" stroke="none" fill="none" stroke-width="1.5"/><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1"/></svg></div>
+              <div class="con-opt-text"><h5>Book Consultation</h5><p>Speak directly with Prof. Kewunla</p></div>
+              <div class="con-opt-arrow" style="color:var(--gold-hi);">›</div>
+            </div>
+          </div>
+          <div class="con-msg-box">
+            <div class="con-msg-lbl">Quick Message</div>
+            <textarea class="con-msg-ta" placeholder="Type your message here..." readonly></textarea>
+            <button class="con-msg-send">Send via WhatsApp</button>
+          </div>
+        </div>
+      </div>
+      <div class="ph-lbl">Contact Us</div>
+    </div>
+
+    <!-- SCREEN 12: DISCOVER HIDDEN PATTERNS — Full Scrollable with Coming placeholders -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-ins-full" style="height:620px;overflow-y:auto;scrollbar-width:none;">
+          <div class="ins-back" style="background:#040810;position:sticky;top:0;z-index:10;">
+            <div class="ins-bb"><svg viewBox="0 0 12 12"><path d="M8 2L3 6l5 4"/></svg></div>
+            <div class="ins-title">Discover Hidden Patterns</div>
+          </div>
+          <div class="ins-hero">
+            <div class="ins-q-label">All Services — Scroll to Explore</div>
+            <div class="ins-q-h">What is affecting your life right now?</div>
+            <div class="ins-q-sub">Free · Unlock · Coming Soon — scroll to see all readings.</div>
+          </div>
+          <!-- Active -->
+          <div class="ins-cat-sep">Active Services</div>
+          <div class="ins-card-grid" style="padding:4px 12px;">
+            <div class="ins-card"><div class="ins-card-tag free">Free</div><div class="ins-card-icon teal-i"><svg viewBox="0 0 16 16"><path d="M3 8a5 5 0 0110 0 5 5 0 01-10 0z"/><path d="M8 3v2M8 11v2"/></svg></div><div class="ins-card-name">Dream Interpretation</div><div class="ins-card-hook">Dreams may be sending warnings</div><div class="ins-card-cta">Decode My Dream →</div></div>
+            <div class="ins-card"><div class="ins-card-tag free">Free</div><div class="ins-card-icon teal-i"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg></div><div class="ins-card-name">Card Reading</div><div class="ins-card-hook">What energy surrounds your next move?</div><div class="ins-card-cta">Reveal My Card →</div></div>
+            <div class="ins-card"><div class="ins-card-tag free">Free</div><div class="ins-card-icon teal-i"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 3"/></svg></div><div class="ins-card-name">Hidden Oracle Message</div><div class="ins-card-hook">A message may be waiting for you</div><div class="ins-card-cta">Reveal Message →</div></div>
+            <div class="ins-card"><div class="ins-card-tag lock">Unlock</div><div class="ins-card-icon teal-i"><svg viewBox="0 0 16 16"><circle cx="8" cy="7" r="3"/><rect x="4" y="9" width="8" height="6" rx="2"/></svg></div><div class="ins-card-name">Destiny Dice Reading</div><div class="ins-card-hook">Roll your destiny pattern</div><div class="ins-card-cta">Roll Now →</div><div class="ins-card-ad">Watch &amp; Unlock</div></div>
+            <div class="ins-card" style="grid-column:1/-1;"><div class="ins-card-tag lock">Unlock</div><div style="display:flex;gap:8px;align-items:center;"><div class="ins-card-icon gold-i"><svg viewBox="0 0 16 16"><path d="M8 1l1.8 3.6L14 5.5l-3 2.9.7 4.1L8 10.6l-3.7 1.9.7-4.1-3-2.9 4.2-.9z"/></svg></div><div><div class="ins-card-name" style="font-size:11px;">Destiny Number Analysis</div><div class="ins-card-hook" style="font-size:9px;">Your birthdate holds hidden patterns</div></div></div><div style="display:flex;gap:8px;margin-top:6px;"><div class="ins-card-cta">Discover My Number →</div><div class="ins-card-ad">Watch &amp; Unlock</div></div></div>
+          </div>
+          <!-- Coming -->
+          <div class="ins-cat-sep">Coming Soon</div>
+          <div class="ins-card-grid" style="padding:4px 12px 10px;">
+            <div class="ins-card ins-card-coming"><div class="ins-card-icon gold-i" style="opacity:.45;"><svg viewBox="0 0 16 16"><path d="M8 2C5.79 2 4 4 4 6.5c0 3.5 4 7.5 4 7.5s4-4 4-7.5C12 4 10.21 2 8 2z"/></svg></div><div class="ins-card-name">Face Reading</div><div class="ins-card-hook">Your face reveals hidden life patterns</div><div class="coming-badge">Coming Soon</div></div>
+            <div class="ins-card ins-card-coming"><div class="ins-card-icon pu-i" style="opacity:.45;"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><path d="M8 5v3l2 2"/></svg></div><div class="ins-card-name">Oraculum</div><div class="ins-card-hook">Spiritual oracle guidance system</div><div class="coming-badge">Coming Soon</div></div>
+            <div class="ins-card ins-card-coming"><div class="ins-card-icon teal-i" style="opacity:.45;"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l2.5 2.5M4 8h8"/></svg></div><div class="ins-card-name">Fortune Wheel</div><div class="ins-card-hook">Enter a decision challenge</div><div class="coming-badge">Coming Soon</div></div>
+            <div class="ins-card ins-card-coming"><div class="ins-card-icon teal-i" style="opacity:.45;"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 2v2M8 12v2M2 8h2M12 8h2"/><circle cx="8" cy="8" r="1.5"/></svg></div><div class="ins-card-name">Compass</div><div class="ins-card-hook">Where should I be for a fulfilled life?</div><div class="coming-badge">Coming Soon</div></div>
+          </div>
+          <div class="scroll-indicator">
+            <span>Scroll for all services</span>
+            <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="ph-lbl">Discover Hidden Patterns · Scrollable Full View</div>
+    </div>
+
+    <!-- SCREEN 13: FULL SIDE NAVIGATION MENU — Complete Service List -->
+    <div class="ph-wrap">
+      <div class="ph">
+        <div class="ph-status" style="background:#040810;"><div class="ph-time">23:27</div><div class="ph-notch"></div><div class="ph-icons">●●●</div></div>
+        <div class="scr-full-menu">
+          <div class="fm-header">
+            <div class="fm-logo-wrap">
+              <div class="fm-logo-ring">
+                <img class="logo-img screen-logo" src="" alt="" style="display:none;">
+                <span class="fm-logo-fb">A</span>
+              </div>
+              <div class="fm-logo-text">Ajdur</div>
+            </div>
+            <div class="fm-close"><svg viewBox="0 0 12 12"><path d="M2 2l8 8M10 2l-8 8"/></svg></div>
+          </div>
+          <div class="fm-list" style="max-height:530px;overflow-y:auto;scrollbar-width:none;">
+            <div class="fm-section">
+              <div class="fm-section-label">Main</div>
+              <div class="fm-item active"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="8" y="2" width="6" height="6" rx="1"/><rect x="2" y="8" width="6" height="6" rx="1"/><rect x="8" y="8" width="6" height="6" rx="1"/></svg><div class="fm-item-text">Home · Self Exploration</div><span class="fm-item-badge fm-badge-free">Free</span></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5"/><circle cx="8" cy="8" r="2"/></svg><div class="fm-item-text">Discover Hidden Patterns</div><span class="fm-item-badge fm-badge-free">Free+</span></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 7h6M5 9.5h4"/></svg><div class="fm-item-text">Speak to Prof. Kewunla</div></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><path d="M8 2l1.6 3.2 3.4.5-2.5 2.4.6 3.4L8 9.9 4.9 11.5l.6-3.4L3 5.7l3.4-.5z"/></svg><div class="fm-item-text">Daily Wisdom Center</div><span class="fm-item-badge fm-badge-new">Daily</span></div>
+            </div>
+            <div class="fm-divider"></div>
+            <div class="fm-section">
+              <div class="fm-section-label">Knowledge</div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><path d="M2 3h12v10H2zM6 3V2a1 1 0 012 0v1"/></svg><div class="fm-item-text">Spiritual Academy</div></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><path d="M3 3h10v2H3zM3 7h7M3 11h5"/></svg><div class="fm-item-text">Spiritism · Knowledge Hub</div></div>
+            </div>
+            <div class="fm-divider"></div>
+            <div class="fm-section">
+              <div class="fm-section-label">Coming Soon</div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><path d="M2 3h12l-1.5 8H3.5z"/></svg><div class="fm-item-text">Our Store</div><span class="fm-item-badge fm-badge-coming">Phase 2</span></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="6" r="3"/><path d="M2 14c0-3 2.7-5 6-5s6 2 6 5"/></svg><div class="fm-item-text">Life Coaching</div><span class="fm-item-badge fm-badge-coming">Coming</span></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><path d="M8 2C5.79 2 4 4 4 6.5c0 3.5 4 7.5 4 7.5s4-4 4-7.5C12 4 10.21 2 8 2z"/></svg><div class="fm-item-text">Life Path (Akosejaiye)</div><span class="fm-item-badge fm-badge-coming">Coming</span></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l2.5 2.5"/></svg><div class="fm-item-text">Spiritual Healing</div><span class="fm-item-badge fm-badge-coming">Coming</span></div>
+            </div>
+            <div class="fm-divider"></div>
+            <div class="fm-section">
+              <div class="fm-section-label">Support</div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><path d="M2 4h12v8H2z"/></svg><div class="fm-item-text">Unlock Discount Access</div></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><path d="M2 2h12v10H8l-4 3V12H2z"/></svg><div class="fm-item-text">Contact Us</div></div>
+            </div>
+            <div class="fm-divider"></div>
+            <div class="fm-section">
+              <div class="fm-section-label">Account</div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="6" r="3"/><path d="M2 14c0-3 2.7-5 6-5s6 2 6 5"/></svg><div class="fm-item-text">Your Account &amp; Preferences</div></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 5v.5M8 7.5v4"/></svg><div class="fm-item-text">Privacy Policy</div></div>
+              <div class="fm-item"><svg viewBox="0 0 16 16"><rect x="2" y="2" width="6" height="12" rx="1"/><path d="M11 5h3M11 8h3"/></svg><div class="fm-item-text">Terms &amp; Conditions</div></div>
+            </div>
+          </div>
+          <div class="fm-footer"><div class="fm-ver">v1.0.10 (91) · Ajdur International</div></div>
+        </div>
+      </div>
+      <div class="ph-lbl">Full Navigation Menu · All Services</div>
+    </div>
+
+  </div><!-- /screens-grid -->
+</section>
+
+<!-- Logo Upload JavaScript -->
+<script>
+document.getElementById('logo-file-input').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const src = evt.target.result;
+    const preview = document.getElementById('logo-preview-main');
+    preview.innerHTML = '<img class="logo-img" src="'+src+'" alt="Ajdur Logo" style="width:72px;height:72px;object-fit:contain;border-radius:50%;">';
+    document.querySelectorAll('.screen-logo').forEach(img => { img.src = src; img.style.display = 'block'; });
+    document.querySelectorAll('.ob-fallback,.logo-fallback-text,.tab-center-text,.logo-fallback-sm,.wel-logo-fb,.wel-logo-fb2,.fm-logo-fb').forEach(el => el.style.display = 'none');
+    const luz = document.querySelector('.luz-btn');
+    if (luz) luz.innerHTML = '<svg style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;" viewBox="0 0 16 16"><path d="M13 8v5a1 1 0 01-1 1H4a1 1 0 01-1-1V8"/><path d="M5 5l3-3 3 3M8 2v8"/></svg> Change Logo';
+  };
+  reader.readAsDataURL(file);
+});
+</script>
+<section id="flows">
+  <div class="eye">Deliverable — All User Flows</div>
+  <h2>8 Confirmed User Flows</h2>
+  <p style="max-width:640px;margin-bottom:32px;">Every major journey the app must support. Each flow connects to a revenue outcome — consultation bookings, ad revenue, or long-term retention.</p>
+
+  <!-- FLOW 1 -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 1 — First-Time User Onboarding</div>
+    <div class="flow-sub">Install → 3 Onboarding slides (Skip available) → Reveal My Blueprint → Home → Free reading → Consultation upsell</div>
+    <svg viewBox="0 0 820 165" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#7FADA8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="at" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#00BBCF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="ag2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#C8A84B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect x="8" y="58" width="100" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="58" y="78" text-anchor="middle" fill="#3A6560" font-family="Outfit,sans-serif" font-size="12" font-weight="500">App Install</text><text x="58" y="93" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">First open</text>
+      <rect x="130" y="58" width="110" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="185" y="78" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Onboarding</text><text x="185" y="93" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">3 slides + Skip</text>
+      <rect x="262" y="52" width="108" height="60" rx="8" fill="url(#tg)"/>
+      <defs><linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00BBCF"/><stop offset="100%" stop-color="#007A88"/></linearGradient></defs>
+      <text x="316" y="76" text-anchor="middle" fill="#fff" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Reveal My</text><text x="316" y="92" text-anchor="middle" fill="rgba(255,255,255,.75)" font-family="Outfit,sans-serif" font-size="11">Blueprint CTA</text>
+      <rect x="392" y="58" width="110" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="447" y="78" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Home Dashboard</text><text x="447" y="93" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Daily oracle message</text>
+      <rect x="524" y="58" width="110" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="579" y="78" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Free Reading</text><text x="579" y="93" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Mini insight result</text>
+      <rect x="656" y="52" width="108" height="60" rx="8" fill="rgba(0,187,207,.1)" stroke="#00BBCF" stroke-width="1.5"/><text x="710" y="76" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Speak to</text><text x="710" y="92" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Prof. Kewunla</text>
+      <line x1="108" y1="82" x2="128" y2="82" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="240" y1="82" x2="260" y2="82" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="370" y1="82" x2="390" y2="82" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="502" y1="82" x2="522" y2="82" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="634" y1="82" x2="654" y2="82" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="410" y="148" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="12">Teal = activation moments · Every free result must display "Need Deeper Answers? Speak to Prof. Kewunla" CTA</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 2 -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 2 — Daily Returning User</div>
+    <div class="flow-sub">Re-open → Daily oracle (ad revenue hook) → Explore or Watch Ad → Result → Consultation upsell</div>
+    <svg viewBox="0 0 820 170" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="60" width="110" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="63" y="80" text-anchor="middle" fill="#3A6560" font-family="Outfit,sans-serif" font-size="12">Re-open App</text><text x="63" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Return visit</text>
+      <rect x="140" y="60" width="110" height="48" rx="8" fill="#fff" stroke="#00BBCF" stroke-width="1"/><text x="195" y="78" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Daily Wisdom</text><text x="195" y="92" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Oracle · Tip · Number</text>
+      <polygon points="316,60 356,84 316,108 276,84" fill="#fff" stroke="#C8A84B" stroke-width="1"/><text x="316" y="88" text-anchor="middle" fill="#C8A84B" font-family="Outfit,sans-serif" font-size="11" font-weight="700">What next?</text>
+      <rect x="376" y="50" width="100" height="40" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="426" y="66" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Free Insight</text><text x="426" y="80" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Dream · Card · Dice</text>
+      <rect x="376" y="104" width="100" height="40" rx="8" fill="#fff" stroke="#C8A84B" stroke-width="1"/><text x="426" y="120" text-anchor="middle" fill="#C8A84B" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Watch &amp; Unlock</text><text x="426" y="134" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Ad revenue earned</text>
+      <rect x="504" y="60" width="110" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="559" y="80" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Result Screen</text><text x="559" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Emotional hook</text>
+      <rect x="642" y="52" width="110" height="64" rx="8" fill="rgba(0,187,207,.1)" stroke="#00BBCF" stroke-width="1.5"/><text x="697" y="76" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Speak to</text><text x="697" y="92" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Prof. Kewunla</text>
+      <line x1="118" y1="84" x2="138" y2="84" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="250" y1="84" x2="274" y2="84" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="356" y1="74" x2="374" y2="64" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="356" y1="94" x2="374" y2="116" stroke="#C8A84B" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="476" y1="70" x2="502" y2="78" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="476" y1="124" x2="502" y2="96" stroke="#C8A84B" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="614" y1="84" x2="640" y2="84" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+    </svg>
+  </div>
+
+  <!-- FLOW 3 -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 3 — Consultation Booking (Speak to Prof. Kewunla)</div>
+    <div class="flow-sub">Menu → Consultation page → Choose tier (₦10K or ₦35K) → Optional coupon → Confirm → Booked</div>
+    <svg viewBox="0 0 820 225" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="36" width="86" height="42" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="51" y="54" text-anchor="middle" fill="#3A6560" font-family="Outfit,sans-serif" font-size="12">Menu</text><text x="51" y="68" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Side drawer</text>
+      <rect x="112" y="36" width="116" height="42" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="170" y="54" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Speak to</text><text x="170" y="68" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Prof. Kewunla</text>
+      <polygon points="292,36 332,57 292,78 252,57" fill="#fff" stroke="#C8A84B" stroke-width="1"/><text x="292" y="61" text-anchor="middle" fill="#C8A84B" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Which tier?</text>
+      <rect x="352" y="16" width="100" height="40" rx="8" fill="#fff" stroke="#00BBCF" stroke-width="1"/><text x="402" y="32" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Clarity Session</text><text x="402" y="46" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">₦10,000 · Chat</text>
+      <rect x="352" y="68" width="100" height="40" rx="8" fill="#fff" stroke="#C8A84B" stroke-width="1.5"/><text x="402" y="84" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Deep Destiny</text><text x="402" y="98" text-anchor="middle" fill="#C8A84B" font-family="Outfit,sans-serif" font-size="10">₦35,000 · Video</text>
+      <rect x="352" y="118" width="100" height="40" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="402" y="134" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Special Request</text><text x="402" y="148" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Custom · Flexible</text>
+      <rect x="472" y="60" width="100" height="40" rx="8" fill="rgba(0,187,207,.06)" stroke="rgba(0,187,207,.28)" stroke-width="1" stroke-dasharray="4 2"/><text x="522" y="76" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="600">Coupon?</text><text x="522" y="89" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Optional discount</text>
+      <rect x="590" y="36" width="90" height="42" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="635" y="54" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Confirm</text><text x="635" y="68" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Review details</text>
+      <rect x="700" y="30" width="90" height="54" rx="27" fill="rgba(0,187,207,.10)" stroke="#00BBCF" stroke-width="1.5"/><text x="745" y="52" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Booked!</text><text x="745" y="67" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11">Confirmed ✓</text>
+      <line x1="94" y1="57" x2="110" y2="57" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="228" y1="57" x2="250" y2="57" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="332" y1="50" x2="350" y2="36" stroke="#00BBCF" stroke-width="1" marker-end="url(#at)"/>
+      <line x1="332" y1="57" x2="350" y2="88" stroke="#C8A84B" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="332" y1="64" x2="350" y2="130" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <path d="M452 36L576 50" fill="none" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="452" y1="88" x2="470" y2="80" stroke="rgba(0,187,207,.4)" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#at)"/>
+      <line x1="572" y1="78" x2="588" y2="62" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <path d="M452 138L578 68" fill="none" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="680" y1="57" x2="698" y2="57" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="342" y="14" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">Free entry</text>
+      <text x="342" y="86" text-anchor="middle" fill="#C8A84B" font-family="Outfit,sans-serif" font-size="10">Paid</text>
+      <text x="470" y="56" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">optional</text>
+      <rect x="8" y="178" width="802" height="40" rx="8" fill="rgba(0,187,207,.05)" stroke="rgba(0,187,207,.14)" stroke-width="1"/>
+      <text x="22" y="196" fill="#3A6560" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Note:</text>
+      <text x="22" y="210" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="12">Life Coaching, Life Path, and Spiritual Healing (coming) appear as specialisation options inside Deep Destiny tier — not as separate booking screens.</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 4 -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 4 — Discover Hidden Patterns (Advance Insights)</div>
+    <div class="flow-sub">Grid → Tap card → Free (direct) or Gated (Pay/Watch Ad popup) → Result → "Speak to Prof. Kewunla" upsell</div>
+    <svg viewBox="0 0 820 215" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="60" width="100" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="58" y="80" text-anchor="middle" fill="#3A6560" font-family="Outfit,sans-serif" font-size="12">Insights Hub</text><text x="58" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Discovery grid</text>
+      <rect x="130" y="60" width="100" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="180" y="80" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Tap Card</text><text x="180" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Face / Dream / etc.</text>
+      <polygon points="302,60 342,84 302,108 262,84" fill="#fff" stroke="#C8A84B" stroke-width="1"/><text x="302" y="88" text-anchor="middle" fill="#C8A84B" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Gated?</text>
+      <rect x="362" y="42" width="100" height="40" rx="8" fill="rgba(10,132,90,.07)" stroke="rgba(10,132,90,.25)" stroke-width="1"/><text x="412" y="58" text-anchor="middle" fill="#0A845A" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Free Access</text><text x="412" y="72" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Opens directly</text>
+      <rect x="362" y="96" width="100" height="40" rx="8" fill="#fff" stroke="#C8A84B" stroke-width="1"/><text x="412" y="112" text-anchor="middle" fill="#C8A84B" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Unlock Popup</text><text x="412" y="126" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Pay / Watch &amp; Unlock</text>
+      <rect x="482" y="60" width="90" height="48" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="527" y="80" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Reading Result</text><text x="527" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Emotional hook</text>
+      <rect x="592" y="44" width="136" height="80" rx="8" fill="rgba(200,168,75,.09)" stroke="rgba(200,168,75,.35)" stroke-width="1.5"/>
+      <text x="660" y="66" text-anchor="middle" fill="#8A5908" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Need Deeper Answers?</text>
+      <text x="660" y="82" text-anchor="middle" fill="#A86010" font-family="Outfit,sans-serif" font-size="10">Speak to Prof. Kewunla</text>
+      <text x="660" y="98" text-anchor="middle" fill="#A86010" font-family="Outfit,sans-serif" font-size="10">[ Upgrade to Consultation ]</text>
+      <rect x="748" y="60" width="60" height="48" rx="8" fill="rgba(0,187,207,.1)" stroke="#00BBCF" stroke-width="1"/>
+      <text x="778" y="80" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Booked</text>
+      <text x="778" y="95" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="10">Revenue</text>
+      <line x1="108" y1="84" x2="128" y2="84" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="230" y1="84" x2="260" y2="84" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="342" y1="74" x2="360" y2="62" stroke="#0A845A" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="342" y1="94" x2="360" y2="110" stroke="#C8A84B" stroke-width="1" marker-end="url(#ag2)"/>
+      <line x1="462" y1="62" x2="480" y2="74" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="462" y1="116" x2="480" y2="92" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="572" y1="84" x2="590" y2="84" stroke="#C8A84B" stroke-width="1.5" marker-end="url(#ag2)"/>
+      <line x1="728" y1="84" x2="746" y2="84" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+      <text x="352" y="40" fill="#0A845A" font-family="Outfit,sans-serif" font-size="10" text-anchor="middle">No</text>
+      <text x="352" y="110" fill="#C8A84B" font-family="Outfit,sans-serif" font-size="10" text-anchor="middle">Yes</text>
+      <text x="410" y="192" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="12">"Need Deeper Answers?" CTA must appear on EVERY insight result screen — this is the primary consultation conversion path per Prof. Kewunla's brief</text>
+    </svg>
+  </div>
+
+  <!-- FLOW 5 -->
+  <div class="flow-box">
+    <div class="flow-title">Flow 5 — Rewarded Ad (Watch &amp; Unlock)</div>
+    <div class="flow-sub">User taps "Watch &amp; Unlock" → Full ad plays → Starter reading unlocked → Result → Consultation upsell. Live at launch.</div>
+    <svg viewBox="0 0 820 148" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="48" width="110" height="52" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="63" y="68" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">"Watch &amp; Unlock"</text><text x="63" y="82" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">User taps CTA</text><text x="63" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">(voluntary choice)</text>
+      <rect x="140" y="48" width="110" height="52" rx="8" fill="url(#tg)"/><text x="195" y="68" text-anchor="middle" fill="#fff" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Ad Plays</text><text x="195" y="82" text-anchor="middle" fill="rgba(255,255,255,.78)" font-family="Outfit,sans-serif" font-size="11">Full rewarded video</text><text x="195" y="95" text-anchor="middle" fill="rgba(255,255,255,.6)" font-family="Outfit,sans-serif" font-size="10">AdMob — revenue earned</text>
+      <rect x="272" y="48" width="110" height="52" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="327" y="68" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Ad Complete</text><text x="327" y="82" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Reward confirmed</text>
+      <rect x="404" y="48" width="110" height="52" rx="8" fill="rgba(10,132,90,.07)" stroke="rgba(10,132,90,.28)" stroke-width="1"/><text x="459" y="68" text-anchor="middle" fill="#0A845A" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Starter Reading</text><text x="459" y="82" text-anchor="middle" fill="#0A845A" font-family="Outfit,sans-serif" font-size="11">Unlocked ✓</text><text x="459" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Basic interpretation</text>
+      <rect x="536" y="48" width="110" height="52" rx="8" fill="#fff" stroke="#C4D8D4" stroke-width="1"/><text x="591" y="68" text-anchor="middle" fill="#052018" font-family="Outfit,sans-serif" font-size="12" font-weight="600">Result + Upsell</text><text x="591" y="82" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="11">Emotional hook</text><text x="591" y="95" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Prof. Kewunla CTA</text>
+      <rect x="668" y="42" width="100" height="64" rx="8" fill="rgba(0,187,207,.10)" stroke="#00BBCF" stroke-width="1.5"/><text x="718" y="66" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Book</text><text x="718" y="81" text-anchor="middle" fill="#007A88" font-family="Outfit,sans-serif" font-size="12" font-weight="700">Consultation</text><text x="718" y="96" text-anchor="middle" fill="#7FADA8" font-family="Outfit,sans-serif" font-size="10">Direct revenue ↑</text>
+      <line x1="118" y1="74" x2="138" y2="74" stroke="#7FADA8" stroke-width="1" marker-end="url(#ag)"/>
+      <line x1="250" y1="74" x2="270" y2="74" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="382" y1="74" x2="402" y2="74" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+      <line x1="514" y1="74" x2="534" y2="74" stroke="#0A845A" stroke-width="1.5" marker-end="url(#ag)"/>
+      <line x1="646" y1="74" x2="666" y2="74" stroke="#00BBCF" stroke-width="1.5" marker-end="url(#at)"/>
+    </svg>
+  </div>
+
+  <!-- FLOWS 6-8 brief -->
+  <div class="g3" style="gap:18px;">
+    <div class="flow-box" style="margin-bottom:0;">
+      <div class="flow-title" style="font-size:15px;">Flow 6 — Daily Wisdom Center</div>
+      <div class="flow-sub">Menu → Daily Wisdom → Oracle (free/ad unlock) → Teaching → Academy class login (separate) → Trust built → Consultation CTA</div>
+      <p style="font-size:14px;color:var(--mu);margin-top:8px;">Content by Prof. Kewunla (weekly batch) + Team scheduling. Daily rotation auto-scheduled. Premium oracle unlocked via "Watch &amp; Unlock" ad.</p>
+    </div>
+    <div class="flow-box" style="margin-bottom:0;">
+      <div class="flow-title" style="font-size:15px;">Flow 7 — Unlock Discount Access</div>
+      <div class="flow-sub">Menu → Page → Path A: Fill form → Request sent → Code emailed. Path B: Watch &amp; Unlock. Both paths resolve to access.</div>
+      <p style="font-size:14px;color:var(--mu);margin-top:8px;">5 coupon types in dropdown. WhatsApp Contact Us button links to +234 XXX XXX XXXX. Full Free Consultation = manual approval only.</p>
+    </div>
+    <div class="flow-box" style="margin-bottom:0;">
+      <div class="flow-title" style="font-size:15px;">Flow 8 — Post-Insight Upsell</div>
+      <div class="flow-sub">Every insight result screen → "Need Deeper Answers?" block → "Speak to Prof. Kewunla" → Consultation booking. This is mandatory on all result screens.</div>
+      <p style="font-size:14px;color:var(--mu);margin-top:8px;">Per the brief: "This is the strongest conversion path. Must exist." Dual revenue: ad revenue already earned + consultation booking.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COPY GUIDE ══════════ -->
+<section id="copy">
+  <div class="eye">Confirmed Copy Upgrades</div>
+  <h2>Screen-by-Screen Copy — Final Version</h2>
+  <p style="max-width:640px;margin-bottom:24px;">Exact replacement text confirmed by the brief and team responses. Apply these immediately — they require no design work. "Prof. Kewunla" replaces "Founder/Owner" everywhere in the app.</p>
+  <div class="ct">
+    <div class="ct-head"><div class="ct-th">Screen / Element</div><div class="ct-th">Old Copy (Remove)</div><div class="ct-th">New Copy (Final)</div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Onboarding Screen 1 — Headline</div><div class="ct-cell"><span class="ct-old">The Compass Within through Consultation</span></div><div class="ct-cell"><span class="ct-new">Why Does Life Keep Repeating the Same Lessons?</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Onboarding Screen 2 — Headline</div><div class="ct-cell"><span class="ct-old">The Blueprint on Your Face and Palm</span></div><div class="ct-cell"><span class="ct-new">Your Face and Palm Reveal More Than You Think</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Onboarding Screen 3 — Headline</div><div class="ct-cell"><span class="ct-old">Know Yourself</span></div><div class="ct-cell"><span class="ct-new">Your Birthdate Is Not Random</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Onboarding — Primary CTA</div><div class="ct-cell"><span class="ct-old">Get Started</span></div><div class="ct-cell"><span class="ct-new">Reveal My Blueprint</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Onboarding — Trust signal</div><div class="ct-cell"><span class="ct-old">(absent)</span></div><div class="ct-cell"><span class="ct-new">✦ Trusted by Thousands Seeking Clarity</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Advance Insights — Page Title</div><div class="ct-cell"><span class="ct-old">Advance Insights</span></div><div class="ct-cell"><span class="ct-new">Discover Hidden Patterns</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Advance Insights — Hero</div><div class="ct-cell"><span class="ct-old">(none)</span></div><div class="ct-cell"><span class="ct-new">What Is Affecting Your Life Right Now? [Start My Discovery]</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Consultation — Page Title</div><div class="ct-cell"><span class="ct-old">Consultation / Speak to Founder/Owner</span></div><div class="ct-cell"><span class="ct-new">Speak to Prof. Kewunla</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Standard Consultation — Name</div><div class="ct-cell"><span class="ct-old">Standard Consultation</span></div><div class="ct-cell"><span class="ct-new">Clarity Session · ₦10,000</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Platinum/Diamond — Name + Badge</div><div class="ct-cell"><span class="ct-old">Platinum / Diamond Consultation</span></div><div class="ct-cell"><span class="ct-new">Deep Destiny Consultation · ₦35,000 · MOST RECOMMENDED badge</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Consultation — Gold tier CTA</div><div class="ct-cell"><span class="ct-old">Submit / Book</span></div><div class="ct-cell"><span class="ct-new">Unlock Deep Destiny Session</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Consultation — Standard CTA</div><div class="ct-cell"><span class="ct-old">Book</span></div><div class="ct-cell"><span class="ct-new">Start My Clarity Session</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Post-Insight Upsell (all result screens)</div><div class="ct-cell"><span class="ct-old">(absent)</span></div><div class="ct-cell"><span class="ct-new">Need Deeper Answers? Speak to Prof. Kewunla [Upgrade to Consultation]</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Education — Page Title</div><div class="ct-cell"><span class="ct-old">Education</span></div><div class="ct-cell"><span class="ct-new">Daily Wisdom Center</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Request Coupon — Page Title</div><div class="ct-cell"><span class="ct-old">Request Coupon</span></div><div class="ct-cell"><span class="ct-new">Unlock Discount Access</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Coupon Page — Main copy</div><div class="ct-cell"><span class="ct-old">(none)</span></div><div class="ct-cell"><span class="ct-new">Everyone Deserves Clarity. Request support options and explore flexible access pathways.</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Coupon — Primary CTA</div><div class="ct-cell"><span class="ct-old">Submit</span></div><div class="ct-cell"><span class="ct-new">Request Access Support</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Settings — Page Title</div><div class="ct-cell"><span class="ct-old">Settings</span></div><div class="ct-cell"><span class="ct-new">Your Account &amp; Preferences</span></div></div>
+    <div class="ct-row"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Ad Popup — Title</div><div class="ct-cell"><span class="ct-old">(not designed)</span></div><div class="ct-cell"><span class="ct-new">Unlock Your Insight — Choose how you'd like to continue</span></div></div>
+    <div class="ct-row" style="border:none;"><div class="ct-cell" style="font-weight:600;color:var(--ink);">Ad CTA Button — everywhere</div><div class="ct-cell"><span class="ct-old">Watch Ad · Watch Video · Continue</span></div><div class="ct-cell"><span class="ct-new">Watch &amp; Unlock (NEVER "Watch Ad")</span></div></div>
+  </div>
+</section>
+
+<!-- ══════════ DEVELOPMENT HANDOFF ══════════ -->
+<section id="handoff">
+  <div class="eye">Development Handoff Notes — Complete</div>
+  <h2>Implementation Specification</h2>
+  <p style="max-width:680px;margin-bottom:28px;">Full technical and product specification for the development team. Includes scroll behaviour, screen duplication rules, coming-soon placeholder logic, and all critical build requirements. Every item below is mandatory unless marked optional.</p>
+
+  <!-- SCROLL & DUPLICATION GUIDANCE — NEW -->
+  <h3 style="margin-bottom:12px;">Screen Architecture — Scroll vs Single View vs Duplicate</h3>
+  <p style="font-size:14px;color:var(--mu);margin-bottom:20px;">Several screens contain more content than fits in a single viewport. The table below specifies the exact scroll behaviour, duplication pattern, and coming-soon placeholder handling for each screen.</p>
+
+  <div style="background:var(--sf);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;margin-bottom:36px;overflow-x:auto;">
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;background:var(--bg2);border-bottom:1.5px solid var(--br-s);">
+      <div style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--tc2);padding:11px 16px;border-right:1px solid var(--br);">Screen</div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--tc2);padding:11px 16px;border-right:1px solid var(--br);">Architecture</div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--tc2);padding:11px 16px;border-right:1px solid var(--br);">Developer Instruction</div>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--tc2);padding:11px 16px;">Coming-Soon Rule</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Onboarding (3 slides)</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--tc-d);color:var(--tc2);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--tc-m);">3 Screens</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Build as 3 separate screens with swipe/pagination. Slide 1 = Welcome + Video. Slide 2 = Face &amp; Palm. Slide 3 = Your Birthdate. Skip button (top right) on all 3 slides jumps directly to Home.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);background:rgba(0,187,207,.03);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Home Dashboard</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--gr-d);color:var(--gr);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--gr-m);">Single View</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">No scroll needed. Fixed viewport. Hero section + 2×2 quick-access card grid + floating tab bar. All content fits in one screen.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A — only active services shown</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Discover Hidden Patterns</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--go-d);color:var(--go);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--go-m);">Scrollable</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);"><strong style="color:var(--ink);">This screen must scroll vertically.</strong> All insight services do not fit on one viewport. Structure: Hero question → Active Services section (free/unlock) → Coming Soon section (dimmed, blurred). Add a subtle scroll-down indicator (chevron) below the first visible row. Sticky header (back button + title) while scrolling.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">Coming Soon cards: dim to 55% opacity, apply a 2px CSS blur overlay, show gold <strong>"Coming Soon"</strong> badge centred. Tap on a Coming Soon card shows a toast: <em>"This reading is coming soon. You'll be notified when it launches."</em></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);background:rgba(0,187,207,.03);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Speak to Prof. Kewunla</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--go-d);color:var(--go);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--go-m);">Scrollable</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Scrolls vertically. Order: Hero → Deep Destiny card (MOST RECOMMENDED) → Clarity Session card → Special Request card → Testimonials (3 cards) → Trust builder block → Book CTA (sticky bottom). Testimonials section is below the fold by design — reward scrollers.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Daily Wisdom Center</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--go-d);color:var(--go);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--go-m);">Scrollable</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Scrollable feed. Order: Oracle message (Watch &amp; Unlock) → Today's Teaching → Numerology of the Day → Dream Tip → Weekly wisdom archive (older entries). Spiritual Academy login link appears as a separate card at the bottom — NOT inline with wisdom content.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A — content is always live or oracle-placeholder</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);background:rgba(0,187,207,.03);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Unlock Discount Access</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--gr-d);color:var(--gr);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--gr-m);">Single View</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Fits single viewport. Form: Name + Email + Coupon type dropdown. Primary CTA: "Request Access Support." Below the form, a separate "Prefer free access?" block with "Watch &amp; Unlock" button. Two distinct paths — form path and ad path — must both be visible without scrolling.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Unlock Insight Popup (Ad)</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--pu-d);color:var(--pu);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--pu-m);">Modal</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Appears as a bottom-sheet modal overlay. The underlying screen is blurred (CSS blur 4px). Two clear options: Pay (gold CTA) or Watch &amp; Unlock (teal CTA). A small dismiss link at the bottom closes the modal without action.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);background:rgba(0,187,207,.03);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Side Navigation Menu</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--go-d);color:var(--go);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--go-m);">Scrollable</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Drawer slides in from left (standard side menu). Full list of all sections scrolls internally. Logo + name fixed at top. Version number fixed at bottom. The main app content dims/blurs behind the drawer.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">Coming Soon items appear in the menu with a gold "Coming" badge. They are tappable but display a toast: <em>"This service is coming soon."</em></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Spiritual Academy Login</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--gr-d);color:var(--gr);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--gr-m);">Single View</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Emblem + title + 4 programme type chips (horizontal scroll) + login form (email + password) + "Access My Classes" CTA + external portal note. Successful login → deep-link to external Academy URL (to be provided). "Forgot password" link opens external reset URL.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A — always active</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;border-bottom:1px solid var(--br);background:rgba(0,187,207,.03);">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Contact Us</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--gr-d);color:var(--gr);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--gr-m);">Single View</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Three contact options (WhatsApp primary, Email, Book Consultation) + Quick Message textarea + Send via WhatsApp CTA. WhatsApp button opens <span style="font-family:monospace;font-size:12px;background:var(--bg2);padding:2px 6px;border-radius:4px;">wa.me/234XXXXXXXXXX</span>. Email button opens device mail client. Book Consultation routes to the Consultation screen.</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:180px 130px 1fr 160px;">
+      <div style="padding:12px 16px;font-size:14px;font-weight:600;color:var(--ink);border-right:1px solid var(--br);">Welcome Video Slide (Onboarding 1)</div>
+      <div style="padding:12px 16px;border-right:1px solid var(--br);"><span style="background:var(--gr-d);color:var(--gr);font-size:12px;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid var(--gr-m);">Single View</span></div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);border-right:1px solid var(--br);">Fixed height video player area. <strong style="color:var(--ink);">Video plays inline</strong> (not fullscreen by default). Tapping the play button starts the intro video by Prof. Kewunla. Logo at top + hamburger menu matches the live app screenshot. Bottom tab bar has floating logo centre button. Auto-advance to Slide 2 on video end (or user swipes).</div>
+      <div style="padding:12px 16px;font-size:14px;color:var(--mu);">N/A</div>
+    </div>
+  </div>
+
+  <!-- EXISTING SPEC CARDS — COMPLETE SET -->
+  <h3 style="margin-bottom:16px;">Technical Requirements</h3>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-num">Fonts</div>
+      <div class="spec-title">Typography Stack</div>
+      <div class="spec-body">Display/Headings: <span class="spec-code">Playfair Display</span> 400, 600, 700, italic<br><br>Body/UI: <span class="spec-code">Outfit</span> 400, 500, 600 (primary) or <span class="spec-code">Manrope</span> 400–700 (alternative)<br><br>Minimum font size throughout app: <span class="spec-code">14px</span>. Exception: screen status bar and micro-labels (min 11px). Load from Google Fonts — subset Latin only for performance.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Colours</div>
+      <div class="spec-title">Design Token Set</div>
+      <div class="spec-body">App BG: <span class="spec-code">#040810</span><br>Surface: <span class="spec-code">#0D1828</span><br>Card: <span class="spec-code">#111E2E</span><br>Turquoise CTA: <span class="spec-code">linear-gradient(135deg,#00D4E8,#007A90)</span><br>Gold (premium only): <span class="spec-code">linear-gradient(135deg,#E8C06A,#C89832)</span><br>Ivory text: <span class="spec-code">#F2E8D8</span><br>Body text: <span class="spec-code">#D4C9B8</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Logo</div>
+      <div class="spec-title">Ajdur Logo Handling</div>
+      <div class="spec-body">The current logo has a white background. Place it inside a <strong>dark circular container</strong> (background: #0D1828, border: 1.5px rgba(0,195,215,.35)) to integrate cleanly with the dark design. Request Prof. Kewunla's team for a <span class="spec-code">PNG with transparent background</span> for the production build — this will allow the logo to display directly on dark and gradient surfaces.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Prices</div>
+      <div class="spec-title">Consultation Pricing</div>
+      <div class="spec-body">Clarity Session: <span class="spec-code">₦10,000</span><br>Deep Destiny: <span class="spec-code">₦35,000</span><br><br>⚠ Both subject to final confirmation by Prof. Kewunla before payment integration. These are display values. Backend payment amounts require written sign-off before going live.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">AdMob</div>
+      <div class="spec-title">Rewarded Video Ads</div>
+      <div class="spec-body">Go live: <strong>at app launch</strong><br>Type: Rewarded video only (never interstitial)<br>Trigger: User explicitly taps "Watch &amp; Unlock"<br><br>Never show ads on: Consultation booking, payment flow, result screens, onboarding slides, Platinum upgrade screen, or premium-user sessions.<br><br>Premium users: <span class="spec-code">0 forced ads</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Language</div>
+      <div class="spec-title">Critical Word Rules</div>
+      <div class="spec-body">✗ "Founder/Owner" → <span class="spec-code">Prof. Kewunla</span><br>✗ "Watch Ad" → <span class="spec-code">Watch &amp; Unlock</span><br>✗ "Submit" (coupon) → <span class="spec-code">Request Access Support</span><br>✗ "Get Started" → <span class="spec-code">Reveal My Blueprint</span><br>✗ "No data" → <span class="spec-code">Your journey is just beginning</span><br>✗ "Watch Video" → <span class="spec-code">Continue Your Journey</span></div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Mandatory</div>
+      <div class="spec-title">Post-Insight Upsell</div>
+      <div class="spec-body">Every single insight result screen must display the "Need Deeper Answers?" block with the <span class="spec-code">Speak to Prof. Kewunla</span> CTA.<br><br>This is non-negotiable per Prof. Kewunla's brief. It is the primary consultation conversion path. No result screen ships without it. The block uses the gold gradient border card style.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Coming Soon</div>
+      <div class="spec-title">Placeholder Behaviour</div>
+      <div class="spec-body">All unavailable services (Face Reading, Oraculum, Fortune Wheel, Compass, Life Coaching, Life Path, Spiritual Healing, Store) must display with:<br><br>• 55% opacity dimming<br>• Backdrop blur overlay (2px)<br>• Gold <span class="spec-code">"Coming Soon"</span> badge<br>• On tap → toast message: <em>"Coming soon — you'll be notified on launch."</em></div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">WhatsApp</div>
+      <div class="spec-title">Contact Integration</div>
+      <div class="spec-body">Contact Us screen → WhatsApp button opens: <span class="spec-code">https://wa.me/234XXXXXXXXXX</span><br><br>Unlock Discount Access → "Contact Us" also links here.<br><br>Actual number: <span class="spec-code">+234 XXX XXX XXXX</span> — confirm with Prof. Kewunla before launch. Replace both placeholder occurrences.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Academy</div>
+      <div class="spec-title">Spiritual Academy Portal</div>
+      <div class="spec-body">The Spiritual Academy is an external portal. The in-app login screen collects email + password and authenticates against the external system.<br><br>"Access My Classes" CTA → deep-link URL to be provided by team.<br>"Forgot password" → external reset URL.<br>"Learn about enrolment" → external enrolment page or WhatsApp.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Store</div>
+      <div class="spec-title">Phase 2 — 30–60 Days Post-Launch</div>
+      <div class="spec-body">Our Store (Books, Incenses, Spiritual Tools, Healing Products) launches in Phase 2.<br><br>In Phase 1: Menu item shows "Coming" badge. Tap → toast: <em>"Our Store is coming soon."</em><br><br>In Phase 2: Menu item → deep-link to external store URL (to be provided). No in-app checkout needed in Phase 2.</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-num">Dream vs Oracle</div>
+      <div class="spec-title">Two Distinct Services</div>
+      <div class="spec-body"><strong>Dream Interpretation (Active):</strong> Text-based. User types dream description. System returns pattern-based interpretation. Uses teal icon treatment.<br><br><strong>Oraculum (Coming Soon):</strong> Spiritual oracle system — more intuitive, guided experience. Uses mystic purple icon. Distinct card design — never use the same visual as Dream Interpretation.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:var(--tc2);margin-bottom:10px;font-style:italic;">Ajdur International</div>
+  <div style="font-family:var(--fh);font-size:14px;font-weight:700;color:var(--mu);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;">A Spiritual Intelligence Platform for Self-Discovery, Clarity &amp; Transformation</div>
+  <p style="font-size:15px;">Final UX/UI Design Output · All 12 Decisions Resolved · April 2026</p>
+  <p style="margin-top:6px;font-size:14px;">Stakeholders: <strong style="color:var(--ink);">Prof. Kewunla</strong> (Owner &amp; Founder) · <strong style="color:var(--ink);">Ajdur App Team</strong> · Design Review Team</p>
+  <p style="margin-top:6px;font-size:13px;color:var(--fa);">13 screens · 8 user flows · Design system · 20 copy upgrades · Scroll/architecture spec · Dev handoff</p>
+  <div style="margin-top:20px;padding:16px 24px;background:linear-gradient(135deg,rgba(0,187,207,.08),rgba(0,122,136,.05));border:1px solid var(--tc-m);border-radius:12px;display:inline-block;">
+    <div style="font-size:14px;color:var(--tc2);font-weight:700;">"You are entering a deeper level of understanding."</div>
+    <div style="font-size:13px;color:var(--mu);margin-top:4px;">— Prof. Kewunla's vision for Ajdur</div>
+  </div>
+</footer>
+
+</div><!-- /wrap -->
+</body>
+</html>
